@@ -1,0 +1,33 @@
+PODS:
+  - FaceCaptcha (4.0.7):
+    - OILiveness3D_FT (~> 9.6.10)
+  - Flutter (1.0.0)
+  - OILiveness3D_FT (9.6.10)
+  - oiti_liveness2d (0.0.1):
+    - FaceCaptcha (~> 4.0.4)
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - oiti_liveness2d (from `.symlinks/plugins/oiti_liveness2d/ios`)
+
+SPEC REPOS:
+  https://github.com/oititec/liveness-ios-specs.git:
+    - FaceCaptcha
+    - OILiveness3D_FT
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  oiti_liveness2d:
+    :path: ".symlinks/plugins/oiti_liveness2d/ios"
+
+SPEC CHECKSUMS:
+  FaceCaptcha: 4864e93131982356e1dd354aad4e7301c072862c
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  OILiveness3D_FT: c2b3b70fbd86e2fd5efc58f47d32b0aead995ae1
+  oiti_liveness2d: edc2b024da508e98ab32462417b14f77aad35b90
+
+PODFILE CHECKSUM: 561365c71bd82e1cf3e458f78d69bed722a04802
+
+COCOAPODS: 1.11.3
