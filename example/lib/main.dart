@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                 // );
                 const appKey = "APP-KEY";
                 final channel = OitiLiveness2d();
-                await channel.recordEvent(appKey, 'L2_Start');
+                await channel.recordEvent(appKey, 'STATE_L3FT_flow');
               },
               child: const Text('Documentscopy')),
           const Spacer()

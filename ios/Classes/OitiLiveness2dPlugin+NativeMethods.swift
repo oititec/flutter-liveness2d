@@ -8,6 +8,7 @@
 import Foundation
 import Flutter
 import FaceCaptcha
+import OIObservability
 
 extension OitiLiveness2dPlugin {
     
@@ -23,8 +24,20 @@ extension OitiLiveness2dPlugin {
     }
     
     func recordEvent(event: String, result: @escaping FlutterResult) {
-        // TODO: Record Event
-        print("Event -> \(event)")
+        guard let eventType = EventTypes(rawValue: event) else {
+            result(MethodResponse.error)
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "source": "Flutter/iOS",
+            "timestamp": Date().timeIntervalSince1970
+        ]
+        
+        EventConfiguration()
+            .eventManager
+            .logEvent(type: eventType, parameters: parameters)
+        
         result(MethodResponse.success)
     }
     
