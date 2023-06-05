@@ -32,7 +32,7 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
     throw UnimplementedError('openDocumentscopy() has not been implemented.');
   }
 
-  Future<MethodResponse> recordEvent(String event) async {
+  Future<MethodResponse> recordEvent(String appKey, String event) async {
     throw UnimplementedError('recordEvent() has not been implemented.');
   }
 }

@@ -8,6 +8,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import br.com.oiti.flutter.oiti_liveness2d.utils.NativeMethod
 import br.com.oiti.flutter.oiti_liveness2d.utils.Environment
+import br.com.oiti.security.observability.firebase.FirebaseEvents
 
 /** OitiLiveness2dPlugin */
 class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler {
@@ -51,9 +52,11 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler {
         }
 
         NativeMethod.RECORD_EVENT -> {
+          val appKey = call.argument<String>("appkey")
           val event = call.argument<String>("event")
-          if (event != null) {
-            recordEvent(event)
+
+          if (appKey != null && event != null) {
+            recordEvent(appKey, event)
             result.success(successResponseMessage)
           } else {
             result.success(errorResponseMessage)
@@ -84,7 +87,7 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler {
     Log.d("Method", "openDocumentscopy -> AppKey: $appKey | Environment: $environment")
   }
 
-  private fun recordEvent(event: String) {
-    Log.d("Method", "recordEvent -> Event: $event")
+  private fun recordEvent(appKey: String, event: String) {
+    FirebaseEvents(event, appKey).apply()
   }
 }

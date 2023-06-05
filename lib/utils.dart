@@ -16,7 +16,7 @@ enum MethodResponse {
   success,
   error;
 
-  static MethodResponse getMethod(String? value) {  
+  static MethodResponse getResponse(String? value) {
     switch (value) {
       case 'oiti.response.ok':
         return MethodResponse.success;

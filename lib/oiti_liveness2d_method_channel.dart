@@ -17,7 +17,7 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
         'oiti.request.open_facecaptcha',
         {'appkey': appKey, 'env': environment.string});
 
-    return MethodResponse.getMethod(response);
+    return MethodResponse.getResponse(response);
   }
 
   @override
@@ -27,15 +27,15 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
         'oiti.request.open_documentscopy',
         {'appkey': appKey, 'env': environment.string});
 
-    return MethodResponse.getMethod(response);
+    return MethodResponse.getResponse(response);
   }
 
   @override
-  Future<MethodResponse> recordEvent(String event) async {
+  Future<MethodResponse> recordEvent(String appKey, String event) async {
     final response = await methodChannel.invokeMethod<String>(
-      'oiti.request.record_event',
-      {'event': event}
+      'oiti.request.record_event', 
+      {'appkey': appKey, 'event': event}
     );
-    return MethodResponse.getMethod(response);
+    return MethodResponse.getResponse(response);
   }
 }

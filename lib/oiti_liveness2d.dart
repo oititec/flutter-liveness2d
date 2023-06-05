@@ -12,8 +12,8 @@ class OitiLiveness2d {
     return OitiLiveness2dPlatform.instance.openDocumentscopy(appKey, environment);
   }
 
-  Future<MethodResponse> recordEvent(String event) {
-    return OitiLiveness2dPlatform.instance.recordEvent(event);
+  Future<MethodResponse> recordEvent(String appKey, String event) {
+    return OitiLiveness2dPlatform.instance.recordEvent(appKey, event);
   }
 }
 

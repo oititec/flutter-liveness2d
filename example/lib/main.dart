@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
                 //     builder: (context) => const DocumentscopyWidget()
                 //   )
                 // );
+                const appKey = "APP-KEY";
                 final channel = OitiLiveness2d();
-                await channel.recordEvent('L2_Start');
+                await channel.recordEvent(appKey, 'L2_Start');
               },
               child: const Text('Documentscopy')),
           const Spacer()
