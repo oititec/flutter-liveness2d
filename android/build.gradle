@@ -1,4 +1,4 @@
-group 'com.example.oiti_liveness2d'
+group 'br.com.oiti.flutter.oiti_liveness2d'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -25,7 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -41,6 +41,13 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
 }
+
+dependencies {
+    implementation 'br.com.oiti:liveness2d-sdk:5.5'
+//    implementation 'br.com.oiti:network:1.0'
+    implementation 'br.com.oiti:security:1.2'
+}
+

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.oiti_liveness2d_example">
+    package="br.com.oiti.flutter.oiti_liveness2d_example">
    <application
         android:label="oiti_liveness2d_example"
         android:name="${applicationName}"

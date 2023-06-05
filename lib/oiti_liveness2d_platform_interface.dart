@@ -1,5 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'utils.dart';
 import 'oiti_liveness2d_method_channel.dart';
 
 abstract class OitiLiveness2dPlatform extends PlatformInterface {
@@ -23,7 +24,15 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<MethodResponse> openFaceCaptcha(String appKey, Environment environment)  {
+    throw UnimplementedError('openFaceCaptcha() has not been implemented.');
+  }
+
+  Future<MethodResponse> openDocumentscopy(String appKey, Environment environment) async {
+    throw UnimplementedError('openDocumentscopy() has not been implemented.');
+  }
+
+  Future<MethodResponse> recordEvent(String event) async {
+    throw UnimplementedError('recordEvent() has not been implemented.');
   }
 }

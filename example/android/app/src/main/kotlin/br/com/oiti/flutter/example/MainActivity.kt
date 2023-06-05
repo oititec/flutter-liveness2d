@@ -1,4 +1,4 @@
-package br.com.oiti.flutter.oiti_liveness2d_example
+package br.com.oiti.flutter.example
 
 import io.flutter.embedding.android.FlutterActivity
 

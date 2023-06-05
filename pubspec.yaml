@@ -35,7 +35,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.oiti_liveness2d
+        package: br.com.oiti.flutter.oiti_liveness2d
         pluginClass: OitiLiveness2dPlugin
       ios:
         pluginClass: OitiLiveness2dPlugin
