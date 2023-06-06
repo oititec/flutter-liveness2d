@@ -1,12 +1,6 @@
 import Foundation
 import Flutter
 
-enum NativeMethod: String {
-    case openFaceCaptcha = "oiti.request.open_facecaptcha"
-    case openDocumentscopy = "oiti.request.open_documentscopy"
-    case recordEvent = "oiti.request.record_event"
-}
-
 public class OitiLiveness2dPlugin: NSObject, FlutterPlugin {
     
     public static func register(with registrar: FlutterPluginRegistrar) {

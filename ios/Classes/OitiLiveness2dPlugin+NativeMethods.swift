@@ -33,7 +33,7 @@ extension OitiLiveness2dPlugin {
             "source": "Flutter/iOS",
             "timestamp": Date().timeIntervalSince1970
         ]
-        
+        print("Observability Event -> \(eventType.rawValue)")
         EventConfiguration()
             .eventManager
             .logEvent(type: eventType, parameters: parameters)

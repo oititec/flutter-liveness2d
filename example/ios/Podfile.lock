@@ -98,14 +98,14 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - OILiveness3D_FT (9.6.33)
-  - OISecurity (1.0.0):
+  - OISecurity (1.0.2-beta):
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCrashlytics
   - oiti_liveness2d (1.0.0):
     - FaceCaptcha (~> 4.1.3)
     - Flutter
-    - OISecurity (~> 1.0.0)
+    - OISecurity (~> 1.0.2-beta)
   - PromisesObjC (2.2.0)
   - PromisesSwift (2.2.0):
     - PromisesObjC (= 2.2.0)
@@ -156,8 +156,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OILiveness3D_FT: fc78e3f4549179b74dd8c3adbdadbb237ceb3357
-  OISecurity: 1e4107ed3f162d97d142df9f51aa317093c8ac77
-  oiti_liveness2d: f59ebf5867002e9cb10047b874fd2d69afcb9a2a
+  OISecurity: 3548a13266c21c4e95f18a7bbe3ed46afe8ce37d
+  oiti_liveness2d: ab071c6b4b31f9c40d4ec1e49b566a5e35335687
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   PromisesSwift: cf9eb58666a43bbe007302226e510b16c1e10959
 
