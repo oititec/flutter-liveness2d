@@ -56,7 +56,7 @@ extension OitiLiveness2dPlugin {
     }
     
     private func openDocumentscopy(with appKey: String, environment: Environment) {
-        let viewController = HybridDocumentscopyViewController(
+        let viewController = DocumentscopyViewController(
             appKey: appKey,
             baseURL: baseUrl(from: environment),
             delegate: self
