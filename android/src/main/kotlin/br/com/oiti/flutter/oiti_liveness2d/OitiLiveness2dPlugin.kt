@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.Context
 import android.util.Log
+import br.com.oiti.certiface.data.util.CertifaceEnviroment
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.plugin.common.MethodCall
@@ -12,18 +13,13 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import br.com.oiti.flutter.oiti_liveness2d.utils.NativeMethod
 import br.com.oiti.flutter.oiti_liveness2d.utils.Environment
-import br.com.oiti.security.observability.firebase.FirebaseEvents
+//import br.com.oiti.security.observability.firebase.FirebaseEvents
 import br.com.oiti.certiface.documentscopy.DocumentscopyActivity
-import br.com.oiti.certiface.documentscopy.DocumentscopyErrorCode
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
-import io.flutter.plugin.common.PluginRegistry
+import java.util.Optional
 
 /** OitiLiveness2dPlugin */
 class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
-  /// The MethodChannel that will the communication between Flutter and native Android
-  ///
-  /// This local reference serves to register the plugin with the Flutter Engine and unregister it
-  /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
   private val errorResponseMessage = "oiti.response.error"
   private val successResponseMessage = "oiti.response.success"
@@ -48,14 +44,32 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
     if (method != null) {
       when (method) {
-        NativeMethod.OPEN_FACECAPTCHA, NativeMethod.OPEN_DOCUMENTSCOPY -> {
+        NativeMethod.OPEN_FACECAPTCHA -> {
           val appKey = call.argument<String>("appkey")
           val environmentString = call.argument<String>("env")
 
           if (appKey != null && environmentString != null) {
             try {
               val environment = Environment.getEnvironment(environmentString)
-              runMethod(appKey, environment, method)
+              openFaceCaptcha(appKey, environment)
+              result.success(successResponseMessage)
+            } catch (e: IllegalArgumentException) {
+              result.success(errorResponseMessage)
+            }
+          } else {
+            result.success(errorResponseMessage)
+          }
+        }
+
+        NativeMethod.OPEN_DOCUMENTSCOPY -> {
+          val ticket = call.argument<String>("ticket")
+          val appKey = call.argument<String>("appkey")
+          val environmentString = call.argument<String>("env")
+
+          if (appKey != null && environmentString != null) {
+            try {
+              val environment = Environment.getEnvironment(environmentString)
+              openDocumentscopy(ticket, appKey, environment)
               result.success(successResponseMessage)
             } catch (e: IllegalArgumentException) {
               result.success(errorResponseMessage)
@@ -82,30 +96,25 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     }
   }
 
-  private fun runMethod(appKey: String, environment: Environment, method: NativeMethod) {
-    when (method) {
-      NativeMethod.OPEN_FACECAPTCHA -> {
-        openFaceCaptcha(appKey, environment)
-      }
-
-      NativeMethod.OPEN_DOCUMENTSCOPY -> {
-        openDocumentscopy(appKey, environment)
-      }
-    }
-  }
   private fun openFaceCaptcha(appKey: String, environment: Environment) {
     Log.d("Method", "openFaceCaptcha -> AppKey: $appKey | Environment: $environment")
   }
 
-  private fun openDocumentscopy(appKey: String, environment: Environment) {
-    val baseUrl = when(environment) {
+  private fun openDocumentscopy(ticket: String?, appKey: String, environment: Environment) {
+    val endpoint = when(environment) {
       Environment.HML -> "https://comercial.certiface.com.br"
       Environment.PRD -> "https://certiface.com.br"
     }
+    val environment = when(environment) {
+      Environment.HML -> CertifaceEnviroment.HML
+      Environment.PRD -> CertifaceEnviroment.PRD
+    }
 
     val intent = Intent(context, DocumentscopyActivity::class.java).apply {
-      putExtra(DocumentscopyActivity.PARAM_ENDPOINT, baseUrl)
+      putExtra(DocumentscopyActivity.PARAM_TICKET, ticket)
       putExtra(DocumentscopyActivity.PARAM_APP_KEY, appKey)
+      putExtra(DocumentscopyActivity.PARAM_ENDPOINT, endpoint)
+      putExtra(DocumentscopyActivity.PARAM_CERTIFACE_ENV, environment)
       putExtra(DocumentscopyActivity.PARAM_DEBUG_ON, false)
     }
 
@@ -113,7 +122,7 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   private fun recordEvent(appKey: String, event: String) {
-    FirebaseEvents(event, appKey).apply()
+//    FirebaseEvents(event, appKey).apply()
   }
 
   // ActivityAware Methods

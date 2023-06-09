@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source_files      = 'Classes/**/*'
 
   s.dependency 'Flutter'
-  s.dependency 'FaceCaptcha', '~> 4.1.3'
+  s.dependency 'FaceCaptcha', '~> 5.1.0-beta'
   s.dependency 'OISecurity', '~> 1.0.2-beta'
   s.static_framework = true
 

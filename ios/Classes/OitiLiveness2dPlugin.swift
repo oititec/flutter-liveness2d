@@ -12,11 +12,27 @@ public class OitiLiveness2dPlugin: NSObject, FlutterPlugin {
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         if let method = NativeMethod(rawValue: call.method) {
             switch method {
-            case .openFaceCaptcha, .openDocumentscopy:
+            case .openFaceCaptcha:
                 if let dict = call.arguments as? Dictionary<String, String> {
                     do {
                         let data = try dict.toModel()
-                        runMethod(with: data.appKey, environment: data.environment, method: method)
+                        openFaceCaptcha(appKey: data.appKey, environment: data.environment)
+                        result(MethodResponse.success)
+                    } catch {
+                        result(MethodResponse.error)
+                    }
+                } else {
+                    result(MethodResponse.error)
+                }
+            case .openDocumentscopy:
+                if let dict = call.arguments as? Dictionary<String, String> {
+                    do {
+                        let data = try dict.toModel()
+                        openDocumentscopy(
+                            ticket: data.ticket,
+                            appKey: data.appKey,
+                            environment: data.environment
+                        )
                         result(MethodResponse.success)
                     } catch {
                         result(MethodResponse.error)

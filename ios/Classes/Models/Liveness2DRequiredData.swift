@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import FaceCaptcha
 
 struct Liveness2DRequiredData {
+    let ticket: String?
     let appKey: String
     let environment: Environment
 }
@@ -15,7 +17,8 @@ struct Liveness2DRequiredData {
 // Errors
 extension Liveness2DRequiredData {
     enum Throwing: Error {
-        case invalidAppKey
+        case missingAppKey
+        case missingEnvironment
         case invalidEnvironment
     }
 }

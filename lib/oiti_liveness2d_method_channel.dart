@@ -22,10 +22,18 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
 
   @override
   Future<MethodResponse> openDocumentscopy(
-      String appKey, Environment environment) async {
+      String? ticket, String appKey, Environment environment) async {
+    Map<String, String> arguments = {
+      'appkey': appKey,
+      'env': environment.string
+    };
+    if (ticket != null) {
+      final entry = <String, String>{'ticket': ticket};
+      arguments.addEntries(entry.entries);
+    }
     final response = await methodChannel.invokeMethod<String>(
-        'oiti.request.open_documentscopy',
-        {'appkey': appKey, 'env': environment.string});
+      'oiti.request.open_documentscopy', arguments
+    );
 
     return MethodResponse.getResponse(response);
   }
@@ -33,9 +41,7 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
   @override
   Future<MethodResponse> recordEvent(String appKey, String event) async {
     final response = await methodChannel.invokeMethod<String>(
-      'oiti.request.record_event', 
-      {'appkey': appKey, 'event': event}
-    );
+      'oiti.request.record_event', {'appkey': appKey, 'event': event});
     return MethodResponse.getResponse(response);
   }
 }

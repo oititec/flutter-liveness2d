@@ -6,16 +6,24 @@
 //
 
 import Foundation
+import FaceCaptcha
 
 extension Dictionary<String, String> {
     func toModel() throws -> Liveness2DRequiredData {
         guard let appKey = self["appkey"] else {
-            throw Liveness2DRequiredData.Throwing.invalidAppKey
+            throw Liveness2DRequiredData.Throwing.missingAppKey
         }
-        guard let environment = Environment(rawValue: self["env"] ?? "") else {
+        guard let environmentString = self["env"] else {
+            throw Liveness2DRequiredData.Throwing.missingEnvironment
+        }
+        guard let environment = Environment.decode(from: environmentString) else {
             throw Liveness2DRequiredData.Throwing.invalidEnvironment
         }
         
-        return Liveness2DRequiredData(appKey: appKey, environment: environment)
+        return Liveness2DRequiredData(
+            ticket: self["ticket"],
+            appKey: appKey,
+            environment: environment
+        )
     }
 }

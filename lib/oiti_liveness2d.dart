@@ -10,9 +10,9 @@ class OitiLiveness2d {
   }
 
   Future<MethodResponse> openDocumentscopy(
-      String appKey, Environment environment) {
+      String? ticket, String appKey, Environment environment) {
     return OitiLiveness2dPlatform.instance
-        .openDocumentscopy(appKey, environment);
+        .openDocumentscopy(ticket, appKey, environment);
   }
 
   Future<MethodResponse> recordEvent(String appKey, String event) {
@@ -85,7 +85,7 @@ class DocumentscopyWidget extends StatelessWidget {
               onPressed: () {
                 channel.recordEvent(
                     appKey, DocumentscopyEvents.actionInstructionContinueCNH);
-                channel.openDocumentscopy(appKey, Environment.hml);
+                channel.openDocumentscopy(null, appKey, Environment.hml);
               },
               child: const Text("CNH"),
             )),
@@ -96,7 +96,7 @@ class DocumentscopyWidget extends StatelessWidget {
               onPressed: () {
                 channel.recordEvent(
                     appKey, DocumentscopyEvents.actionInstructionContinueRG);
-                channel.openDocumentscopy(appKey, Environment.hml);
+                channel.openDocumentscopy(null, appKey, Environment.hml);
               },
               child: const Text("RG"),
             )),

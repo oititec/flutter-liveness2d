@@ -28,7 +28,7 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
     throw UnimplementedError('openFaceCaptcha() has not been implemented.');
   }
 
-  Future<MethodResponse> openDocumentscopy(String appKey, Environment environment) async {
+  Future<MethodResponse> openDocumentscopy(String? ticket, String appKey, Environment environment) async {
     throw UnimplementedError('openDocumentscopy() has not been implemented.');
   }
 

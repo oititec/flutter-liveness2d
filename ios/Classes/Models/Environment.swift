@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import FaceCaptcha
 
-enum Environment: String {
-    case HML = "hml"
-    case PRD = "prd"
+extension Environment {
+    static func decode(from value: String) -> Environment? {
+        switch value {
+        case "hml": return .HML
+        case "prd": return .PRD
+        default: return nil
+        }
+    }
 }
