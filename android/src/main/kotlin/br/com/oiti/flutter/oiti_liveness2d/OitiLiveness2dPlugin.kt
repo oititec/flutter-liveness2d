@@ -13,7 +13,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import br.com.oiti.flutter.oiti_liveness2d.utils.NativeMethod
 import br.com.oiti.flutter.oiti_liveness2d.utils.Environment
-//import br.com.oiti.security.observability.firebase.FirebaseEvents
+import br.com.oiti.security.observability.firebase.FirebaseEvents
 import br.com.oiti.certiface.documentscopy.DocumentscopyActivity
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import java.util.Optional
@@ -122,7 +122,7 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   private fun recordEvent(appKey: String, event: String) {
-//    FirebaseEvents(event, appKey).apply()
+    FirebaseEvents(event, appKey).apply()
   }
 
   // ActivityAware Methods
