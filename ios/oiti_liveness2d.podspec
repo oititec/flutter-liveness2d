@@ -12,8 +12,7 @@ Pod::Spec.new do |s|
   s.source_files      = 'Classes/**/*'
 
   s.dependency 'Flutter'
-  s.dependency 'FaceCaptcha', '~> 5.1.0-beta'
-  s.dependency 'OISecurity', '~> 1.0.2-beta'
+  s.dependency 'FaceCaptcha', '~> 5.0.0'
   s.static_framework = true
 
   # Flutter.framework does not contain a i386 slice.

@@ -21,7 +21,6 @@ extension Dictionary<String, String> {
         }
         
         return Liveness2DRequiredData(
-            ticket: self["ticket"],
             appKey: appKey,
             environment: environment
         )

@@ -10,5 +10,4 @@ import Foundation
 enum NativeMethod: String {
     case openFaceCaptcha = "oiti.request.open_facecaptcha"
     case openDocumentscopy = "oiti.request.open_documentscopy"
-    case recordEvent = "oiti.request.record_event"
 }

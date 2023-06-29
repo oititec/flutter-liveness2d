@@ -9,7 +9,6 @@ import Foundation
 import FaceCaptcha
 
 struct Liveness2DRequiredData {
-    let ticket: String?
     let appKey: String
     let environment: Environment
 }

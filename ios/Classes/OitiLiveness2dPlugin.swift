@@ -29,7 +29,6 @@ public class OitiLiveness2dPlugin: NSObject, FlutterPlugin {
                     do {
                         let data = try dict.toModel()
                         openDocumentscopy(
-                            ticket: data.ticket,
                             appKey: data.appKey,
                             environment: data.environment
                         )
@@ -37,14 +36,6 @@ public class OitiLiveness2dPlugin: NSObject, FlutterPlugin {
                     } catch {
                         result(MethodResponse.error)
                     }
-                } else {
-                    result(MethodResponse.error)
-                }
-            case .recordEvent:
-                if let dict = call.arguments as? Dictionary<String, String>,
-                   let event = dict["event"]
-                {
-                    recordEvent(event: event, result: result)
                 } else {
                     result(MethodResponse.error)
                 }

@@ -1,136 +1,17 @@
 PODS:
-  - FaceCaptcha (5.1.0-beta):
+  - FaceCaptcha (5.0.0):
     - OILiveness3D_FT (= 9.6.33)
-  - FirebaseAnalytics (10.10.0):
-    - FirebaseAnalytics/AdIdSupport (= 10.10.0)
-    - FirebaseCore (~> 10.0)
-    - FirebaseInstallations (~> 10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
-    - GoogleUtilities/MethodSwizzler (~> 7.11)
-    - GoogleUtilities/Network (~> 7.11)
-    - "GoogleUtilities/NSData+zlib (~> 7.11)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (10.10.0):
-    - FirebaseCore (~> 10.0)
-    - FirebaseInstallations (~> 10.0)
-    - GoogleAppMeasurement (= 10.10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
-    - GoogleUtilities/MethodSwizzler (~> 7.11)
-    - GoogleUtilities/Network (~> 7.11)
-    - "GoogleUtilities/NSData+zlib (~> 7.11)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseCore (10.10.0):
-    - FirebaseCoreInternal (~> 10.0)
-    - GoogleUtilities/Environment (~> 7.8)
-    - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreExtension (10.10.0):
-    - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.10.0):
-    - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseCrashlytics (10.10.0):
-    - FirebaseCore (~> 10.5)
-    - FirebaseInstallations (~> 10.0)
-    - FirebaseSessions (~> 10.5)
-    - GoogleDataTransport (~> 9.2)
-    - GoogleUtilities/Environment (~> 7.8)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-    - PromisesObjC (~> 2.1)
-  - FirebaseInstallations (10.10.0):
-    - FirebaseCore (~> 10.0)
-    - GoogleUtilities/Environment (~> 7.8)
-    - GoogleUtilities/UserDefaults (~> 7.8)
-    - PromisesObjC (~> 2.1)
-  - FirebaseSessions (10.10.0):
-    - FirebaseCore (~> 10.5)
-    - FirebaseCoreExtension (~> 10.0)
-    - FirebaseInstallations (~> 10.0)
-    - GoogleDataTransport (~> 9.2)
-    - GoogleUtilities/Environment (~> 7.10)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-    - PromisesSwift (~> 2.1)
   - Flutter (1.0.0)
-  - GoogleAppMeasurement (10.10.0):
-    - GoogleAppMeasurement/AdIdSupport (= 10.10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
-    - GoogleUtilities/MethodSwizzler (~> 7.11)
-    - GoogleUtilities/Network (~> 7.11)
-    - "GoogleUtilities/NSData+zlib (~> 7.11)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (10.10.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 10.10.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
-    - GoogleUtilities/MethodSwizzler (~> 7.11)
-    - GoogleUtilities/Network (~> 7.11)
-    - "GoogleUtilities/NSData+zlib (~> 7.11)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (10.10.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
-    - GoogleUtilities/MethodSwizzler (~> 7.11)
-    - GoogleUtilities/Network (~> 7.11)
-    - "GoogleUtilities/NSData+zlib (~> 7.11)"
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-  - GoogleDataTransport (9.2.3):
-    - GoogleUtilities/Environment (~> 7.7)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.11.1):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.11.1):
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.11.1):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (7.11.1):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/Network (7.11.1):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.11.1)"
-  - GoogleUtilities/Reachability (7.11.1):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.11.1):
-    - GoogleUtilities/Logger
-  - nanopb (2.30909.0):
-    - nanopb/decode (= 2.30909.0)
-    - nanopb/encode (= 2.30909.0)
-  - nanopb/decode (2.30909.0)
-  - nanopb/encode (2.30909.0)
   - OILiveness3D_FT (9.6.33)
-  - OISecurity (1.0.2-beta):
-    - FirebaseAnalytics
-    - FirebaseCore
-    - FirebaseCrashlytics
   - oiti_liveness2d (1.0.0):
-    - FaceCaptcha (~> 5.1.0-beta)
+    - FaceCaptcha (~> 5.0.0)
     - Flutter
-    - OISecurity (~> 1.0.2-beta)
-  - PromisesObjC (2.2.0)
-  - PromisesSwift (2.2.0):
-    - PromisesObjC (= 2.2.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - oiti_liveness2d (from `.symlinks/plugins/oiti_liveness2d/ios`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - FirebaseAnalytics
-    - FirebaseCore
-    - FirebaseCoreExtension
-    - FirebaseCoreInternal
-    - FirebaseCrashlytics
-    - FirebaseInstallations
-    - FirebaseSessions
-    - GoogleAppMeasurement
-    - GoogleDataTransport
-    - GoogleUtilities
-    - nanopb
-    - PromisesObjC
-    - PromisesSwift
-  https://github.com/oititec/ios-artifactory.git:
-    - OISecurity
   https://github.com/oititec/liveness-ios-specs.git:
     - FaceCaptcha
     - OILiveness3D_FT
@@ -142,24 +23,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/oiti_liveness2d/ios"
 
 SPEC CHECKSUMS:
-  FaceCaptcha: 79e5d351320de74972e10d81ebd5746a9b685e4f
-  FirebaseAnalytics: 7bc7de519111dae802f5bc0c9c083918f8b8870d
-  FirebaseCore: d027ff503d37edb78db98429b11f580a24a7df2a
-  FirebaseCoreExtension: 8d93ebbf6838a874b4ed82a564c9d6705f8365dd
-  FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
-  FirebaseCrashlytics: bc8f3bed7f4d04be79d87391455efb4c9b163131
-  FirebaseInstallations: 52153982b057d3afcb4e1fbb3eb0b6d00611e681
-  FirebaseSessions: 5f9e62cd4096e24d2011cbd845b0efceffaee1ec
+  FaceCaptcha: b48e229dfd6592616f2ead31a9c9100ac4210a0e
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  GoogleAppMeasurement: bbbfd4bcb2b40ae9b772c3b0823a58c1e3d618f9
-  GoogleDataTransport: f0308f5905a745f94fb91fea9c6cbaf3831cb1bd
-  GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
-  nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   OILiveness3D_FT: fc78e3f4549179b74dd8c3adbdadbb237ceb3357
-  OISecurity: 3548a13266c21c4e95f18a7bbe3ed46afe8ce37d
-  oiti_liveness2d: 0bea4f2992822875c4a9e856d6b961d108f79e6f
-  PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
-  PromisesSwift: cf9eb58666a43bbe007302226e510b16c1e10959
+  oiti_liveness2d: a093aa3d5953355a1232e763f40cf41ffdf9c7ff
 
 PODFILE CHECKSUM: 8cb2a85f91eababdcc0c2927b7e4073759bfa938
 
