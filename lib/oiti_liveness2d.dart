@@ -1,4 +1,12 @@
+import 'package:flutter/material.dart';
 import 'oiti_liveness2d_platform_interface.dart';
+import 'package:oiti_liveness2d/common/enum_case_name.dart';
+import 'package:oiti_liveness2d/oiti_liveness2d_platform_interface.dart';
+import 'package:oiti_liveness2d/common/enumerations.dart';
+import 'package:oiti_liveness2d/common/liveness_success_result.dart';
+import 'package:oiti_liveness2d/common/doc_success_result.dart';
+import 'package:oiti_liveness2d/widgets/liveness2d.dart';
+import 'package:oiti_liveness2d/widgets/documentscopy.dart';
 
 class OitiLiveness2d {
   Future<String?> getPlatformVersion() {
@@ -10,8 +18,89 @@ class OitiLiveness2d {
         .startliveness2d(baseUrl, appKey);
   }
 
-  static Future startdocumentscopy(String? baseUrl, String? appKey) async {
+  Future<LivenessSuccessResult> openLiveness2D({
+    required String appKey,
+    required String baseUrl,
+  }) async {
+    final result = await OitiLiveness2dPlatform.instance.startliveness2d(
+      baseUrl,
+      appKey,
+    );
+
+    return LivenessSuccessResult(
+      result['valid'] as bool? ?? false,
+      result['cause'] as String? ?? '',
+      result['codId'] as String? ?? '',
+      result['protocol'] as String? ?? '',
+      result['blob'] as String? ?? '',
+    );
+  }
+
+  Future<DocSuccessResult> openDocumentscopy({
+    required String appKey,
+    required String ticket,
+    required String baseUrl,
+  }) async {
+    final result = await OitiLiveness2dPlatform.instance.startDocumentscopy(
+      baseUrl,
+      appKey,
+      ticket,
+    );
+
+    return DocSuccessResult(
+      result['valid'] as bool? ?? false,
+      result['cause'] as String? ?? '',
+      result['codId'] as String? ?? '',
+      result['protocol'] as String? ?? '',
+      result['blob'] as String? ?? '',
+    );
+  }
+
+  static Future startDocumentscopy(
+      String? baseUrl, String? appKey, String? ticket) async {
     return await OitiLiveness2dPlatform.instance
-        .startdocumentscopy(baseUrl, appKey);
+        .startDocumentscopy(baseUrl, appKey, ticket);
+  }
+
+  Future checkPermission() async {
+    return await OitiLiveness2dPlatform.instance.checkPermission();
+  }
+
+  Future askPermission() async {
+    return await OitiLiveness2dPlatform.instance.askPermission();
+  }
+
+  Future<void> openSettings() async {
+    return await OitiLiveness2dPlatform.instance.openSettings();
+  }
+
+  static Widget createLiveness2DWidget({
+    required String appKey,
+    required Environment environment,
+    required Function(LivenessSuccessResult result) onSuccess,
+    required Function(Object? error) onError,
+  }) {
+    return Liveness2DWidget(
+      appKey: appKey,
+      environment: environment,
+      onSuccess: onSuccess,
+      onError: onError,
+    );
+  }
+
+  static Widget createDocumentscopyWidget({
+    required String appKey,
+    required String ticket,
+    required Environment environment,
+    required Function(DocSuccessResult result) onSuccess,
+    required Function(Object? error) onError,
+  }) {
+    return DocumentscopyWidget(
+      appKey: appKey,
+      ticket: ticket,
+      environment: environment,
+      onSuccess: onSuccess,
+      onError: onError,
+    );
   }
 }

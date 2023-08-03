@@ -28,10 +28,22 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
   }
 
   Future startliveness2d(String? baseUrl, String? appKey) {
-    throw UnimplementedError('startliveness2d() has not been implemented.');
+    throw UnimplementedError('startLiveness2d() has not been implemented.');
   }
 
-  Future startdocumentscopy(String? baseUrl, String? appKey) {
-    throw UnimplementedError('startdocumentscopy() has not been implemented.');
+  Future startDocumentscopy(String? baseUrl, String? appKey, String? ticket) {
+    throw UnimplementedError('startDocumentscopy() has not been implemented.');
+  }
+
+  Future checkPermission() {
+    throw UnimplementedError('checkPermission() has not been implemented.');
+  }
+
+  Future askPermission() {
+    throw UnimplementedError('askPermission() has not been implemented.');
+  }
+
+  Future<void> openSettings() {
+    throw UnimplementedError('openSettings() has not been implemented.');
   }
 }

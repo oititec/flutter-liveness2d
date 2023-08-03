@@ -3,9 +3,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-         maven {
-            url 'https://raw.githubusercontent.com/oititec/android-oiti-versions/master'
-        }
     }
 
     dependencies {
@@ -18,6 +15,9 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master'
+        }
     }
 }
 

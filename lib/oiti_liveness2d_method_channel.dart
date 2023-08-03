@@ -19,7 +19,7 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
   @override
   Future startliveness2d(String? baseUrl, String? appKey) async {
     final result = await methodChannel.invokeMapMethod(
-      'OITI.startliveness2d',
+      'OITI.startLiveness2d',
       {'appKey': appKey, 'baseUrl': baseUrl},
     );
 
@@ -27,12 +27,34 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
   }
 
   @override
-  Future startdocumentscopy(String? baseUrl, String? appKey) async {
+  Future startDocumentscopy(
+      String? baseUrl, String? appKey, String? ticket) async {
     final result = await methodChannel.invokeMapMethod(
-      'OITI.startdocumentscopy',
-      {'appKey': appKey, 'baseUrl': baseUrl},
+      'OITI.startDocumentscopy',
+      {'appKey': appKey, 'baseUrl': baseUrl, 'ticket': ticket},
     );
 
     return result;
+  }
+
+  @override
+  Future checkPermission() async {
+    return await methodChannel.invokeMethod(
+      'OITI.checkPermission',
+    );
+  }
+
+  @override
+  Future askPermission() async {
+    return await methodChannel.invokeMethod(
+      'OITI.askPermission',
+    );
+  }
+
+  @override
+  Future<void> openSettings() async {
+    return await methodChannel.invokeMethod(
+      'OITI.openSettingsApp',
+    );
   }
 }

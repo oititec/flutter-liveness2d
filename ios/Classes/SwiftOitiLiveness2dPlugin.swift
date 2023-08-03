@@ -1,6 +1,9 @@
 import Flutter
 import UIKit
-import FaceCaptcha
+import OILiveness2D
+import OICommons
+import OIComponents
+import AVFoundation
 
 public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDelegate, DocumentscopyDelegate, UINavigationControllerDelegate {
     private var result: FlutterResult?;
@@ -24,29 +27,24 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     public func handleDocumentscopyCanceled() {
         debugPrint("handleDocumentscopyCanceled")
     }
-
-  public func handleFaceCaptchaValidation(validateModel: FCValidCaptchaModel) {
-        debugPrint("handleCaptureValidation: \(validateModel)")
+    
+    public func handleSuccess(model: FaceCaptchaSuccessModel){
+        debugPrint("handleCaptureValidation: \(model)")
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true)
         self.result?("FaceCaptcha Concluído")
     }
-    
-    /// Callback chamada em caso de erro durante execução do FaceCaptcha.
-    /// - Parameters:
-    /// - error: Erro ocorrido
-    public func handleFaceCaptchaError(error: FaceCaptchaError) {
+
+    public func handleError(error: FaceCaptchaError){
         debugPrint("handleCaptureVideoError: \(error)")
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true)
         self.result?("FaceCaptcha Falhou")
-        
     }
-    
-    /// Callback chamada ao clicar no botão de cancelar/fechar.
-    public func handleFaceCaptchaCanceled() {
+
+    /// Método que lida com o cancelamento do fluxo de reconhecimento facial por parte do usuário.
+    public func handleCanceled() {
         debugPrint("handleCaptureCanceled")
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true)
-         self.result?(FlutterError(code: "USER_CANCELLED", message: "USER_CANCELLED", details: nil))
-        
+        self.result?(FlutterError(code: "USER_CANCELLED", message: "USER_CANCELLED", details: nil))
     }
  
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -59,7 +57,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
         self.result = result;
         
         switch call.method {
-        case "OITI.startliveness2d":
+        case "OITI.startLiveness2d":
             if let args = call.arguments as? Dictionary<String,Any> {
                 startliveness2d(args: args)
             } else {
@@ -69,7 +67,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
                 result(error)
             }
 
-        case "OITI.startdocumentscopy":
+        case "OITI.startDocumentscopy":
             if let args = call.arguments as? Dictionary<String,Any> {
                 startdocumentscopy(args: args)
             } else {
@@ -77,6 +75,21 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
                 error["message"] =
                 "Something went wrong. Check Plugin Interface";
                 result(error)
+            }
+        case "OITI.checkPermission":
+            if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+                result(true)
+            } else {
+                result(false)
+            }
+        case "OITI.askPermission":
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+                if response {
+                    result(true)
+                    
+                } else {
+                    result(false)
+                }
             }
             
         default:
@@ -87,25 +100,26 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
 
   private func startliveness2d(args:Dictionary<String,Any>?) {
         let appKey = args?["appKey"] as? String ?? ""
-        let baseUrl = args?["baseUrl"] as? String ?? ""
         
-        let FaceCaptchaViewController = FaceCaptchaViewController(appKey: appKey, baseURL: baseUrl, delegate: self)
-        FaceCaptchaViewController.modalPresentationStyle = .fullScreen
+      let FaceCaptchaViewController = HybridFaceCaptchaViewController(appKey: appKey, environment: Environment.HML, delegate: self)
+      FaceCaptchaViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(FaceCaptchaViewController, animated: true, completion: nil)
        
         
   }
   private func startdocumentscopy(args:Dictionary<String,Any>?) {
         let appKey = args?["appKey"] as? String ?? ""
-        let baseUrl = args?["baseUrl"] as? String ?? ""
+        let ticket = args?["ticket"] as? String ?? ""
         
-        let DocumentscopyViewController = DocumentscopyViewController(appKey: appKey, baseURL: baseUrl, delegate: self)
+      let DocumentscopyViewController = HybridDocumentscopyViewController(ticket: ticket, appKey: appKey, environment: Environment.HML, delegate: self)
         DocumentscopyViewController.delegate = self
         DocumentscopyViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(DocumentscopyViewController, animated: true, completion: nil)
        
         
   }
+    
+    
 
   
 }
