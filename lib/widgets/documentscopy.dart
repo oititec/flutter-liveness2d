@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oiti_liveness2d/widgets/camera_permission.dart';
 import 'package:oiti_liveness2d/widgets/components/info_card_doc.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
+import 'package:oiti_liveness2d/common/theme_builder.dart';
 import 'package:oiti_liveness2d/common/enumerations.dart';
 import 'package:oiti_liveness2d/common/doc_success_result.dart';
 
@@ -11,6 +12,7 @@ class DocumentscopyWidget extends StatelessWidget {
   final String ticket;
   final Environment environment;
   final OitiLiveness2d _channel = OitiLiveness2d();
+  final ThemeBuilder? themeBuilder;
   final Function(DocSuccessResult result) onSuccess;
   final Function(Object? error) onError;
 
@@ -19,6 +21,7 @@ class DocumentscopyWidget extends StatelessWidget {
     required this.appKey,
     required this.ticket,
     required this.environment,
+    this.themeBuilder,
     required this.onSuccess,
     required this.onError,
   }) : super(key: key);
@@ -103,34 +106,38 @@ class DocumentscopyWidget extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.only(
-                                        top: 5,
-                                        bottom: 5,
-                                        left: 5,
-                                        right: 5,
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 20.0),
+                                    child: OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.only(
+                                          top: 5,
+                                          bottom: 5,
+                                          left: 5,
+                                          right: 5,
+                                        ),
+                                        backgroundColor:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        shadowColor:
+                                            Colors.transparent.withOpacity(0.0),
+                                        textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromARGB(255, 0, 0, 0),
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
                                       ),
-                                      backgroundColor:
-                                          Color.fromARGB(255, 255, 255, 255),
-                                      shadowColor:
-                                          Colors.transparent.withOpacity(0.0),
-                                      textStyle: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                                      onPressed: () {
+                                        _continueAction(context);
+                                      },
+                                      child: const InfoCardWidget(
+                                        'assets/images/cam.png',
+                                        'CNH',
+                                        'Remova seu documento do plástico e comece.',
                                       ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      _continueAction(context);
-                                    },
-                                    child: const InfoCardWidget(
-                                      'assets/images/cam.png',
-                                      'CNH',
-                                      'Remova seu documento do plástico e comece.',
                                     ),
                                   ),
                                   OutlinedButton(
@@ -187,6 +194,7 @@ class DocumentscopyWidget extends StatelessWidget {
                   .openDocumentscopy(
                     appKey: appKey,
                     ticket: ticket,
+                    themeBuilder: themeBuilder,
                     baseUrl: "",
                   )
                   .then((result) => onSuccess(result))

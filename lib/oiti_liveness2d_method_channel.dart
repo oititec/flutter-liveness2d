@@ -27,11 +27,16 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
   }
 
   @override
-  Future startDocumentscopy(
-      String? baseUrl, String? appKey, String? ticket) async {
+  Future startDocumentscopy(String? baseUrl, String? appKey, String? ticket,
+      Object? themeBuilder) async {
     final result = await methodChannel.invokeMapMethod(
       'OITI.startDocumentscopy',
-      {'appKey': appKey, 'baseUrl': baseUrl, 'ticket': ticket},
+      {
+        'appKey': appKey,
+        'baseUrl': baseUrl,
+        'ticket': ticket,
+        'theme': themeBuilder,
+      },
     );
 
     return result;

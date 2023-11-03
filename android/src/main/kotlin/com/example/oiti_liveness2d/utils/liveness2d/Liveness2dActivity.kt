@@ -3,8 +3,11 @@ package com.example.oiti_liveness2d.utils.liveness2d
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import br.com.oiti.certiface.data.FaceCaptchaErrorCode
 import br.com.oiti.certiface.facecaptcha.FaceCaptchaActivity
 import br.com.oiti.certiface.facecaptcha.UserData
+import br.com.oiti.certiface.documentscopy.DocumentscopyActivity
+import br.com.oiti.certiface.documentscopy.DocumentscopyErrorCode
 
 import io.flutter.plugin.common.MethodChannel
 
@@ -34,15 +37,28 @@ class Liveness2dActivity(
         }
     }
 
-   fun onLiveness2DResultSuccess(data: Intent?) {
+
+    fun onFaceCaptchaResultSuccess(data: Intent?) {
         val response = mapOf<String, Any?>(
+            "result" to data?.getBooleanExtra(FaceCaptchaActivity.PARAM_RESULT, false),
             "cause" to data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_CAUSE),
-            "codId" to data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_COD_ID),
+            "codID" to data?.getDoubleExtra(FaceCaptchaActivity.PARAM_RESULT_COD_ID, 0.0),
             "protocol" to data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_PROTOCOL),
         )
 
         result?.success(response)
     }
+
+    fun onFaceCaptchaResultCancelled(data: Intent?) {
+        val errorMessage = data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_ERROR)
+        val errorCode =
+            data?.getSerializableExtra(FaceCaptchaActivity.PARAM_RESULT_ERROR_CODE) as? FaceCaptchaErrorCode
+
+        errorCode?.let {
+            result?.error(errorCode.toString(),errorMessage, null)
+        }
+    }
+
 
     /*
 

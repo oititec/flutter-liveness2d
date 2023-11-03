@@ -5,6 +5,7 @@ import 'package:oiti_liveness2d/oiti_liveness2d_platform_interface.dart';
 import 'package:oiti_liveness2d/common/enumerations.dart';
 import 'package:oiti_liveness2d/common/liveness_success_result.dart';
 import 'package:oiti_liveness2d/common/doc_success_result.dart';
+import 'package:oiti_liveness2d/common/theme_builder.dart';
 import 'package:oiti_liveness2d/widgets/liveness2d.dart';
 import 'package:oiti_liveness2d/widgets/documentscopy.dart';
 
@@ -39,12 +40,14 @@ class OitiLiveness2d {
   Future<DocSuccessResult> openDocumentscopy({
     required String appKey,
     required String ticket,
+    ThemeBuilder? themeBuilder,
     required String baseUrl,
   }) async {
     final result = await OitiLiveness2dPlatform.instance.startDocumentscopy(
       baseUrl,
       appKey,
       ticket,
+      themeBuilder?.toJson(),
     );
 
     return DocSuccessResult(
@@ -56,10 +59,10 @@ class OitiLiveness2d {
     );
   }
 
-  static Future startDocumentscopy(
-      String? baseUrl, String? appKey, String? ticket) async {
+  static Future startDocumentscopy(String? baseUrl, String? appKey,
+      String? ticket, Object? themeBuilder) async {
     return await OitiLiveness2dPlatform.instance
-        .startDocumentscopy(baseUrl, appKey, ticket);
+        .startDocumentscopy(baseUrl, appKey, ticket, themeBuilder);
   }
 
   Future checkPermission() async {
@@ -92,6 +95,7 @@ class OitiLiveness2d {
     required String appKey,
     required String ticket,
     required Environment environment,
+    ThemeBuilder? themeBuilder,
     required Function(DocSuccessResult result) onSuccess,
     required Function(Object? error) onError,
   }) {
@@ -99,6 +103,7 @@ class OitiLiveness2d {
       appKey: appKey,
       ticket: ticket,
       environment: environment,
+      themeBuilder: themeBuilder,
       onSuccess: onSuccess,
       onError: onError,
     );

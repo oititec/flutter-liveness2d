@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.annotation.NonNull
+import br.com.oiti.certiface.data.util.Environment
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -31,7 +32,7 @@ import com.example.oiti_liveness2d.utils.liveness2d.Liveness2dException
 /** OitiLiveness2dPlugin */
 class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener {
     companion object {
-        private const val FACECAPTCHA_RESULT_REQUEST = 7386
+        private const val CAPTCHA_RESULT_REQUEST = 7386
         private const val DOCUMENTSCOPY_RESULT_REQUEST = 7486
     }
     private lateinit var context: Context
@@ -71,12 +72,22 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
     context = flutterPluginBinding.applicationContext
   }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        if (requestCode == FACECAPTCHA_RESULT_REQUEST) {
-            when(resultCode) {
-                Activity.RESULT_OK -> manager?.onLiveness2DResultSuccess(data)
-                Activity.RESULT_CANCELED -> manager?.onLiveness2DResultSuccess(data)
+
+        when (requestCode) {
+            CAPTCHA_RESULT_REQUEST -> {
+                when (resultCode) {
+                    Activity.RESULT_OK -> manager?.onFaceCaptchaResultSuccess(data)
+                    Activity.RESULT_CANCELED -> manager?.onFaceCaptchaResultCancelled(data)
+                }
+                return true
             }
-            return true
+            DOCUMENTSCOPY_RESULT_REQUEST -> {
+                when (resultCode) {
+                    Activity.RESULT_OK -> managerDoc?.onDocumentscopyResultSuccess()
+                    Activity.RESULT_CANCELED -> managerDoc?.onDocumentscopyCancelled(data)
+                }
+                return true
+            }
         }
         return false
     }
@@ -89,17 +100,25 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
                 val baseUrl = call.argument<String>("baseUrl").orEmpty()
                 startLiveness2d(
                     appKey,
-                    baseUrl)
+                    baseUrl
+                )
             }
           "OITI.startDocumentscopy" -> {
               val appKey = call.argument<String>("appKey").orEmpty()
               val ticket = call.argument<String>("ticket").orEmpty()
               val baseUrl = call.argument<String>("baseUrl").orEmpty()
+              val themeBuilder = call.argument<Map<String, String?>>("theme")
+
+              Log.d("THEME", themeBuilder.toString())
+              Log.e("APPKEY", appKey)
+
               startDocumentscopy(
                   appKey,
                   ticket,
-                  baseUrl)
-            }
+                  baseUrl,
+                  themeBuilder
+                )
+          }
           "OITI.checkPermission" -> {
               checkPermission()
           }
@@ -124,7 +143,7 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
       try {
           manager = Liveness2dActivity(context, result, appKey)
           val intent = manager?.getIntent()
-          activity?.startActivityForResult(intent, FACECAPTCHA_RESULT_REQUEST)
+          activity?.startActivityForResult(intent, CAPTCHA_RESULT_REQUEST)
       } catch (e: Liveness2dException) {
           result.error(e.code, e.message, null)
       } catch (e: Exception) {
@@ -132,9 +151,32 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
       }
     }
 
-    private fun startDocumentscopy(appKey: String, ticket: String?, baseUrl: String) {
+    private fun startDocumentscopy(
+        appKey: String,
+        ticket: String?,
+        baseUrl: String,
+        themeBuilder: Map<String, String?>?,
+    ){
+
+/*
+Log.d("THEME", themeBuilder.toString())
+Log.e("APPKEY", appKey)
+val intent = Intent(context, DocumentscopyActivity::class.java).apply {
+    putExtra(DocumentscopyActivity.PARAM_ENDPOINT, "https://comercial.certiface.com.br")
+    putExtra(DocumentscopyActivity.PARAM_APP_KEY, appKey)
+   // putExtra(DocumentscopyActivity.PARAM_TICKET,ticket )
+    putExtra(DocumentscopyActivity.PARAM_HYBRID, false)
+    putExtra(DocumentscopyActivity.PARAM_ENVIRONMENT, Environment.HML)
+    putExtra(
+        DocumentscopyActivity.PARAM_DEBUG_ON,
+        true
+    )
+}
+activity?.startActivityForResult(intent, DOCUMENTSCOPY_RESULT_REQUEST)
+
+ */
         try {
-            managerDoc = DocActivity(context, result, appKey, ticket)
+            managerDoc = DocActivity(context, result, appKey, ticket, themeBuilder)
             val intent = managerDoc?.getIntent()
             activity?.startActivityForResult(intent, DOCUMENTSCOPY_RESULT_REQUEST)
         } catch (e: Liveness2dException) {

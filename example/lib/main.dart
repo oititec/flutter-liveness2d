@@ -6,6 +6,7 @@ import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 import 'package:oiti_liveness2d/common/enumerations.dart';
 import 'package:oiti_liveness2d/common/liveness_success_result.dart';
 import 'package:oiti_liveness2d/common/doc_success_result.dart';
+import 'package:oiti_liveness2d/common/theme_builder.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -27,8 +28,9 @@ class _MyAppState extends State<MyApp> {
 
   String _platformVersion = 'Unknown';
   final _oitiLiveness2dPlugin = OitiLiveness2d();
-  var appKey = '';
-  var ticket = '';
+  var appKey =
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODBGREE3MDJCM0RDRTBCM0JFNDc1ODJCQjlGREREM0QwfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IjQxNkNGOTZGMzYxQjc3ODM3M0RCQzM5MUUwNEVDMjI3ODQyNzAxOUM4RDFEOEI4REYxOTQ3NUVCOUE1NDREMzdGNjJFQ0U2RjIxRDJCOTkxMThEOUI5N0JFMjY4NTA3MUVEMTlEQkQ5NTg2NDlCMDI0MTIxMzlFNkU5ODNBMkYyfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFcFRMM1kwbkRtSEkvUERrUkhZZWE0RzNxbXlZTmpuSTBqNGhuckt5ZzRlV2t3eGxRMGkzL3hwVUVBPT0iLCJrZXkiOiJUM1YwSUcxaGVTQm1aWGNnYm05eWRHaDNZWEprSUdKbGJHbGxkbWx1WnlCaGRIUT0iLCJleHAiOjE2OTM1NjY5NzIsImlhdCI6MTY5MzU2NjY3Mn0.NadaxATQ_9HT6DeQgoOCRsk-s8UlGBjqF_Bso9NqmN4';
+  var ticket = '321456789101112131415';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
@@ -75,6 +77,11 @@ class _MyAppState extends State<MyApp> {
               _documentscopyWidgetOption(
                 context,
                 'Documentoscopia',
+              ),
+              _documentscopyWidgetOption(
+                context,
+                'Documentoscopia Custom',
+                themeBuilder: _themeCustomization(),
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -129,7 +136,11 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget _documentscopyWidgetOption(BuildContext context, String title) {
+  Widget _documentscopyWidgetOption(
+    BuildContext context,
+    String title, {
+    ThemeBuilder? themeBuilder,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 5),
       child: ElevatedButton(
@@ -143,6 +154,7 @@ class _MyAppState extends State<MyApp> {
               appKey: appKey,
               ticket: ticket,
               environment: environment,
+              themeBuilder: themeBuilder,
               onSuccess: (result) => _onDocSuccess(result),
               onError: (error) => _onDocError(error),
             ),
@@ -240,5 +252,24 @@ class _MyAppState extends State<MyApp> {
   _onDocError(Object? error) {
     resultTitle = 'Error';
     resultContent = 'Cause: ${error.toString()}';
+  }
+
+  ThemeBuilder _themeCustomization() {
+    return ThemeBuilder()
+
+      //NewCustom Capture
+      ..setCaptureBackgroundColor = "#DD0101"
+      ..textOkColor = "#FFFFFF"
+      ..setBackgroundDismissColor = "#DD0101"
+      ..setTryAgainColor = "#FFFFFF"
+      ..setBackgroundOkColor = "#4bb75f"
+      ..setTextFront = "textFront"
+      ..setTextBack = "textBack"
+      ..setCaptureInstructionGuideText = "textPicture"
+      ..setCaptureInstructionGuideBackgroundColor = "#DD0101"
+      ..setCaptureInstructionGuideTextColor = "#333333"
+      ..setTextOk = "textOk"
+      ..setTextConfirmation = "textConfirmation"
+      ..setTextRedo = "textRedo";
   }
 }

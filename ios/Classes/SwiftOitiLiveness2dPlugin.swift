@@ -108,18 +108,71 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
         
   }
   private func startdocumentscopy(args:Dictionary<String,Any>?) {
-        let appKey = args?["appKey"] as? String ?? ""
-        let ticket = args?["ticket"] as? String ?? ""
-        
-      let DocumentscopyViewController = HybridDocumentscopyViewController(ticket: ticket, appKey: appKey, environment: Environment.HML, delegate: self)
+      let appKey = args?["appKey"] as? String ?? ""
+      let ticket = args?["ticket"] as? String ?? ""
+      let custom = args?["theme"] as? Dictionary<String,Any> ?? nil
+      
+      let builder = DocumentscopyCustomizationBuilder.builder()
+      
+      DispatchQueue.main.async { [self] in
+      let DocumentscopyViewController = HybridDocumentscopyViewController(
+        ticket: ticket,
+        appKey: appKey,
+        environment: Environment.HML,
+        delegate: self,
+        customizationTheme: createCustomization(builder: builder, custom: custom
+        ).build())
         DocumentscopyViewController.delegate = self
         DocumentscopyViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(DocumentscopyViewController, animated: true, completion: nil)
-       
-        
+      }
   }
     
+    func createCustomization(
+        builder: DocumentscopyCustomizationBuilder,
+        custom: Dictionary<String,Any>?
+    ) -> DocumentscopyCustomizationBuilder {
+        builder
+            .setLoadingBackgroundColor(.init(hex: custom?["setLoadingBackgroundColor"] as? String ?? ""))
+            .setCaptureBackgroundColor(.init(hex: custom?["setCaptureBackgroundColor"] as? String ?? ""))
+            .setCaptureFrontIndicatorText(custom?["setTextFront"] as? String ?? "")
+            .setCaptureBackIndicatorText(custom?["setTextBack"] as? String ?? "")
+            .setCaptureInstructionGuideText(custom?["setCaptureInstructionGuideText"] as? String ?? "")
+            .setCaptureInstructionConfirmationText(custom?["setTextOk"] as? String ?? "")
+            .setCaptureTakeNewPictureButton(withText: custom?["setTextRedo"] as? String ?? "")
+            .setCaptureInstructionTextColor(.init(hex: custom?["setCaptureInstructionGuideTextColor"] as? String ?? ""))
+            .setCaptureConfirmationMessage(
+                withText: custom?["setTextConfirmation"] as? String ?? "",
+                color: .init(hex:  custom?["setBackgroundOkColor"] as? String ?? "")
+            )
+        
+        return builder
+    }
     
+}
 
-  
+
+public extension UIColor {
+    
+    convenience init(hex: String) {
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if cString.hasPrefix("#") {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if cString.count != 6 {
+            self.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        }
+        
+        var rgbValue: UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        self.init(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: 1.0
+        )
+    }
 }

@@ -31,7 +31,8 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
     throw UnimplementedError('startLiveness2d() has not been implemented.');
   }
 
-  Future startDocumentscopy(String? baseUrl, String? appKey, String? ticket) {
+  Future startDocumentscopy(
+      String? baseUrl, String? appKey, String? ticket, Object? themeBuilder) {
     throw UnimplementedError('startDocumentscopy() has not been implemented.');
   }
 
