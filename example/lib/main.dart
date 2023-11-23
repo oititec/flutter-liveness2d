@@ -154,8 +154,8 @@ class _MyAppState extends State<MyApp> {
               themeBuilder: themeBuilder,
               onSuccess: (result) => _onDocSuccess(result),
               onError: (error) => _onDocError(error),
-              instructionWidget: instructionScreen(),
-              permissionWidget: CameraPermissionWidget(),
+              // instructionWidget: instructionScreen(),
+              // permissionWidget: CameraPermissionWidget(),
             ),
           ),
         ).whenComplete(
@@ -262,8 +262,7 @@ class _MyAppState extends State<MyApp> {
 
   ThemeBuilder _themeCustomization() {
     return ThemeBuilder()
-
       //NewCustom Capture
-      ..setCaptureBackgroundColor = "#DD0101";
+      ..setCaptureBackgroundColor = "#1E1E1E";
   }
 }

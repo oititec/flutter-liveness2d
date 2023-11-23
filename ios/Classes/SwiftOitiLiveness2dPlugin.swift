@@ -85,16 +85,12 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
         FaceCaptchaViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(FaceCaptchaViewController, animated: true, completion: nil)
         
-        
     }
     
     private func startdocumentscopy(args:Dictionary<String,Any>?) {
         let appKey = args?["appKey"] as! String
         let ticket = args?["ticket"] as! String
         let custom = args?["theme"] as? Dictionary<String,Any> ?? nil
-        
-        print(appKey)
-        print(ticket)
         
         let builder = DocumentscopyCustomizationBuilder.builder()
         

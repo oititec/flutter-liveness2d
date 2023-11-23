@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:oiti_liveness2d/actions/permissions.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 
 class CameraPermissionWidget extends StatelessWidget {

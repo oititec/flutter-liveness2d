@@ -28,6 +28,7 @@ class ThemeBuilder {
   String? setTextOk;
   String? setTextConfirmation;
   String? setTextRedo;
+  String? setCaptureTakeNewPictureButtonText;
 
   String? setCaptureBackButtonColorsIcon;
   String? setCaptureBackButtonColorsBackground;
@@ -115,6 +116,11 @@ class ThemeBuilder {
 
   String? setResultTryAgainButtonText;
 
+  String? setLoadingBackgroundColor;
+  String? setLoadingSpinnerColor;
+  int? setLoadingSpinnerWidth;
+  int? setLoadingSpinnerScale;
+
   Map toJson() => {
         'instructionTitleText': instructionTitleText ?? "",
         'instructionTitleColor': instructionTitleColor ?? "",
@@ -133,135 +139,164 @@ class ThemeBuilder {
         'cnhTitleColor': cnhTitleColor ?? "",
         'cnhCaptionText': cnhCaptionText ?? "",
         'cnhCaptionColor': cnhCaptionColor ?? "",
-        'setCaptureBackgroundColor': setCaptureBackgroundColor ?? "",
+        'setCaptureBackgroundColor': setCaptureBackgroundColor ?? "#1E1E1E",
         'textOkColor': textOkColor ?? "",
         'setBackgroundDismissColor': setBackgroundDismissColor ?? "",
         'setTryAgainColor': setTryAgainColor ?? "",
-        'setBackgroundOkColor': setBackgroundOkColor ?? "",
-        'setTextFront': setTextFront ?? "",
-        'setTextBack': setTextBack ?? "",
+        'setBackgroundOkColor': setBackgroundOkColor ?? "#0DAE4B",
+        'setTextFront': setTextFront ?? "Frente",
+        'setTextBack': setTextBack ?? "Verso",
         'setCaptureInstructionGuideTextFront':
-            setCaptureInstructionGuideTextFront ?? "",
+            setCaptureInstructionGuideTextFront ??
+                "Posicione a frente do seu documento dentro da marcação em uma superfície plana e fotografe.",
         'setCaptureInstructionGuideTextBack':
-            setCaptureInstructionGuideTextBack ?? "",
+            setCaptureInstructionGuideTextBack ??
+                "Confirme se os dados ficaram nítidos e os textos legíveis.",
         'setCaptureInstructionGuideBackgroundColor':
-            setCaptureInstructionGuideBackgroundColor ?? "",
+            setCaptureInstructionGuideBackgroundColor ?? "#1E1E1E",
         'setCaptureInstructionGuideTextColor':
-            setCaptureInstructionGuideTextColor ?? "",
+            setCaptureInstructionGuideTextColor ?? "#FFFFFF",
         'setTextOk': setTextOk ?? "",
-        'setTextConfirmation': setTextConfirmation ?? "",
+        'setTextConfirmation':
+            setTextConfirmation ?? "A foto do documento ficou boa?",
         'setTextRedo': setTextRedo ?? "",
-        'setCaptureBackButtonColorsIcon': setCaptureBackButtonColorsIcon ?? "",
+        'setCaptureTakeNewPictureButtonText':
+            setCaptureTakeNewPictureButtonText ?? "Não, refazer",
+        'setCaptureBackButtonColorsIcon':
+            setCaptureBackButtonColorsIcon ?? "#FFFFFF",
         'setCaptureBackButtonColorsBackground':
-            setCaptureBackButtonColorsBackground ?? "",
+            setCaptureBackButtonColorsBackground ?? "#1E1E1E",
         'setCaptureBackButtonColorsBorder':
-            setCaptureBackButtonColorsBorder ?? "",
+            setCaptureBackButtonColorsBorder ?? "#1E1E1E",
         'setCaptureCloseButtonColorsIcon':
-            setCaptureCloseButtonColorsIcon ?? "",
+            setCaptureCloseButtonColorsIcon ?? "#FFFFFF",
         'setCaptureCloseButtonColorsBackground':
-            setCaptureCloseButtonColorsBackground ?? "",
+            setCaptureCloseButtonColorsBackground ?? "#1E1E1E",
         'setCaptureCloseButtonColorsBorder':
-            setCaptureCloseButtonColorsBorder ?? "",
-        'setCaptureFrontIndicatorColor': setCaptureFrontIndicatorColor ?? "",
+            setCaptureCloseButtonColorsBorder ?? "#1E1E1E",
+        'setCaptureFrontIndicatorColor':
+            setCaptureFrontIndicatorColor ?? "#FFFFFF",
         'setCaptureFrontIndicatorFocusedStateTextColor':
-            setCaptureFrontIndicatorFocusedStateTextColor ?? "",
+            setCaptureFrontIndicatorFocusedStateTextColor ?? "#FFFFFF",
         'setCaptureFrontIndicatorUnfocusedStateColor':
-            setCaptureFrontIndicatorUnfocusedStateColor ?? "",
-        'setCaptureBackIndicatorColor': setCaptureBackIndicatorColor ?? "",
+            setCaptureFrontIndicatorUnfocusedStateColor ?? "#666666",
+        'setCaptureBackIndicatorColor':
+            setCaptureBackIndicatorColor ?? "#FFFFFF",
         'setCaptureBackIndicatorFocusedStateTextColor':
-            setCaptureBackIndicatorFocusedStateTextColor ?? "",
+            setCaptureBackIndicatorFocusedStateTextColor ?? "#FFFFFF",
         'setCaptureBackIndicatorUnfocusedStateTextColor':
-            setCaptureBackIndicatorUnfocusedStateTextColor ?? "",
-        'setCaptureInstructionTextColor': setCaptureInstructionTextColor ?? "",
+            setCaptureBackIndicatorUnfocusedStateTextColor ?? "#666666",
+        'setCaptureInstructionTextColor':
+            setCaptureInstructionTextColor ?? "#FFFFFF",
         'setCapturePreviewBorderColorForCapture':
-            setCapturePreviewBorderColorForCapture ?? "",
+            setCapturePreviewBorderColorForCapture ?? "#0DAE4B",
         'setCapturePreviewBorderColorForUncapturedState':
-            setCapturePreviewBorderColorForUncapturedState ?? "",
+            setCapturePreviewBorderColorForUncapturedState ?? "#0DAE4B",
         'setCaptureCaptureButtonHighlightedStateColorsIcon':
-            setCaptureCaptureButtonHighlightedStateColorsIcon ?? "",
+            setCaptureCaptureButtonHighlightedStateColorsIcon ?? "#000000",
         'setCaptureCaptureButtonHighlightedStateColorsBackground':
-            setCaptureCaptureButtonHighlightedStateColorsBackground ?? "",
+            setCaptureCaptureButtonHighlightedStateColorsBackground ??
+                "#0DAE4B",
         'setCaptureCaptureButtonHighlightedStateColorsBorder':
-            setCaptureCaptureButtonHighlightedStateColorsBorder ?? "",
+            setCaptureCaptureButtonHighlightedStateColorsBorder ?? "#FFFFFF",
         'setCaptureCaptureButtonNormalStateColorsIcon':
-            setCaptureCaptureButtonNormalStateColorsIcon ?? "",
+            setCaptureCaptureButtonNormalStateColorsIcon ?? "#000000",
         'setCaptureCaptureButtonNormalStateColorsBackground':
-            setCaptureCaptureButtonNormalStateColorsBackground ?? "",
+            setCaptureCaptureButtonNormalStateColorsBackground ?? "#0DAE4B",
         'setCaptureCaptureButtonNormalStateColorsBorder':
-            setCaptureCaptureButtonNormalStateColorsBorder ?? "",
+            setCaptureCaptureButtonNormalStateColorsBorder ?? "#FFFFFF",
         'setCaptureCaptureButtonDisabledStateColorsIcon':
-            setCaptureCaptureButtonDisabledStateColorsIcon ?? "",
+            setCaptureCaptureButtonDisabledStateColorsIcon ?? "#000000",
         'setCaptureCaptureButtonDisabledStateColorsBackground':
-            setCaptureCaptureButtonDisabledStateColorsBackground ?? "",
+            setCaptureCaptureButtonDisabledStateColorsBackground ?? "#666666",
         'setCaptureCaptureButtonDisabledStateColorsBorder':
-            setCaptureCaptureButtonDisabledStateColorsBorder ?? "",
+            setCaptureCaptureButtonDisabledStateColorsBorder ?? "#666666",
         'setCaptureBottomSheetShapeColor':
-            setCaptureBottomSheetShapeColor ?? "",
+            setCaptureBottomSheetShapeColor ?? "#FFFFFF",
         'setCaptureBottomSheetShapeCornerRadius':
             setCaptureBottomSheetShapeCornerRadius,
         'setCaptureTakeNewPictureButtonHighlightedStateColorsText':
-            setCaptureTakeNewPictureButtonHighlightedStateColorsText ?? "",
+            setCaptureTakeNewPictureButtonHighlightedStateColorsText ??
+                "#1E1E1E",
         'setCaptureTakeNewPictureButtonHighlightedStateColorsBackground':
             setCaptureTakeNewPictureButtonHighlightedStateColorsBackground ??
-                "",
+                "#F5F5F5",
         'setCaptureTakeNewPictureButtonHighlightedStateColorsBorder':
-            setCaptureTakeNewPictureButtonHighlightedStateColorsBorder ?? "",
+            setCaptureTakeNewPictureButtonHighlightedStateColorsBorder ??
+                "#F5F5F5",
         'setCaptureTakeNewPictureButtonNormalStateColorsText':
-            setCaptureTakeNewPictureButtonNormalStateColorsText ?? "",
+            setCaptureTakeNewPictureButtonNormalStateColorsText ?? "#1E1E1E",
         'setCaptureTakeNewPictureButtonNormalStateColorsBackground':
-            setCaptureTakeNewPictureButtonNormalStateColorsBackground ?? "",
+            setCaptureTakeNewPictureButtonNormalStateColorsBackground ??
+                "#F5F5F5",
         'setCaptureTakeNewPictureButtonNormalStateColorsBorder':
-            setCaptureTakeNewPictureButtonNormalStateColorsBorder ?? "",
+            setCaptureTakeNewPictureButtonNormalStateColorsBorder ?? "#F5F5F5",
         'setCaptureTakeNewPictureButtonDisabledStateColorsText':
-            setCaptureTakeNewPictureButtonDisabledStateColorsText ?? "",
+            setCaptureTakeNewPictureButtonDisabledStateColorsText ?? "#1E1E1E",
         'setCaptureTakeNewPictureButtonDisabledStateColorsBackground':
-            setCaptureTakeNewPictureButtonDisabledStateColorsBackground ?? "",
+            setCaptureTakeNewPictureButtonDisabledStateColorsBackground ??
+                "#F5F5F5",
         'setCaptureTakeNewPictureButtonDisabledStateColorsBorder':
-            setCaptureTakeNewPictureButtonDisabledStateColorsBorder ?? "",
-        'setCaptureUsePictureButtonText': setCaptureUsePictureButtonText ?? "",
+            setCaptureTakeNewPictureButtonDisabledStateColorsBorder ??
+                "#F5F5F5",
+        'setCaptureUsePictureButtonText':
+            setCaptureUsePictureButtonText ?? "Sim",
         'setCaptureUsePictureButtonConfirmationText':
-            setCaptureUsePictureButtonConfirmationText ?? "",
+            setCaptureUsePictureButtonConfirmationText ?? "Sim",
         'setCaptureUsePictureButtonHighlightedStateColorsText':
-            setCaptureUsePictureButtonHighlightedStateColorsText ?? "",
+            setCaptureUsePictureButtonHighlightedStateColorsText ?? "#1E1E1E",
         'setCaptureUsePictureButtonHighlightedStateColorsBackground':
-            setCaptureUsePictureButtonHighlightedStateColorsBackground ?? "",
+            setCaptureUsePictureButtonHighlightedStateColorsBackground ??
+                "#4BB75F",
         'setCaptureUsePictureButtonHighlightedStateColorsBorder':
-            setCaptureUsePictureButtonHighlightedStateColorsBorder ?? "",
+            setCaptureUsePictureButtonHighlightedStateColorsBorder ?? "#4BB75F",
         'setCaptureUsePictureButtonNormalStateColorsText':
-            setCaptureUsePictureButtonNormalStateColorsText ?? "",
+            setCaptureUsePictureButtonNormalStateColorsText ?? "#1E1E1E",
         'setCaptureUsePictureButtonNormalStateColorsBackground':
-            setCaptureUsePictureButtonNormalStateColorsBackground ?? "",
+            setCaptureUsePictureButtonNormalStateColorsBackground ?? "#4BB75F",
         'setCaptureUsePictureButtonNormalStateColorsBorder':
-            setCaptureUsePictureButtonNormalStateColorsBorder ?? "",
+            setCaptureUsePictureButtonNormalStateColorsBorder ?? "#4BB75F",
         'setCaptureUsePictureButtonDisabledStateColorsText':
-            setCaptureUsePictureButtonDisabledStateColorsText ?? "",
+            setCaptureUsePictureButtonDisabledStateColorsText ?? "#333333",
         'setCaptureUsePictureButtonDisabledStateColorsBackground':
-            setCaptureUsePictureButtonDisabledStateColorsBackground ?? "",
+            setCaptureUsePictureButtonDisabledStateColorsBackground ??
+                "#666666",
         'setCaptureUsePictureButtonDisabledStateColorsBorder':
-            setCaptureUsePictureButtonDisabledStateColorsBorder ?? "",
+            setCaptureUsePictureButtonDisabledStateColorsBorder ?? "#666666",
         'setResultBackgroundColorSuccess':
-            setResultBackgroundColorSuccess ?? "",
-        'setResultBackgroundColorError': setResultBackgroundColorError ?? "",
+            setResultBackgroundColorSuccess ?? "#4BB75F",
+        'setResultBackgroundColorError':
+            setResultBackgroundColorError ?? "#DD0101",
         'setResultBackgroundColorTryAgain':
-            setResultBackgroundColorTryAgain ?? "",
-        'setResultMessageSuccess': setResultMessageSuccess ?? "",
-        'setResultMessageError': setResultMessageError ?? "",
-        'setResultMessageTryAgain': setResultMessageTryAgain ?? "",
-        'setResultMessageColorSuccess': setResultMessageColorSuccess ?? "",
-        'setResultMessageColorError': setResultMessageColorError ?? "",
-        'setResultMessageColorTryAgain': setResultMessageColorTryAgain ?? "",
-        'setResultTryAgainButtonText': setResultTryAgainButtonText ?? "",
+            setResultBackgroundColorTryAgain ?? "#DD0101",
+        'setResultMessageSuccess': setResultMessageSuccess ?? "Tudo certo!",
+        'setResultMessageError': setResultMessageError ??
+            "Não foi possível verificar seu documento.",
+        'setResultMessageTryAgain': setResultMessageTryAgain ??
+            "Não foi possível verificar seu documento.",
+        'setResultMessageColorSuccess':
+            setResultMessageColorSuccess ?? "#FFFFFF",
+        'setResultMessageColorError': setResultMessageColorError ?? "#FFFFFF",
+        'setResultMessageColorTryAgain':
+            setResultMessageColorTryAgain ?? "#FFFFFF",
+        'setResultTryAgainButtonText':
+            setResultTryAgainButtonText ?? "Tentar novamente",
         'setResultTryAgainButtonHighlightedStateColorsText':
-            setResultTryAgainButtonHighlightedStateColorsText ?? "",
+            setResultTryAgainButtonHighlightedStateColorsText ?? "#1E1E1E",
         'setResultTryAgainButtonHighlightedStateColorsBackground':
-            setResultTryAgainButtonHighlightedStateColorsBackground ?? "",
+            setResultTryAgainButtonHighlightedStateColorsBackground ??
+                "#FFFFFF",
         'setResultTryAgainButtonHighlightedStateColorsBorder':
-            setResultTryAgainButtonHighlightedStateColorsBorder ?? "",
+            setResultTryAgainButtonHighlightedStateColorsBorder ?? "#FFFFFF",
         'setResultTryAgainButtonNormalStateColorsText':
-            setResultTryAgainButtonNormalStateColorsText ?? "",
+            setResultTryAgainButtonNormalStateColorsText ?? "#1E1E1E",
         'setResultTryAgainButtonNormalStateColorsBackground':
-            setResultTryAgainButtonNormalStateColorsBackground ?? "",
+            setResultTryAgainButtonNormalStateColorsBackground ?? "#FFFFFF",
         'setResultTryAgainButtonNormalStateColorsBorder':
-            setResultTryAgainButtonNormalStateColorsBorder ?? "",
+            setResultTryAgainButtonNormalStateColorsBorder ?? "#FFFFFF",
+        'setLoadingBackgroundColor': setLoadingBackgroundColor ?? "#1E1E1E",
+        'setLoadingSpinnerColor': setLoadingSpinnerColor ?? "#0DAE4B",
+        'setLoadingSpinnerWidth': setLoadingSpinnerWidth ?? 1,
+        'setLoadingSpinnerScale': setLoadingSpinnerScale ?? 1,
       };
 }

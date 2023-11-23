@@ -16,13 +16,19 @@ extension SwiftOitiLiveness2dPlugin {
         custom: Dictionary<String,Any>?
     ) -> DocumentscopyCustomizationBuilder {
         builder
+            .setLoadingBackgroundColor(.init(hex: custom?["setLoadingBackgroundColor"] as! String))
+            .setLoadingSpinner(
+                withColor: .init(hex: custom?["setLoadingSpinnerColor"] as! String),
+                width: CGFloat(custom?["setLoadingSpinerWidth"] as? Int ?? 1),
+                scaleFactor: custom?["setLoadingSpinnerScale"] as? Int ?? 1
+            )
         
             .setCaptureBackgroundColor(.init(hex: custom?["setCaptureBackgroundColor"] as! String))
             .setCaptureFrontIndicatorText(custom?["setTextFront"] as! String)
             .setCaptureBackIndicatorText(custom?["setTextBack"] as! String)
             .setCaptureInstructionGuideText(forFront: custom?["setCaptureInstructionGuideTextFront"] as? String, back: custom?["setCaptureInstructionGuideTextBack"] as? String)
             .setCaptureInstructionConfirmationText(custom?["setTextOk"] as! String)
-            .setCaptureTakeNewPictureButton(withText: custom?["setTextRedo"] as? String)
+            .setCaptureTakeNewPictureButton(withText: custom?["setCaptureTakeNewPictureButtonText"] as? String)
             .setCaptureInstructionTextColor(.init(hex: custom?["setCaptureInstructionGuideTextColor"] as! String))
             .setCaptureConfirmationMessage(
                 withText: custom?["setTextConfirmation"] as? String,
