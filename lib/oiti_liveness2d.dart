@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'oiti_liveness2d_platform_interface.dart';
-import 'package:oiti_liveness2d/common/enum_case_name.dart';
-import 'package:oiti_liveness2d/oiti_liveness2d_platform_interface.dart';
+
 import 'package:oiti_liveness2d/common/enumerations.dart';
 import 'package:oiti_liveness2d/common/liveness_success_result.dart';
 import 'package:oiti_liveness2d/common/doc_success_result.dart';
 import 'package:oiti_liveness2d/common/theme_builder.dart';
+
 import 'package:oiti_liveness2d/widgets/liveness2d.dart';
 import 'package:oiti_liveness2d/widgets/documentscopy.dart';
+
+export 'package:oiti_liveness2d/common/enumerations.dart';
+export 'package:oiti_liveness2d/common/liveness_success_result.dart';
+export 'package:oiti_liveness2d/common/doc_success_result.dart';
+export 'package:oiti_liveness2d/common/theme_builder.dart';
+
+export 'package:oiti_liveness2d/actions/documentscopy_actions.dart';
+export 'package:oiti_liveness2d/actions/permissions.dart';
+export 'package:oiti_liveness2d/actions/global.dart';
 
 class OitiLiveness2d {
   Future<String?> getPlatformVersion() {
@@ -91,21 +100,23 @@ class OitiLiveness2d {
     );
   }
 
-  static Widget createDocumentscopyWidget({
-    required String appKey,
-    required String ticket,
-    required Environment environment,
-    ThemeBuilder? themeBuilder,
-    required Function(DocSuccessResult result) onSuccess,
-    required Function(Object? error) onError,
-  }) {
+  static Widget createDocumentscopyWidget(
+      {required String appKey,
+      required String ticket,
+      required Environment environment,
+      ThemeBuilder? themeBuilder,
+      required Function(DocSuccessResult result) onSuccess,
+      required Function(Object? error) onError,
+      Widget? instructionWidget,
+      Widget? permissionWidget}) {
     return DocumentscopyWidget(
-      appKey: appKey,
-      ticket: ticket,
-      environment: environment,
-      themeBuilder: themeBuilder,
-      onSuccess: onSuccess,
-      onError: onError,
-    );
+        appKey: appKey,
+        ticket: ticket,
+        environment: environment,
+        themeBuilder: themeBuilder,
+        onSuccess: onSuccess,
+        onError: onError,
+        instructionWidget: instructionWidget,
+        permissionWidget: permissionWidget);
   }
 }

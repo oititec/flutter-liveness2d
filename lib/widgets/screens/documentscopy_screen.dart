@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oiti_liveness2d/widgets/components/info_card_doc.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
-import 'package:oiti_liveness2d/widgets/screens/camera_permission.dart';
-import 'package:oiti_liveness2d/widgets/components/info_card.dart';
 
-class Liveness2DWidget extends StatelessWidget {
-  final String appKey;
-  final Environment environment;
-  final OitiLiveness2d _channel = OitiLiveness2d();
-  final Function(LivenessSuccessResult result) onSuccess;
-  final Function(Object? error) onError;
+class DocumentscopyWidgetScreen extends StatelessWidget {
+  final Function(BuildContext) continueAction;
 
-  Liveness2DWidget({
+  DocumentscopyWidgetScreen({
     Key? key,
-    required this.appKey,
-    required this.environment,
-    required this.onSuccess,
-    required this.onError,
+    required this.continueAction,
   }) : super(key: key);
 
   @override
@@ -46,13 +38,13 @@ class Liveness2DWidget extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        onError("User cancelled the journey");
+                        GlobalActions().onBackInstruction(context);
                         Navigator.pop(context);
                       },
                       child: titleSection,
                     ),
                     Image.asset(
-                      'assets/images/img_face.png',
+                      'assets/images/img_doc.png',
                       height: 270.sp,
                       fit: BoxFit.cover,
                     ),
@@ -77,7 +69,7 @@ class Liveness2DWidget extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.only(bottom: 8),
                                   child: const Text(
-                                    'Reconhecimento Facial',
+                                    'Envio de documentos',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -85,7 +77,7 @@ class Liveness2DWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'Isso garante que você é você mesmo.',
+                                  'Para começarmos, escolha o tipo de documento que deseja enviar:',
                                   style: TextStyle(
                                     color: Colors.grey[500],
                                     fontSize: 12.sp,
@@ -98,14 +90,74 @@ class Liveness2DWidget extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: const [
-                                  InfoCardWidget(
-                                    'assets/images/lightbulb_outline.png',
-                                    'Escolha um ambiente bem iluminado.',
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 20.0),
+                                    child: OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.only(
+                                          top: 5,
+                                          bottom: 5,
+                                          left: 5,
+                                          right: 5,
+                                        ),
+                                        backgroundColor: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        shadowColor:
+                                            Colors.transparent.withOpacity(0.0),
+                                        textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          color: Color.fromARGB(255, 0, 0, 0),
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        continueAction(context);
+                                      },
+                                      child: const InfoCardWidget(
+                                        'assets/images/cam.png',
+                                        'CNH',
+                                        'Remova seu documento do plástico e comece.',
+                                      ),
+                                    ),
                                   ),
-                                  InfoCardWidget(
-                                    'assets/images/face.png',
-                                    'Não use acessórios como bonés, máscaras e afins.',
+                                  OutlinedButton(
+                                    style: OutlinedButton.styleFrom(
+                                      padding: const EdgeInsets.only(
+                                        top: 5,
+                                        bottom: 5,
+                                        left: 5,
+                                        right: 5,
+                                      ),
+                                      backgroundColor: const Color.fromARGB(
+                                        255,
+                                        255,
+                                        255,
+                                        255,
+                                      ),
+                                      shadowColor:
+                                          Colors.transparent.withOpacity(0.0),
+                                      textStyle: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color.fromARGB(255, 0, 0, 0),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      continueAction(context);
+                                    },
+                                    child: const InfoCardWidget(
+                                      'assets/images/cam.png',
+                                      'RG',
+                                      'Remova seu documento do plástico e comece.',
+                                    ),
                                   ),
                                 ],
                               ),
@@ -115,79 +167,12 @@ class Liveness2DWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                        top: 0,
-                        bottom: 32,
-                        left: 32,
-                        right: 32,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.only(
-                                top: 15,
-                                bottom: 15,
-                                left: 100,
-                                right: 100,
-                              ),
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 180, 12),
-                              shadowColor: Colors.transparent.withOpacity(0.0),
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                            ),
-                            onPressed: () {
-                              _continueAction(context);
-                            },
-                            child: const Text("Continuar"),
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ));
         },
       ),
     );
-  }
-
-  void _continueAction(BuildContext context) {
-    _channel.checkPermission().then((authorized) => {
-          if (authorized)
-            {
-              _channel
-                  .openLiveness2D(
-                    appKey: appKey,
-                    baseUrl: "",
-                  )
-                  .then((result) => onSuccess(result))
-                  .onError((error, stackTrace) => onError(error))
-                  .whenComplete(() => Navigator.pop(context))
-            }
-          else
-            {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CameraPermissionWidget(),
-                ),
-              )
-            }
-        });
   }
 
   final Widget titleSection = Container(

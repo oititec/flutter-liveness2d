@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:oiti_liveness2d/actions/permissions.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 
 class CameraPermissionWidget extends StatelessWidget {
@@ -33,11 +34,6 @@ class CameraPermissionWidget extends StatelessWidget {
               ),
               onPressed: () => Navigator.pop(context),
               child: titleSection,
-            ),
-            Image.asset(
-              'assets/images/camera_alt.png',
-              height: 100,
-              fit: BoxFit.cover,
             ),
             Expanded(
               child: permissionDesc,
@@ -75,22 +71,7 @@ class CameraPermissionWidget extends StatelessWidget {
                     ),
                     onPressed: () {
                       try {
-                        _channel.askPermission().then(
-                          (granted) {
-                            _canCloseWidget = false;
-                            if (!granted && Platform.isIOS) {
-                              _showAlertDialog(context).whenComplete(
-                                () {
-                                  if (_canCloseWidget) {
-                                    Navigator.pop(context);
-                                  }
-                                },
-                              );
-                            } else {
-                              Navigator.pop(context);
-                            }
-                          },
-                        );
+                        PermissionsActions().askPermission(context);
                       } catch (e) {
                         print(e.toString());
                         Navigator.pop(context);
