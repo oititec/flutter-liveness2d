@@ -26,8 +26,8 @@ class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _oitiLiveness2dPlugin = OitiLiveness2d();
   var appKey =
-      '123hbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODBGREE3MDJCM0RDRTBCM0JFNDc1ODJCQjlGREREM0QwfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IjQxNkNGOTZGMzYxQjc3ODM3M0RCQzM5MUUwNEVDMjI3ODQyNzAxOUM4RDFEOEI4REYxOTQ3NUVCOUE1NDREMzdGNjJFQ0U2RjIxRDJCOTkxMThEOUI5N0JFMjY4NTA3MUVEMTlEQkQ5NTg2NDlCMDI0MTIxMzlFNkU5ODNBMkYyfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFcFRMM1kwbkRtSEkvUERrUkhZZWE0RzNxbXlZTmpuSTBqNGhuckt5ZzRlV2t3eGxRMGkzL3hwVUVBPT0iLCJrZXkiOiJUM1YwSUcxaGVTQm1aWGNnYm05eWRHaDNZWEprSUdKbGJHbGxkbWx1WnlCaGRIUT0iLCJleHAiOjE2OTM1NjY5NzIsImlhdCI6MTY5MzU2NjY3Mn0.NadaxATQ_9HT6DeQgoOCRsk-s8UlGBjqF_Bso9NqmN4';
-  var ticket = '456000789101112131415';
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODdFNENDRjZGNjMyNTFDNEJBQThBRERFNjJFMDE1NEZ8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjgxMDQ2MDY0ODQzIiwibm9tZSI6IjVFNDI0N0YwRDQ5QTRERDdEMzQzMEU4QkY3MDBBMEFGOTVFRkIyNEUyRDEyNzRDOTJFMjU5RUEzMDIyQjBBNUUyMEVGQjc0NUNGRjIyOTIzM0YyRjdCMkQ0Q0QzNkMzN0JFQjFEODUzMzM0RUMyODcxNDg4MTVBRDUwMTY3NDQzRkY1MUJ8TU9CSUxFIFRFU1RFIEhNTCIsIm5hc2NpbWVudG8iOiIwMS8wMS8yMDAwIiwiZWFzeS1pbmRleCI6IkFBQUFFa2duZGpqYllwSXIwcndobXEvUjZCT3ZjOWFWK2FkKytnbC9HbjNsVWI2dTE3amVPT09IUE03M1NRPT0iLCJrZXkiOiJRV0pzWlNCaGJpQm9iM0JsSUc5bUlHSnZaSGt1SUVGdWVTQnVZWGtnYzJoNWJtVT0iLCJleHAiOjE3MDA4NDA2NTUsImlhdCI6MTcwMDg0MDM1NX0.7JPIs1NoFFchg38dXYvqgCBBlGT5qRQ6-07tfLod-x0';
+  var ticket = '0fc42e15-67b2-4147-b146-57c60aa7b914';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
@@ -79,6 +79,24 @@ class _MyAppState extends State<MyApp> {
                 context,
                 'Documentoscopia Custom',
                 themeBuilder: _themeCustomization(),
+                instructionWidget: instructionScreen(),
+                permissionWidget: CameraPermissionWidget(),
+              ),
+              _documentscopyWidgetOption(
+                context,
+                'Doc Intrução & Permissão Custom',
+                instructionWidget: instructionScreen(),
+                permissionWidget: CameraPermissionWidget(),
+              ),
+              _documentscopyWidgetOption(
+                context,
+                'Documentoscopia Intrução Custom',
+                instructionWidget: instructionScreen(),
+              ),
+              _documentscopyWidgetOption(
+                context,
+                'Documentoscopia Permissão Custom',
+                permissionWidget: CameraPermissionWidget(),
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -137,6 +155,8 @@ class _MyAppState extends State<MyApp> {
     BuildContext context,
     String title, {
     ThemeBuilder? themeBuilder,
+    Widget? instructionWidget,
+    Widget? permissionWidget,
   }) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 5),
@@ -154,8 +174,8 @@ class _MyAppState extends State<MyApp> {
               themeBuilder: themeBuilder,
               onSuccess: (result) => _onDocSuccess(result),
               onError: (error) => _onDocError(error),
-              // instructionWidget: instructionScreen(),
-              // permissionWidget: CameraPermissionWidget(),
+              instructionWidget: instructionWidget,
+              permissionWidget: permissionWidget,
             ),
           ),
         ).whenComplete(
@@ -263,6 +283,6 @@ class _MyAppState extends State<MyApp> {
   ThemeBuilder _themeCustomization() {
     return ThemeBuilder()
       //NewCustom Capture
-      ..setCaptureBackgroundColor = "#1E1E1E";
+      ..setCaptureBackgroundColor = "#666666";
   }
 }

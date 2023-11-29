@@ -17,7 +17,7 @@ class CameraPermissionWidget extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter layout demo',
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Color.fromARGB(255, 215, 21, 21),
         extendBodyBehindAppBar: true,
         appBar: null,
         body: Column(
@@ -35,16 +35,10 @@ class CameraPermissionWidget extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
               child: titleSection,
             ),
-            Expanded(
-              child: permissionDesc,
-            ),
-            Expanded(
-              child: permissionDesc2,
-            ),
             Container(
               padding: const EdgeInsets.all(32),
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 215, 21, 21),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,12 +52,12 @@ class CameraPermissionWidget extends StatelessWidget {
                         left: 100,
                         right: 100,
                       ),
-                      backgroundColor: const Color.fromARGB(255, 0, 180, 12),
+                      backgroundColor: Color.fromARGB(255, 18, 71, 22),
                       shadowColor: Colors.transparent.withOpacity(0.0),
                       textStyle: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
@@ -81,6 +75,12 @@ class CameraPermissionWidget extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Expanded(
+              child: permissionDesc,
+            ),
+            Expanded(
+              child: permissionDesc2,
             ),
           ],
         ),
@@ -113,9 +113,6 @@ class CameraPermissionWidget extends StatelessWidget {
       right: 32,
       left: 32,
     ),
-    decoration: const BoxDecoration(
-      color: Color.fromARGB(255, 255, 255, 255),
-    ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -133,7 +130,8 @@ class CameraPermissionWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 22,
+                        fontSize: 45,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ),
@@ -151,9 +149,6 @@ class CameraPermissionWidget extends StatelessWidget {
       right: 32,
       left: 32,
     ),
-    decoration: const BoxDecoration(
-      color: Color.fromARGB(255, 255, 255, 255),
-    ),
     child: Expanded(
       child: Row(
         children: [
@@ -163,11 +158,11 @@ class CameraPermissionWidget extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: const Text(
-                  "Habilitar as configurações do seu sistema operacional.",
+                  "Teste de Tela Customizada",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 14,
+                    fontSize: 25,
                   ),
                 ),
               ),
