@@ -27,12 +27,7 @@ class DocumentscopyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    globals.appKey = appKey;
-    globals.ticket = ticket;
-    globals.themeBuilder = themeBuilder;
-    globals.instructionWidget = instructionWidget;
-    globals.permissionWidget = permissionWidget;
-
+    startGlobal();
     return verifyInstructionScreen();
   }
 
@@ -42,6 +37,18 @@ class DocumentscopyWidget extends StatelessWidget {
     } else {
       return DocumentscopyWidgetScreen(continueAction: continueAction);
     }
+  }
+
+  startGlobal() async {
+    await setVariables();
+  }
+
+  setVariables() async {
+    globals.appKey = appKey;
+    globals.ticket = ticket;
+    globals.themeBuilder = themeBuilder;
+    globals.instructionWidget = instructionWidget;
+    globals.permissionWidget = permissionWidget;
   }
 
   void continueAction(BuildContext context) {

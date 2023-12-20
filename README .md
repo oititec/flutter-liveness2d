@@ -1,134 +1,35 @@
-# 1. Sobre o Repositório
+# [Flutter] oiti_liveness2d
 
-Este repositório é responsável pela biblioteca NPM do Liveness Oiti, com ele é possível instalar e usar as funções de FaceCaptcha e de Documentoscopia da Oititec disponíveis para aplicativos híbridos em React Native.
+![https://raw.githubusercontent.com/oititec/flutter-liveness3d-bridge/main/Documentation/imgs/OitiHeader.png](https://raw.githubusercontent.com/oititec/flutter-liveness3d-bridge/main/Documentation/imgs/OitiHeader.png)
 
-# 2. O que é a biblioteca?
+## 1. Sobre o Repositório
 
-O NPM (node package manager) é o gerenciador de pacotes do node.js (runtime de javascript).
+Este repositório é responsável pelo plugin do Liveness 2D da Oiti para flutter, com ele é possível executar a verificação de documentos da [Oititec](https://www.oititec.com.br/) disponíveis para aplicativos híbridos em Flutter.
 
-Em primeiro lugar, com o NPM você pode gerenciar dependências do seu projeto, acessar o repositório do NPM e ter acesso a inúmeras bibliotecas e frameworks JavaScript, permite a instalação/desinstalação dos mesmos assim como a criação de seus próprios módulos públicos ou privados.
+## 2. O que é o Plugin?
 
-# 3. Uso (PASSO 1)
+Em Flutter, um plugin é um pacote de software que fornece acesso a recursos nativos de dispositivos permitindo que aplicativos Flutter se comuniquem com sistemas operacionais iOS e Android, adicionando funcionalidades extras e melhorando a experiência do usuário. Eles são escritos em Dart e podem incluir código em linguagens nativas como Kotlin e Swift.
 
-As instruções de uso, integração, implementação e customização do **Liveness Oiti** podem ser acessadas através das etapas abaixo:
+## 3. O que é o Liveness 2D?
 
-## 3.1 Instalação
+O Liveness 2D é um conjunto de ferramentas de análise de risco que processa imagens de documentos de identificação, como RG, CNH, DNI ou CIN. Ele é composto pelas seguintes ferramentas: SmartCap, OCR, FaceMatch e Autenticação de Documentos. Essas ferramentas são utilizadas para validar a autenticidade dos documentos e realizar verificações automatizadas.
 
-Usando NPM:
+## 4. Sumário [Devcenter](https://devcenter.certiface.io/)
 
-```sh
-npm install @oiti/rn-liveness2d
-```
+- \*[Guia de Instalação Flutter](https://devcenter.certiface.io/docs/guia-de-instalacao-flutter)
 
-ou usando YARN
+\*\*Fornece instruções passo a passo sobre como instalar nosso Plugin e utilizando diferentes produtos móveis, sendo eles: Liveness 3D, Liveness 2D e DocCore.
 
-```sh
-yarn add @oiti/rn-liveness2d
-```
+Com este guia, os desenvolvedores poderão iniciar rapidamente a integração de nossos <glossary:produtos> em seus aplicativos.
 
-## 3.2 iOS Configuração
+- \*[Guia de Uso e Integração Flutter](https://devcenter.certiface.io/docs/guia-de-uso-e-integracao-flutter)
 
-Adicionar o Pod do FaceCaptcha no seu Podfile
+\*\*Esse guia explora as funcionalidades e recursos oferecidos pelo nosso Plugin. Ele oferece exemplos práticos para ajudar os desenvolvedores a utilizar nosso produto de forma eficiente. Encontre as configurações, descrição de parâmetros e chamadas.
 
-```pod
-pod 'FaceCaptcha', '~> 4.0.1', :source => 'https://github.com/oititec/liveness-ios-specs.git'
-```
+- \*[Guia de Tratamento de Retornos Flutter](https://devcenter.certiface.io/docs/guia-de-tratamento-de-retornos-flutter)
 
-# 4. Uso no Javascript (PASSO 2)
+\*\*Documentação voltada para os desenvolvedores que desejam entender e trabalhar com as respostas das nossas <glossary:ferramentas>. Ele detalha os diferentes tipos de respostas que nosso produto pode fornecer e explica como interpretar, utilizar e efetuar os tratamentos dos retornos obtidos.
 
-Primeiro devemos chamar a função desejada da biblioteca '@oiti/rn-liveness2d'
+- \*[Guia Customização(Liveness 2D)](https://devcenter.certiface.io/docs/customizacao-doccore-flutter)
 
-```js
-import { FUNÇÕES DESEJADAS } from '@oiti/rn-liveness2d';
-```
-
-## 4.1 Funções
-
-#### Diagrama E2E Liveness2d
-
-![Funções](Documentation/assets/E2Eliveness2d.png)
-
-#### Diagrama E2E Documentoscopia
-
-![Funções](Documentation/assets/E2Edocumentscopy.png)
-
-AppKey: gerada na etapa 2 da [documentação CertifaceID](https://certifaceid.readme.io/docs/integra%C3%A7%C3%A3o-atualizada 'Guia de Integração API v1.2')
-
-| Função                        | Parâmetros | Retorno                    |
-| ----------------------------- | ---------- | -------------------------- |
-| startLiveness2d("APP KEY");   | AppKey     | RESULT_OK, RESULT_CANCELED |
-| startDocumentscopy("APP KEY") | AppKey     | RESULT_OK, RESULT_CANCELED |
-
-## 4.2 Exemplo de uso
-
-Após efetuar a importação da biblioteca, deve ser aplicada a app Key gerada dentro do parãmetro da função desejada, no exemplo abaixo chamamos a função quando clicamos no botão "Liveness 2D" ou "Documentoscopia"
-
-```js
-export default function App() {
-  const [result, setResult] = React.useState<string | undefined>();
-  const appKey = 'APP KEY';
-
-  return (
-    <View>
-    //Liveness2D
-      <Button
-        onPress={() => {
-          startLiveness2d(appKey).then(setResult);
-        }}
-        title="Liveness 2D"
-      />
-    //Documentoscopia
-      <Button
-        onPress={() => {
-          startDocumentscopy(appKey).then(setResult);
-        }}
-        title="Documentoscopia"
-      />
-    </View>
-  );
-}
-```
-
-# 5. Estilização (PASSO 3)
-
-#### Liveness2D
-
-- [(ANDROID)Guia de estilização do Liveness2D](Documentation/xmlCUSTOMIZATION.md.md);
-- [(iOS)Guia de estilização do Liveness2D](Documentation/xmlCUSTOMIZATION.md.md);
-
-#### Documentoscopia:
-
-- [(ANDROID)Guia de estilização da Documentoscopia](Documentation/liveness3DThemeiOSCUSTOMIZATION.md);
-- [(iOS)Guia de estilização da Documentoscopia](Documentation/liveness3DThemeiOSCUSTOMIZATION.md);
-
-# 6. Como executar o clone do Repositório?
-
-Execute o clone do repositório abaixo para clonar o código:
-
-```sh
-git clone https://github.com/oititec/liveness3d-bridge-rn
-```
-
-# 7. Como rodar o Script?
-
-Para rodar o script desse repositório você deve instalar as dependências do projeto, então na pasta root do projeto clonado rodar o comando.
-
-## 7.1 Yarn
-
-```sh
-yarn
-```
-
-## 7.2 Executar Projeto
-
-> Executar sempre em dispositivos físicos e não no simulador do iOS e Android
-
-Yarn
-
-```sh
-yarn example android
-```
-
-```sh
-yarn example ios
-```
+\*\*A customização do Liveness 2D permite personalizar as telas e textos exibidos durante o processo de verificação do documento.

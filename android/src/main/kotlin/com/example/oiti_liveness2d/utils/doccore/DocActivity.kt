@@ -13,7 +13,7 @@ class DocActivity(
     private var context: Context,
     private val result: MethodChannel.Result?,
     private val appKey: String?,
-    private val ticket: String?,
+    private val ticket: String? = null,
     private val themeBuilder: Map<String, String?>?,
 ) {
 
@@ -21,11 +21,6 @@ class DocActivity(
         if (appKey.isNullOrBlank() || appKey.length < 16 || ticket?.length!! < 16) {
             throw InvalidAppKey()
         }
-
-       // val loadingColor = (loadingAppearance?.get("foreground") ?: "#05D758") as String
-       // val loadingBackgroundColor = (loadingAppearance?.get("background") ?: "#FFFFFF") as String
-       // val loadingSize = (loadingAppearance?.get("size") ?: 1) as Int
-       // val loadingType = getLoadingType((loadingAppearance?.get("type") ?: "") as String)
 
         return Intent(context, DocumentscopyActivity::class.java).apply {
             putExtra(DocumentscopyActivity.PARAM_ENDPOINT, "https://comercial.certiface.com.br")
@@ -38,21 +33,6 @@ class DocActivity(
                 DocumentscopyActivity.PARAM_DEBUG_ON,
                 false
             )
-        }
-    }
-
-
-    fun onDocumentscopyResultSuccess() {
-        result?.success("Doc - RESULT_OK")
-    }
-
-    fun onDocumentscopyCancelled(data: Intent?) {
-        val errorMessage = data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_ERROR)
-        val errorCode =
-            data?.getSerializableExtra(DocumentscopyActivity.PARAM_RESULT_ERROR_CODE) as? DocumentscopyErrorCode
-
-        errorCode?.let {
-            result?.error(errorCode.toString(),errorMessage, null)
         }
     }
 
@@ -85,9 +65,9 @@ class DocActivity(
         .setCaptureInstructionGuideText("textPicture")
         .setCaptureInstructionGuideBackgroundColor("#DD0101")
         .setCaptureInstructionGuideTextColor("#333333")
-        .setTextOk("textOk")
+        .setTextOk("OK CUSTOM")
         .setTextConfirmation("textConfirmation")
-        .setTextRedo("textRedo")
+        .setTextRedo("NOVA FOTO")
 
         // caso seja hybrido
         /*.setBackgroundDismissColorHybrid("#73997d")
@@ -97,33 +77,27 @@ class DocActivity(
 
         .build()
 
+    fun onDocumentscopyCancelled(data: Intent?) {
+        val errorMessage = data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_ERROR)
+        val errorCode =
+            data?.getSerializableExtra(DocumentscopyActivity.PARAM_RESULT_ERROR_CODE) as? DocumentscopyErrorCode
 
-    /*
-    fun onDocResultSuccess(data: Intent?) {
+        errorCode?.let {
+            result?.error(errorCode.toString(),errorMessage, null)
+        }
+    }
+
+    fun onDocumentscopyResultSuccess(data: Intent?) {
         val response = mapOf<String, Any?>(
-            "valid" to data?.getBooleanExtra(DocumentscopyActivity.PARAM_RESULT_VALID, false),
-            "cause" to data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_CAUSE),
-            "codId" to data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_COD_ID),
-            "protocol" to data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_PROTOCOL),
-            "blob" to data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_SCAN),
+            "valid" to "true",
+            "cause" to "0",
+            "codId" to "0",
+            "protocol" to "0",
+            "blob" to "0",
         )
 
         result?.success(response)
     }
 
-    fun onLiveness3DResultCancelled(data: Intent?) {
-        val errorMessage: String = data?.getStringExtra(DocumentscopyActivity.PARAM_RESULT_ERROR) ?: ""
-        Log.d("TAG", errorMessage)
-        result?.error(errorMessage, errorMessage, null)
-    }
 
-
-    private fun getLoadingType(typeString: String): LoadingType3D {
-        return when(typeString) {
-            "spinner" -> LoadingType3D.SPINNER
-            "activity" -> LoadingType3D.ACTIVITY_INDICATOR
-            else -> LoadingType3D.ACTIVITY_INDICATOR
-        }
-    }
-     */
 }

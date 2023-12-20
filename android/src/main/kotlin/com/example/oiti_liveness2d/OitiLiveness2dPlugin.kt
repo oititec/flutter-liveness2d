@@ -38,28 +38,31 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
     private lateinit var context: Context
     private lateinit var result: Result
     private var activity: Activity? = null
+    private var activityDoc: Activity? = null
     private lateinit var channel : MethodChannel
     private var manager: Liveness2dActivity? = null
     private var managerDoc: DocActivity? = null
-    private val E_ACTIVITY_DOES_NOT_EXIST = "E_ACTIVITY_DOES_NOT_EXIST"
-    private val E_FAILED_TO_SHOW_PICKER = "E_FAILED_TO_SHOW_PICKER"
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
         activity = binding.activity
+        activityDoc = binding.activity
         binding.addActivityResultListener(this)
     }
 
     override fun onDetachedFromActivity() {
         activity = null
+        activityDoc = null
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
         activity = binding.activity
+        activityDoc = binding.activity
         binding.addActivityResultListener(this)
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
         activity = null
+        activityDoc = null
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
@@ -72,7 +75,6 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
     context = flutterPluginBinding.applicationContext
   }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-
         when (requestCode) {
             CAPTCHA_RESULT_REQUEST -> {
                 when (resultCode) {
@@ -83,7 +85,7 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
             }
             DOCUMENTSCOPY_RESULT_REQUEST -> {
                 when (resultCode) {
-                    Activity.RESULT_OK -> managerDoc?.onDocumentscopyResultSuccess()
+                    Activity.RESULT_OK -> managerDoc?.onDocumentscopyResultSuccess(data)
                     Activity.RESULT_CANCELED -> managerDoc?.onDocumentscopyCancelled(data)
                 }
                 return true
@@ -157,28 +159,10 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
         baseUrl: String,
         themeBuilder: Map<String, String?>?,
     ){
-
-/*
-Log.d("THEME", themeBuilder.toString())
-Log.e("APPKEY", appKey)
-val intent = Intent(context, DocumentscopyActivity::class.java).apply {
-    putExtra(DocumentscopyActivity.PARAM_ENDPOINT, "https://comercial.certiface.com.br")
-    putExtra(DocumentscopyActivity.PARAM_APP_KEY, appKey)
-   // putExtra(DocumentscopyActivity.PARAM_TICKET,ticket )
-    putExtra(DocumentscopyActivity.PARAM_HYBRID, false)
-    putExtra(DocumentscopyActivity.PARAM_ENVIRONMENT, Environment.HML)
-    putExtra(
-        DocumentscopyActivity.PARAM_DEBUG_ON,
-        true
-    )
-}
-activity?.startActivityForResult(intent, DOCUMENTSCOPY_RESULT_REQUEST)
-
- */
         try {
             managerDoc = DocActivity(context, result, appKey, ticket, themeBuilder)
             val intent = managerDoc?.getIntent()
-            activity?.startActivityForResult(intent, DOCUMENTSCOPY_RESULT_REQUEST)
+            activityDoc?.startActivityForResult(intent, DOCUMENTSCOPY_RESULT_REQUEST)
         } catch (e: Liveness2dException) {
             result.error(e.code, e.message, null)
         } catch (e: Exception) {
