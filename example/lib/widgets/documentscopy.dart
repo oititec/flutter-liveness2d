@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oiti_liveness2d/widgets/components/info_card_doc.dart';
+import './info_card_doc.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 
 class DocumentscopyWidget extends StatelessWidget {
@@ -47,7 +47,7 @@ class DocumentscopyWidget extends StatelessWidget {
                     ),
                     Image.asset(
                       'assets/images/illumination.png',
-                      height: 270.sp,
+                      height: 490.sp,
                       fit: BoxFit.cover,
                     ),
                     Expanded(
@@ -71,8 +71,9 @@ class DocumentscopyWidget extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.only(bottom: 8),
                                   child: const Text(
-                                    'Envio de 22222',
+                                    'Envie seus Documentos',
                                     style: TextStyle(
+                                      color: Color.fromARGB(255, 51, 51, 51),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                     ),
@@ -81,85 +82,106 @@ class DocumentscopyWidget extends StatelessWidget {
                                 Text(
                                   'Para começarmos, escolha o tipo de documento que deseja enviar:',
                                   style: TextStyle(
-                                    color: Colors.grey[500],
+                                    color:
+                                        const Color.fromARGB(255, 51, 51, 51),
                                     fontSize: 12.sp,
                                   ),
                                 ),
                               ],
                             ),
                             Expanded(
-                              flex: 1,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(bottom: 20.0),
-                                    child: OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                        padding: const EdgeInsets.only(
-                                          top: 5,
-                                          bottom: 5,
-                                          left: 5,
-                                          right: 5,
+                              flex: 2,
+                              child: Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: OutlinedButton(
+                                          style: OutlinedButton.styleFrom(
+                                            padding: const EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 5,
+                                              right: 5,
+                                            ),
+                                            backgroundColor: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            shadowColor: Colors.transparent
+                                                .withOpacity(0.0),
+                                            textStyle: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  Color.fromARGB(255, 0, 0, 0),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(90),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            DocumentsCopyActions(
+                                              onSuccess: (result) =>
+                                                  onSuccess(result),
+                                              onError: (error) =>
+                                                  onError(error),
+                                            ).onContinue(context);
+                                          },
+                                          child: const InfoCardWidget(
+                                            'assets/images/cam.png',
+                                            'CNH',
+                                            'Remova seu documento do plástico e comece.',
+                                          ),
                                         ),
-                                        backgroundColor:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        shadowColor:
-                                            Colors.transparent.withOpacity(0.0),
-                                        textStyle: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                        ),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        DocumentsCopyActions(
-                                          onSuccess: (result) =>
-                                              onSuccess(result),
-                                          onError: (error) => onError(error),
-                                        ).onContinue(context);
-                                      },
-                                      child: const InfoCardWidget(
-                                        'assets/images/cam.png',
-                                        'CNH',
-                                        'Remova seu documento do plástico e comece.',
                                       ),
                                     ),
-                                  ),
-                                  OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.only(
-                                        top: 5,
-                                        bottom: 5,
-                                        left: 5,
-                                        right: 5,
-                                      ),
-                                      backgroundColor:
-                                          Color.fromARGB(255, 255, 255, 255),
-                                      shadowColor:
-                                          Colors.transparent.withOpacity(0.0),
-                                      textStyle: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 70,
+                                        child: OutlinedButton(
+                                          style: OutlinedButton.styleFrom(
+                                            padding: const EdgeInsets.only(
+                                              top: 5,
+                                              bottom: 5,
+                                              left: 5,
+                                              right: 5,
+                                            ),
+                                            backgroundColor: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            shadowColor: Colors.transparent
+                                                .withOpacity(0.0),
+                                            textStyle: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  Color.fromARGB(255, 0, 0, 0),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(90),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            DocumentsCopyActions(
+                                              onSuccess: (result) =>
+                                                  onSuccess(result),
+                                              onError: (error) =>
+                                                  onError(error),
+                                            ).onContinue(context);
+                                          },
+                                          child: const InfoCardWidget(
+                                            'assets/images/cam.png',
+                                            'RG',
+                                            'Remova seu documento do plástico e comece.',
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    onPressed: () {},
-                                    child: const InfoCardWidget(
-                                      'assets/images/cam.png',
-                                      'RG',
-                                      'Remova seu documento do plástico e comece.',
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             )
                             /*3*/

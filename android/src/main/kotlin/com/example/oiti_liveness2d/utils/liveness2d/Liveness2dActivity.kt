@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import br.com.oiti.certiface.data.FaceCaptchaErrorCode
+import br.com.oiti.certiface.data.util.Environment
 import br.com.oiti.certiface.facecaptcha.FaceCaptchaActivity
 import br.com.oiti.certiface.facecaptcha.UserData
 import br.com.oiti.certiface.documentscopy.DocumentscopyActivity
@@ -17,8 +18,6 @@ class Liveness2dActivity(
     private val appKey: String?,
 ) {
 
-    private val ENDPOINT = "https://comercial.certiface.com.br:8443"
-
     fun getIntent(): Intent {
         if (appKey.isNullOrBlank()) {
             throw InvalidAppKey()
@@ -26,24 +25,23 @@ class Liveness2dActivity(
 
         val userData = UserData(appKey = appKey)
 
-       // val loadingColor = (loadingAppearance?.get("foreground") ?: "#05D758") as String
-       // val loadingBackgroundColor = (loadingAppearance?.get("background") ?: "#FFFFFF") as String
-       // val loadingSize = (loadingAppearance?.get("size") ?: 1) as Int
-
         return Intent(context, FaceCaptchaActivity::class.java).apply {
-            putExtra(FaceCaptchaActivity.PARAM_ENDPOINT, ENDPOINT)
-            putExtra(FaceCaptchaActivity.PARAM_USER_DATA, userData)
+            putExtra(FaceCaptchaActivity.PARAM_ENDPOINT, "https://comercial.certiface.com.br")
             putExtra(FaceCaptchaActivity.PARAM_SHOW_INSTRUCTIONS, false)
+            putExtra(FaceCaptchaActivity.PARAM_ENVIRONMENT, Environment.HML)
+            putExtra(FaceCaptchaActivity.PARAM_USER_DATA, userData)
+            putExtra(FaceCaptchaActivity.PARAM_DEBUG_ON, false)
         }
     }
 
 
     fun onFaceCaptchaResultSuccess(data: Intent?) {
+        val codID = data?.getDoubleExtra(FaceCaptchaActivity.PARAM_RESULT_COD_ID, 0.0)
         val response = mapOf<String, Any?>(
-            "result" to data?.getBooleanExtra(FaceCaptchaActivity.PARAM_RESULT, false),
+            "valid" to data?.getBooleanExtra(FaceCaptchaActivity.PARAM_RESULT, false),
             "cause" to data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_CAUSE),
-            "codID" to data?.getDoubleExtra(FaceCaptchaActivity.PARAM_RESULT_COD_ID, 0.0),
-            "protocol" to data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_PROTOCOL),
+            "cod_id" to codID.toString(),
+            "uid_protocol" to data?.getStringExtra(FaceCaptchaActivity.PARAM_RESULT_PROTOCOL),
         )
 
         result?.success(response)
@@ -59,21 +57,4 @@ class Liveness2dActivity(
         }
     }
 
-
-    /*
-
-    fun onLiveness3DResultCancelled(data: Intent?) {
-        val errorMessage: String = data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_ERROR) ?: ""
-        Log.d("TAG", errorMessage)
-        result?.error(errorMessage, errorMessage, null)
-    }
-
-    private fun getLoadingType(typeString: String): LoadingType3D {
-        return when(typeString) {
-            "spinner" -> LoadingType3D.SPINNER
-            "activity" -> LoadingType3D.ACTIVITY_INDICATOR
-            else -> LoadingType3D.ACTIVITY_INDICATOR
-        }
-    }
-    */
 }

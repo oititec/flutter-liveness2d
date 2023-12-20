@@ -89,14 +89,14 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     
     private func startdocumentscopy(args:Dictionary<String,Any>?) {
         let appKey = args?["appKey"] as! String
-        let ticket = args?["ticket"] as! String
+        let ticket = args?["ticket"] as? String ?? ""
         let custom = args?["theme"] as? Dictionary<String,Any> ?? nil
         
         let builder = DocumentscopyCustomizationBuilder.builder()
         
         DispatchQueue.main.async { [self] in
             let DocumentscopyViewController = HybridDocumentscopyViewController(
-                ticket: ticket,
+                ticket: ticket == "" ? nil : ticket,
                 appKey: appKey,
                 environment: Environment.HML,
                 delegate: self,

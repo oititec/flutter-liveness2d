@@ -26,8 +26,8 @@ class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _oitiLiveness2dPlugin = OitiLiveness2d();
   var appKey =
-      '123hbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODBGREE3MDJCM0RDRTBCM0JFNDc1ODJCQjlGREREM0QwfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IjQxNkNGOTZGMzYxQjc3ODM3M0RCQzM5MUUwNEVDMjI3ODQyNzAxOUM4RDFEOEI4REYxOTQ3NUVCOUE1NDREMzdGNjJFQ0U2RjIxRDJCOTkxMThEOUI5N0JFMjY4NTA3MUVEMTlEQkQ5NTg2NDlCMDI0MTIxMzlFNkU5ODNBMkYyfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFcFRMM1kwbkRtSEkvUERrUkhZZWE0RzNxbXlZTmpuSTBqNGhuckt5ZzRlV2t3eGxRMGkzL3hwVUVBPT0iLCJrZXkiOiJUM1YwSUcxaGVTQm1aWGNnYm05eWRHaDNZWEprSUdKbGJHbGxkbWx1WnlCaGRIUT0iLCJleHAiOjE2OTM1NjY5NzIsImlhdCI6MTY5MzU2NjY3Mn0.NadaxATQ_9HT6DeQgoOCRsk-s8UlGBjqF_Bso9NqmN4';
-  var ticket = '456000789101112131415';
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiMDBBRjk1NjlFNkUwODExQTM4RUYzNDc4RDcxNUM3NTV8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IkMxMDcxOTlGQkI5OTM1QjA0QzY1RjhEMjQ2RkEzMTdGMkE3MTVDRkEzQTVEM0VEQUM5OEI0ODU0OUI0RjRCM0UxN0MyRDE3NUNDMjE4RkQyMDc0QjExRTRDODQ2NDNDNEZEMzgxRDQ2M0RDMjlGMzJGRjE0N0Y2N0UyNDQ5QzI2MDAyQUZ8TU9CSUxFIFRFU1RFIEhNTCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFZ1V5Z1l6TFg0QjVFL0dxYWM2b0NFc2VxRVV2b0hLU3g5T0tkN2RuNGp6ejlhWEErc1U4QXM5VHVnPT0iLCJrZXkiOiJRV0pzWlNCaGJpQm9iM0JsSUc5bUlHSnZaSGt1SUVGdWVTQnVZWGtnYzJoNWJtVT0iLCJleHAiOjE3MDMwMDQ4NDcsImlhdCI6MTcwMzAwNDU0N30.8jt4se95QiLDzMxI1AKhuVxQnUK4UWdEUZe8Sm5EMZ0';
+  var ticket = '72b0eaf4-9cc7-4fc4-a236-160ea53fcc76';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
@@ -64,41 +64,56 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Liveness + Doc - Flutter'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              _liveness2DWidgetOption(
-                context,
-                'Livneness2D',
-              ),
-              _documentscopyWidgetOption(
-                context,
-                'Documentoscopia',
-              ),
-              _documentscopyWidgetOption(
-                context,
-                'Documentoscopia Custom',
-                themeBuilder: _themeCustomization(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(resultContent),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child:
-                    Text(appKey.isEmpty ? 'Ticket vazio' : 'Ticket disponivel'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child:
-                    Text(appKey.isEmpty ? 'AppKey vazia' : 'AppKey disponivel'),
-              ),
-              ticketSection(),
-              appKeySection()
-            ],
-          ),
+        body: ListView(
+          children: [
+            _liveness2DWidgetOption(
+              context,
+              'Livneness2D',
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia',
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia Custom',
+              themeBuilder: _themeCustomization(),
+              instructionWidget: instructionScreen(),
+              permissionWidget: CameraPermissionWidget(),
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Doc Intrução & Permissão Custom',
+              instructionWidget: instructionScreen(),
+              permissionWidget: CameraPermissionWidget(),
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia Intrução Custom',
+              instructionWidget: instructionScreen(),
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia Permissão Custom',
+              permissionWidget: CameraPermissionWidget(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(resultContent),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child:
+                  Text(appKey.isEmpty ? 'Ticket vazio' : 'Ticket disponivel'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child:
+                  Text(appKey.isEmpty ? 'AppKey vazia' : 'AppKey disponivel'),
+            ),
+            ticketSection(),
+            appKeySection()
+          ],
         ),
       ),
     );
@@ -137,6 +152,8 @@ class _MyAppState extends State<MyApp> {
     BuildContext context,
     String title, {
     ThemeBuilder? themeBuilder,
+    Widget? instructionWidget,
+    Widget? permissionWidget,
   }) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 5),
@@ -154,8 +171,8 @@ class _MyAppState extends State<MyApp> {
               themeBuilder: themeBuilder,
               onSuccess: (result) => _onDocSuccess(result),
               onError: (error) => _onDocError(error),
-              // instructionWidget: instructionScreen(),
-              // permissionWidget: CameraPermissionWidget(),
+              instructionWidget: instructionWidget,
+              permissionWidget: permissionWidget,
             ),
           ),
         ).whenComplete(
@@ -263,6 +280,6 @@ class _MyAppState extends State<MyApp> {
   ThemeBuilder _themeCustomization() {
     return ThemeBuilder()
       //NewCustom Capture
-      ..setCaptureBackgroundColor = "#1E1E1E";
+      ..setCaptureBackgroundColor = "#ff1d0d";
   }
 }
