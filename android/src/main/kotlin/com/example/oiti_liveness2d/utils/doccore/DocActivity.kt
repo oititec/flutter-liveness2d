@@ -19,7 +19,7 @@ class DocActivity(
 ) {
 
     fun getIntent(): Intent {
-        if (appKey.isNullOrBlank() || appKey.length < 16 || ticket?.length!! < 16) {
+        if (appKey.isNullOrBlank() || appKey.length < 16) {
             throw InvalidAppKey()
         }
         val env: Environment = if (environment.equals("PRD")) Environment.PRD else Environment.HML
@@ -27,7 +27,9 @@ class DocActivity(
         return Intent(context, DocumentscopyActivity::class.java).apply {
             putExtra(DocumentscopyActivity.PARAM_ENDPOINT, "https://certiface.com.br")
             putExtra(DocumentscopyActivity.PARAM_APP_KEY, appKey)
-            putExtra(DocumentscopyActivity.PARAM_TICKET,ticket )
+            if(ticket?.isNotEmpty() == true) {
+                putExtra(DocumentscopyActivity.PARAM_TICKET, ticket)
+            }
             putExtra(DocumentscopyActivity.PARAM_THEME, getNewTheme())
             putExtra(DocumentscopyActivity.PARAM_HYBRID, true)
             putExtra(DocumentscopyActivity.PARAM_ENVIRONMENT, env)
