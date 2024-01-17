@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oiti_liveness2d/common/enum_case_name.dart';
 import 'oiti_liveness2d_platform_interface.dart';
 
 import 'package:oiti_liveness2d/common/enumerations.dart';
@@ -23,18 +24,21 @@ class OitiLiveness2d {
     return OitiLiveness2dPlatform.instance.getPlatformVersion();
   }
 
-  static Future startliveness2d(String? baseUrl, String? appKey) async {
+  static Future startliveness2d(
+      String? baseUrl, String? appKey, Environment environment) async {
     return await OitiLiveness2dPlatform.instance
-        .startliveness2d(baseUrl, appKey);
+        .startliveness2d(baseUrl, appKey, environment.caseName().toUpperCase());
   }
 
   Future<LivenessSuccessResult> openLiveness2D({
     required String appKey,
     required String baseUrl,
+    required Environment environment,
   }) async {
     final result = await OitiLiveness2dPlatform.instance.startliveness2d(
       baseUrl,
       appKey,
+      environment.caseName().toUpperCase(),
     );
 
     return LivenessSuccessResult(
@@ -51,12 +55,14 @@ class OitiLiveness2d {
     required String ticket,
     ThemeBuilder? themeBuilder,
     required String baseUrl,
+    required Environment environment,
   }) async {
     final result = await OitiLiveness2dPlatform.instance.startDocumentscopy(
       baseUrl,
       appKey,
       ticket,
       themeBuilder?.toJson(),
+      environment.caseName().toUpperCase(),
     );
 
     return DocSuccessResult(
@@ -69,9 +75,9 @@ class OitiLiveness2d {
   }
 
   static Future startDocumentscopy(String? baseUrl, String? appKey,
-      String? ticket, Object? themeBuilder) async {
-    return await OitiLiveness2dPlatform.instance
-        .startDocumentscopy(baseUrl, appKey, ticket, themeBuilder);
+      String? ticket, Object? themeBuilder, Environment environment) async {
+    return await OitiLiveness2dPlatform.instance.startDocumentscopy(baseUrl,
+        appKey, ticket, themeBuilder, environment.caseName().toUpperCase());
   }
 
   Future checkPermission() async {

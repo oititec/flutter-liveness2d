@@ -7,6 +7,7 @@ import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 String appKey = "";
 String ticket = "";
 ThemeBuilder? themeBuilder;
+Environment environment = Environment.hml;
 Widget? instructionWidget;
 Widget? permissionWidget;
 DocSuccessResult? onDocSuccess;

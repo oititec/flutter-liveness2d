@@ -1,3 +1,10 @@
+## 2.0.1
+
+_data: 20/12/2023_
+
+- **Novidades**
+  - Adicionado README.MD
+
 ## 2.0.0
 
 _data: 20/12/2023_

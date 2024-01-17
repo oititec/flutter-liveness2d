@@ -100,9 +100,12 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
             "OITI.startLiveness2d" -> {
                 val appKey = call.argument<String>("appKey").orEmpty()
                 val baseUrl = call.argument<String>("baseUrl").orEmpty()
+                val environment = call.argument<String>("environment").orEmpty()
+
                 startLiveness2d(
                     appKey,
-                    baseUrl
+                    baseUrl,
+                    environment
                 )
             }
           "OITI.startDocumentscopy" -> {
@@ -110,15 +113,14 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
               val ticket = call.argument<String>("ticket").orEmpty()
               val baseUrl = call.argument<String>("baseUrl").orEmpty()
               val themeBuilder = call.argument<Map<String, String?>>("theme")
-
-              Log.d("THEME", themeBuilder.toString())
-              Log.e("APPKEY", appKey)
+              val environment = call.argument<String>("environment").orEmpty()
 
               startDocumentscopy(
                   appKey,
                   ticket,
                   baseUrl,
-                  themeBuilder
+                  themeBuilder,
+                  environment
                 )
           }
           "OITI.checkPermission" -> {
@@ -141,9 +143,9 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
     private fun askPermission() {
         result.success(true)
     }
-  private fun startLiveness2d(appKey: String, baseUrl: String) {
+  private fun startLiveness2d(appKey: String, baseUrl: String, environment: String) {
       try {
-          manager = Liveness2dActivity(context, result, appKey)
+          manager = Liveness2dActivity(context, result, appKey, environment)
           val intent = manager?.getIntent()
           activity?.startActivityForResult(intent, CAPTCHA_RESULT_REQUEST)
       } catch (e: Liveness2dException) {
@@ -158,9 +160,10 @@ class OitiLiveness2dPlugin: FlutterPlugin, MethodCallHandler, ActivityAware, Plu
         ticket: String?,
         baseUrl: String,
         themeBuilder: Map<String, String?>?,
+        environment: String
     ){
         try {
-            managerDoc = DocActivity(context, result, appKey, ticket, themeBuilder)
+            managerDoc = DocActivity(context, result, appKey, ticket, themeBuilder, environment)
             val intent = managerDoc?.getIntent()
             activityDoc?.startActivityForResult(intent, DOCUMENTSCOPY_RESULT_REQUEST)
         } catch (e: Liveness2dException) {

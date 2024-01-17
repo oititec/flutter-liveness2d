@@ -81,7 +81,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     private func startliveness2d(args:Dictionary<String,Any>?) {
         let appKey = args?["appKey"] as! String
         
-        let FaceCaptchaViewController = HybridFaceCaptchaViewController(appKey: appKey, environment: Environment.HML, delegate: self)
+        let FaceCaptchaViewController = HybridFaceCaptchaViewController(appKey: appKey, environment: Environment.PRD, delegate: self)
         FaceCaptchaViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(FaceCaptchaViewController, animated: true, completion: nil)
         
@@ -98,7 +98,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
             let DocumentscopyViewController = HybridDocumentscopyViewController(
                 ticket: ticket == "" ? nil : ticket,
                 appKey: appKey,
-                environment: Environment.HML,
+                environment: Environment.PRD,
                 delegate: self,
                 customizationTheme: (custom != nil) ? createCustomization(builder: builder, custom: custom).build() : nil
             )

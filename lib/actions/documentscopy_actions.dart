@@ -24,6 +24,7 @@ class DocumentsCopyActions {
                     ticket: globals.ticket,
                     themeBuilder: globals.themeBuilder,
                     baseUrl: "",
+                    environment: globals.environment,
                   )
                   .then((result) async => {
                         await DocumentsCopyResult(result: result)

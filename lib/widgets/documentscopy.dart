@@ -49,6 +49,7 @@ class DocumentscopyWidget extends StatelessWidget {
     globals.themeBuilder = themeBuilder;
     globals.instructionWidget = instructionWidget;
     globals.permissionWidget = permissionWidget;
+    globals.environment = environment;
   }
 
   void continueAction(BuildContext context) {
