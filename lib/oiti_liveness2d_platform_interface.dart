@@ -10,14 +10,8 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
 
   static OitiLiveness2dPlatform _instance = MethodChannelOitiLiveness2d();
 
-  /// The default instance of [OitiLiveness2dPlatform] to use.
-  ///
-  /// Defaults to [MethodChannelOitiLiveness2d].
   static OitiLiveness2dPlatform get instance => _instance;
 
-  /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [OitiLiveness2dPlatform] when
-  /// they register themselves.
   static set instance(OitiLiveness2dPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
@@ -27,12 +21,12 @@ abstract class OitiLiveness2dPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future startliveness2d(String? baseUrl, String? appKey) {
+  Future startliveness2d(String? baseUrl, String? appKey, String environment) {
     throw UnimplementedError('startLiveness2d() has not been implemented.');
   }
 
-  Future startDocumentscopy(
-      String? baseUrl, String? appKey, String? ticket, Object? themeBuilder) {
+  Future startDocumentscopy(String? baseUrl, String? appKey, String? ticket,
+      Object? themeBuilder, String environment) {
     throw UnimplementedError('startDocumentscopy() has not been implemented.');
   }
 

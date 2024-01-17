@@ -25,12 +25,11 @@ class _MyAppState extends State<MyApp> {
 
   String _platformVersion = 'Unknown';
   final _oitiLiveness2dPlugin = OitiLiveness2d();
-  var appKey =
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiMDBBRjk1NjlFNkUwODExQTM4RUYzNDc4RDcxNUM3NTV8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IkMxMDcxOTlGQkI5OTM1QjA0QzY1RjhEMjQ2RkEzMTdGMkE3MTVDRkEzQTVEM0VEQUM5OEI0ODU0OUI0RjRCM0UxN0MyRDE3NUNDMjE4RkQyMDc0QjExRTRDODQ2NDNDNEZEMzgxRDQ2M0RDMjlGMzJGRjE0N0Y2N0UyNDQ5QzI2MDAyQUZ8TU9CSUxFIFRFU1RFIEhNTCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFZ1V5Z1l6TFg0QjVFL0dxYWM2b0NFc2VxRVV2b0hLU3g5T0tkN2RuNGp6ejlhWEErc1U4QXM5VHVnPT0iLCJrZXkiOiJRV0pzWlNCaGJpQm9iM0JsSUc5bUlHSnZaSGt1SUVGdWVTQnVZWGtnYzJoNWJtVT0iLCJleHAiOjE3MDMwMDQ4NDcsImlhdCI6MTcwMzAwNDU0N30.8jt4se95QiLDzMxI1AKhuVxQnUK4UWdEUZe8Sm5EMZ0';
-  var ticket = '72b0eaf4-9cc7-4fc4-a236-160ea53fcc76';
+  var appKey = '';
+  var ticket = '';
   var resultTitle = '';
   var resultContent = '';
-  final environment = Environment.hml;
+  final environment = Environment.prd;
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {

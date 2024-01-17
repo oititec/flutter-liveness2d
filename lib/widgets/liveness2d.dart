@@ -93,12 +93,12 @@ class Liveness2DWidget extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 1,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                children: const [
+                                children: [
                                   InfoCardWidget(
                                     'assets/images/lightbulb_outline.png',
                                     'Escolha um ambiente bem iluminado.',
@@ -173,6 +173,7 @@ class Liveness2DWidget extends StatelessWidget {
                   .openLiveness2D(
                     appKey: appKey,
                     baseUrl: "",
+                    environment: environment,
                   )
                   .then((result) => onSuccess(result))
                   .onError((error, stackTrace) => onError(error))

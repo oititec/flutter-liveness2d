@@ -17,16 +17,29 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
   }
 
   @override
-  Future startliveness2d(String? baseUrl, String? appKey) async {
+  Future startliveness2d(
+    String? baseUrl,
+    String? appKey,
+    String environment,
+  ) async {
     return await methodChannel.invokeMapMethod(
       'OITI.startLiveness2d',
-      {'appKey': appKey, 'baseUrl': baseUrl},
+      {
+        'appKey': appKey,
+        'baseUrl': baseUrl,
+        'environment': environment,
+      },
     );
   }
 
   @override
-  Future startDocumentscopy(String? baseUrl, String? appKey, String? ticket,
-      Object? themeBuilder) async {
+  Future startDocumentscopy(
+    String? baseUrl,
+    String? appKey,
+    String? ticket,
+    Object? themeBuilder,
+    String environment,
+  ) async {
     return await methodChannel.invokeMapMethod(
       'OITI.startDocumentscopy',
       {
@@ -34,6 +47,7 @@ class MethodChannelOitiLiveness2d extends OitiLiveness2dPlatform {
         'baseUrl': baseUrl,
         'ticket': ticket,
         'theme': themeBuilder,
+        'environment': environment,
       },
     );
   }
