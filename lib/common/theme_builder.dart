@@ -1,4 +1,39 @@
 class ThemeBuilder {
+  String? setInstructionBackgroundColor;
+  String? setInstructionBackButtonColorsIcon;
+  String? setInstructionBackButtonColorsBackground;
+  String? setInstructionBackButtonColorsBorder;
+  String? setInstructionLoadingColor;
+  String? setInstructionBottomSheetColor;
+  int? setInstructionBottomSheetRadius;
+  String? setInstructionTitleText;
+  String? setInstructionTitleColor;
+  String? setInstructionTitleFont;
+  String? setInstructionCaptionText;
+  String? setInstructionCaptionColor;
+  String? setInstructionCaptionFont;
+  String? setInstructionDocOptionBackgroundColor;
+  String? setInstructionDocOptionTitleText;
+  String? setInstructionDocOptionTitleColor;
+  String? setInstructionDocOptionTitleFont;
+  String? setInstructionDocOptionBorderColor;
+  int? setInstructionDocOptionBorderWidth;
+  int? setInstructionDocOptionBorderRadius;
+  String? setInstructionEnvOptionBackgroundColor;
+  String? setInstructionEnvOptionTitleText;
+  String? setInstructionEnvOptionTitleColor;
+  String? setInstructionEnvOptionTitleFont;
+  String? setInstructionEnvOptionBorderColor;
+  int? setInstructionEnvOptionBorderWidth;
+  int? setInstructionEnvOptionBorderRadius;
+  String? setInstructionContinueButtonBackgroundColor;
+  String? setInstructionContinueButtonHighlightedBackgroundColor;
+  String? setInstructionContinueButtonBorderColor;
+  String? setInstructionContinueButtonHighlightedBorderColor;
+  String? setInstructionContinueButtonContentColor;
+  String? setInstructionContinueButtonHighlightedContentColor;
+  String? setInstructionContinueButtonTextColor;
+  String? setInstructionContinueButtonFont;
   String? instructionTitleText;
   String? instructionTitleColor;
   String? instructionCaptionColor;
@@ -15,6 +50,7 @@ class ThemeBuilder {
   String? cnhCaptionText;
   String? cnhCaptionColor;
   String? setCaptureBackgroundColor;
+  String? setCaptureInstructionGuideReviewText;
   String? textOkColor;
   String? setBackgroundDismissColor;
   String? setTryAgainColor;
@@ -30,6 +66,7 @@ class ThemeBuilder {
   String? setTextRedo;
   String? setCaptureTakeNewPictureButtonText;
 
+  String? setCaptureBackButtonIcon;
   String? setCaptureBackButtonColorsIcon;
   String? setCaptureBackButtonColorsBackground;
   String? setCaptureBackButtonColorsBorder;
@@ -39,6 +76,7 @@ class ThemeBuilder {
   String? setCaptureCloseButtonColorsBorder;
 
   String? setCaptureFrontIndicatorColor;
+  String? setCaptureFrontIndicatorFocusedStateColor;
 
   String? setCaptureFrontIndicatorFocusedStateTextColor;
   String? setCaptureFrontIndicatorUnfocusedStateColor;
@@ -115,7 +153,6 @@ class ThemeBuilder {
   String? setResultTryAgainButtonNormalStateColorsBorder;
 
   String? setResultTryAgainButtonText;
-
   String? setLoadingBackgroundColor;
   String? setLoadingSpinnerColor;
   int? setLoadingSpinnerWidth;
@@ -149,9 +186,8 @@ class ThemeBuilder {
         'setCaptureInstructionGuideTextFront':
             setCaptureInstructionGuideTextFront ??
                 "Posicione a frente do seu documento dentro da marcação em uma superfície plana e fotografe.",
-        'setCaptureInstructionGuideTextBack':
-            setCaptureInstructionGuideTextBack ??
-                "Confirme se os dados ficaram nítidos e os textos legíveis.",
+        'setCaptureInstructionGuideTextBack': setCaptureInstructionGuideTextBack ??
+            "Posicione o verso do seu documento dentro da marcação em uma superfície plana e fotografe.",
         'setCaptureInstructionGuideBackgroundColor':
             setCaptureInstructionGuideBackgroundColor ?? "#1E1E1E",
         'setCaptureInstructionGuideTextColor':
@@ -298,5 +334,69 @@ class ThemeBuilder {
         'setLoadingSpinnerColor': setLoadingSpinnerColor ?? "#0DAE4B",
         'setLoadingSpinnerWidth': setLoadingSpinnerWidth ?? 1,
         'setLoadingSpinnerScale': setLoadingSpinnerScale ?? 1,
+        'setCaptureInstructionGuideReviewText':
+            setCaptureInstructionGuideReviewText ??
+                "Confirme se os dados ficaram nítidos e os textos legíveis.",
+        'setInstructionBackgroundColor': setInstructionBackgroundColor ?? "",
+        'setInstructionBackButtonColorsIcon':
+            setInstructionBackButtonColorsIcon ?? "",
+        'setInstructionBackButtonColorsBackground':
+            setInstructionBackButtonColorsBackground ?? "",
+        'setInstructionBackButtonColorsBorder':
+            setInstructionBackButtonColorsBorder ?? "",
+        'setInstructionLoadingColor': setInstructionLoadingColor ?? "",
+        'setInstructionBottomSheetColor': setInstructionBottomSheetColor ?? "",
+        'setInstructionBottomSheetRadius':
+            setInstructionBottomSheetRadius ?? "",
+        'setInstructionTitleText': setInstructionTitleText ?? "",
+        'setInstructionTitleColor': setInstructionTitleColor ?? "",
+        'setInstructionTitleFont': setInstructionTitleFont ?? "",
+        'setInstructionCaptionText': setInstructionCaptionText ?? "",
+        'setInstructionCaptionColor': setInstructionCaptionColor ?? "",
+        'setInstructionCaptionFont': setInstructionCaptionFont ?? "",
+        'setInstructionDocOptionBackgroundColor':
+            setInstructionDocOptionBackgroundColor ?? "",
+        'setInstructionDocOptionTitleText':
+            setInstructionDocOptionTitleText ?? "",
+        'setInstructionDocOptionTitleColor':
+            setInstructionDocOptionTitleColor ?? "",
+        'setInstructionDocOptionTitleFont':
+            setInstructionDocOptionTitleFont ?? "",
+        'setInstructionDocOptionBorderColor':
+            setInstructionDocOptionBorderColor ?? "",
+        'setInstructionDocOptionBorderWidth':
+            setInstructionDocOptionBorderWidth ?? "",
+        'setInstructionDocOptionBorderRadius':
+            setInstructionDocOptionBorderRadius ?? "",
+        'setInstructionEnvOptionBackgroundColor':
+            setInstructionEnvOptionBackgroundColor ?? "",
+        'setInstructionEnvOptionTitleText':
+            setInstructionEnvOptionTitleText ?? "",
+        'setInstructionEnvOptionTitleColor':
+            setInstructionEnvOptionTitleColor ?? "",
+        'setInstructionEnvOptionTitleFont':
+            setInstructionEnvOptionTitleFont ?? "",
+        'setInstructionEnvOptionBorderColor':
+            setInstructionEnvOptionBorderColor ?? "",
+        'setInstructionEnvOptionBorderWidth':
+            setInstructionEnvOptionBorderWidth ?? "",
+        'setInstructionEnvOptionBorderRadius':
+            setInstructionEnvOptionBorderRadius ?? "",
+        'setInstructionContinueButtonBackgroundColor':
+            setInstructionContinueButtonBackgroundColor ?? "",
+        'setInstructionContinueButtonHighlightedBackgroundColor':
+            setInstructionContinueButtonHighlightedBackgroundColor ?? "",
+        'setInstructionContinueButtonBorderColor':
+            setInstructionContinueButtonBorderColor ?? "",
+        'setInstructionContinueButtonHighlightedBorderColor':
+            setInstructionContinueButtonHighlightedBorderColor ?? "",
+        'setInstructionContinueButtonContentColor':
+            setInstructionContinueButtonContentColor ?? "",
+        'setInstructionContinueButtonHighlightedContentColor':
+            setInstructionContinueButtonHighlightedContentColor ?? "",
+        'setInstructionContinueButtonTextColor':
+            setInstructionContinueButtonTextColor ?? "",
+        'setInstructionContinueButtonFont':
+            setInstructionContinueButtonFont ?? "",
       };
 }

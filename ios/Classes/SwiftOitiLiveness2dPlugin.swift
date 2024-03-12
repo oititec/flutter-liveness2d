@@ -16,8 +16,13 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     
     public func handleError(error: FaceCaptchaError){
         debugPrint("handleCaptureVideoError: \(error)")
+        let flutterError = FlutterError(
+            code: "0",
+            message: "\(error)",
+            details: nil
+        )
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true)
-        self.result?("FaceCaptcha Falhou")
+        self.result?(flutterError)
     }
     
     /// Método que lida com o cancelamento do fluxo de reconhecimento facial por parte do usuário.
@@ -80,17 +85,22 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     
     private func startliveness2d(args:Dictionary<String,Any>?) {
         let appKey = args?["appKey"] as! String
+        let rawEnvironment = args?["environment"] as? String ?? ""
+        let environment = Environment(rawValue: rawEnvironment) ?? .HML
         
-        let FaceCaptchaViewController = HybridFaceCaptchaViewController(appKey: appKey, environment: Environment.PRD, delegate: self)
+        let FaceCaptchaViewController = HybridFaceCaptchaViewController(appKey: appKey, environment: environment, delegate: self)
         FaceCaptchaViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(FaceCaptchaViewController, animated: true, completion: nil)
         
     }
     
     private func startdocumentscopy(args:Dictionary<String,Any>?) {
-        let appKey = args?["appKey"] as! String
-        let ticket = args?["ticket"] as? String ?? ""
+        let appKey = args?["appKey"] as? String ?? ""
+        let ticket = args?["ticket"] as? String ?? nil
         let custom = args?["theme"] as? Dictionary<String,Any> ?? nil
+        let rawEnvironment = args?["environment"] as? String ?? ""
+        let environment = Environment(rawValue: rawEnvironment) ?? .HML
+        
         
         let builder = DocumentscopyCustomizationBuilder.builder()
         
@@ -98,7 +108,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
             let DocumentscopyViewController = HybridDocumentscopyViewController(
                 ticket: ticket == "" ? nil : ticket,
                 appKey: appKey,
-                environment: Environment.PRD,
+                environment: environment,
                 delegate: self,
                 customizationTheme: (custom != nil) ? createCustomization(builder: builder, custom: custom).build() : nil
             )

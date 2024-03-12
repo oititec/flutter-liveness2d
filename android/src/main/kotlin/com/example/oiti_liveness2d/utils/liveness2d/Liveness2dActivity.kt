@@ -28,7 +28,6 @@ class Liveness2dActivity(
         val env: Environment = if (environment.equals("PRD")) Environment.PRD else Environment.HML
 
         return Intent(context, FaceCaptchaActivity::class.java).apply {
-            putExtra(FaceCaptchaActivity.PARAM_ENDPOINT, "https://certiface.com.br")
             putExtra(FaceCaptchaActivity.PARAM_SHOW_INSTRUCTIONS, false)
             putExtra(FaceCaptchaActivity.PARAM_ENVIRONMENT, env)
             putExtra(FaceCaptchaActivity.PARAM_USER_DATA, userData)
