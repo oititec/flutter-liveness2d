@@ -25,9 +25,8 @@ class _MyAppState extends State<MyApp> {
 
   String _platformVersion = 'Unknown';
   final _oitiLiveness2dPlugin = OitiLiveness2d();
-  var appKey =
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNDgwOTZBQUI1QjI2MEJCMjBGMDRBM0JCQTA4MERCQjd8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IkYyM0JCMzgxNTIzQTQxQ0ZGQkQzRDNDOUIxQTk3OUMyQzgzRjAyMkE3M0JGMTE4MEExMEY4MEZENTdBQjRGREEzQzc2Q0I1QzVBNThCREVENjFCODNEOEVGOEQ1ODQ4Q0RFRkMwNTNFRDk4Qzg3NzY5RDg2MDBCRDNGNEQ2RHxHQUJSSUVMIENBVEVMTEkgR09VTEFSVCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFbG4rdjhWb3ArZnJIV1NJVEh1UFhoUFlpcElsenZWTnFvN2l2aGpsZWhXY1hxeElDNEJoVHF2aFJBPT0iLCJrZXkiOiJUM1YwSUcxaGVTQm1aWGNnYm05eWRHaDNZWEprSUdKbGJHbGxkbWx1WnlCaGRIUT0iLCJleHAiOjE3MDk1NTMxNjcsImlhdCI6MTcwOTU1Mjg2N30.KOSF52i5ywapoy0bnWi-ZUpcegOOt9bGRMs3gcS8amU';
-  var ticket = '4cc3d9ac-2fed-437a-8955-93e8a83b60ed';
+  var appKey = '';
+  var ticket = '';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
