@@ -2,7 +2,11 @@
 
 # Oiti - Liveness 2D para Flutter
 
-O Liveness 2D é um conjunto de ferramentas de análise de risco que processa imagens de documentos de identificação, como RG, CNH, DNI ou CIN. Ele é composto pelas seguintes ferramentas: SmartCap, OCR, FaceMatch e Autenticação de Documentos. Essas ferramentas são utilizadas para validar a autenticidade dos documentos e realizar verificações automatizadas.
+Neste repositório, encontramos a **biblioteca pub.dev do Liveness 2D da Oiti**.
+
+Pub.dev é o gerenciador de pacotes para a linguagem de programação Dart, contendo bibliotecas e pacotes reutilizáveis ​​para Flutter e programas Dart em geral.
+
+Em Flutter, um plugin é um pacote de software que fornece acesso a recursos nativos de dispositivos permitindo que aplicativos Flutter se comuniquem com sistemas operacionais iOS e Android, adicionando funcionalidades extras e melhorando a experiência do usuário. Eles são escritos em Dart e podem incluir código em linguagens nativas como Kotlin e Swift.
 
 **Requisitos mínimos**
 | Android | iOS|
