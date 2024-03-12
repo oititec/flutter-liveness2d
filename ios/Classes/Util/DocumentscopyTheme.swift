@@ -16,18 +16,10 @@ extension SwiftOitiLiveness2dPlugin {
         custom: Dictionary<String,Any>?
     ) -> DocumentscopyCustomizationBuilder {
         builder
-            .setLoadingBackgroundColor(.init(hex: custom?["setLoadingBackgroundColor"] as! String))
-            .setLoadingSpinner(
-                withColor: .init(hex: custom?["setLoadingSpinnerColor"] as! String),
-                width: CGFloat(custom?["setLoadingSpinerWidth"] as? Int ?? 1),
-                scaleFactor: custom?["setLoadingSpinnerScale"] as? Int ?? 1
-            )
-        
-            .setCaptureBackgroundColor(.init(hex: custom?["setCaptureBackgroundColor"] as! String))
             .setCaptureFrontIndicatorText(custom?["setTextFront"] as! String)
             .setCaptureBackIndicatorText(custom?["setTextBack"] as! String)
             .setCaptureInstructionGuideText(forFront: custom?["setCaptureInstructionGuideTextFront"] as? String, back: custom?["setCaptureInstructionGuideTextBack"] as? String)
-            .setCaptureInstructionConfirmationText(custom?["setTextOk"] as! String)
+            .setCaptureInstructionConfirmationText(custom?["setCaptureInstructionGuideReviewText"] as! String)
             .setCaptureTakeNewPictureButton(withText: custom?["setCaptureTakeNewPictureButtonText"] as? String)
             .setCaptureInstructionTextColor(.init(hex: custom?["setCaptureInstructionGuideTextColor"] as! String))
             .setCaptureConfirmationMessage(
@@ -36,13 +28,13 @@ extension SwiftOitiLiveness2dPlugin {
             )
             .setCaptureBackButtonColors(
                 forIcon: .init(hex: custom?["setCaptureBackButtonColorsIcon"] as! String),
-                background: .init(hex: custom?["setCaptureBackButtonColorsBackground"] as! String),
-                border: .init(hex: custom?["setCaptureBackButtonColorsBorder"] as! String)
+                background: .init(hex: custom?["setCaptureBackgroundColor"] as! String),
+                border: .init(hex: custom?["setCaptureBackgroundColor"] as! String)
             )
             .setCaptureCloseButtonColors(
                 forIcon: .init(hex: custom?["setCaptureCloseButtonColorsIcon"] as! String),
-                background: .init(hex: custom?["setCaptureCloseButtonColorsBackground"] as! String),
-                border: .init(hex: custom?["setCaptureCloseButtonColorsBorder"] as! String)
+                background: .init(hex: custom?["setCaptureBackgroundColor"] as! String),
+                border: .init(hex: custom?["setCaptureBackgroundColor"] as! String)
             )
             .setCaptureFrontIndicatorColor(.init(hex: custom?["setCaptureFrontIndicatorColor"] as! String))
         
@@ -66,7 +58,7 @@ extension SwiftOitiLiveness2dPlugin {
             .setCaptureInstructionTextColor(.init(hex: custom?["setCaptureInstructionTextColor"] as! String))
             .setCapturePreviewBorderColor(
                 forCaptured: .init(hex: custom?["setCapturePreviewBorderColorForCapture"] as! String),
-                uncapturedState: .init(hex: custom?["setCapturePreviewBorderColorForUncapturedState"] as! String)
+                uncapturedState: .init(hex: custom?["setCapturePreviewBorderColorForCapture"] as! String)
             )
             .setCaptureCaptureButtonHighlightedStateColors(
                 forIcon: .init(hex: custom?["setCaptureCaptureButtonHighlightedStateColorsIcon"] as! String),
@@ -103,8 +95,8 @@ extension SwiftOitiLiveness2dPlugin {
                 border: .init(hex: custom?["setCaptureTakeNewPictureButtonDisabledStateColorsBorder"] as! String)
             )
             .setCaptureUsePictureButton(
-                withText: custom?["setCaptureUsePictureButtonText"] as? String,
-                confirmationText: custom?["setCaptureUsePictureButtonConfirmationText"] as? String
+                withText: custom?["setCaptureUsePictureButtonConfirmationText"] as? String,
+                confirmationText: custom?["setCaptureInstructionGuideReviewText"] as? String
             )
             .setCaptureUsePictureButtonHighlightedStateColors(
                 forText: .init(hex: custom?["setCaptureUsePictureButtonHighlightedStateColorsText"] as! String),
@@ -113,7 +105,7 @@ extension SwiftOitiLiveness2dPlugin {
             )
             .setCaptureUsePictureButtonNormalStateColors(
                 forText: .init(hex: custom?["setCaptureUsePictureButtonHighlightedStateColorsText"] as! String),
-                background: .init(hex: custom?["setCaptureUsePictureButtonHighlightedStateColorsBackground"] as! String),
+                background: .init(hex: custom?["setCaptureUsePictureButtonNormalStateColorsBackground"] as! String),
                 border: .init(hex: custom?["setCaptureUsePictureButtonHighlightedStateColorsBorder"] as! String)
             )
             .setCaptureUsePictureButtonDisabledStateColors(

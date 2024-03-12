@@ -26,8 +26,8 @@ class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _oitiLiveness2dPlugin = OitiLiveness2d();
   var appKey =
-      '123hbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODBGREE3MDJCM0RDRTBCM0JFNDc1ODJCQjlGREREM0QwfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IjQxNkNGOTZGMzYxQjc3ODM3M0RCQzM5MUUwNEVDMjI3ODQyNzAxOUM4RDFEOEI4REYxOTQ3NUVCOUE1NDREMzdGNjJFQ0U2RjIxRDJCOTkxMThEOUI5N0JFMjY4NTA3MUVEMTlEQkQ5NTg2NDlCMDI0MTIxMzlFNkU5ODNBMkYyfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFcFRMM1kwbkRtSEkvUERrUkhZZWE0RzNxbXlZTmpuSTBqNGhuckt5ZzRlV2t3eGxRMGkzL3hwVUVBPT0iLCJrZXkiOiJUM1YwSUcxaGVTQm1aWGNnYm05eWRHaDNZWEprSUdKbGJHbGxkbWx1WnlCaGRIUT0iLCJleHAiOjE2OTM1NjY5NzIsImlhdCI6MTY5MzU2NjY3Mn0.NadaxATQ_9HT6DeQgoOCRsk-s8UlGBjqF_Bso9NqmN4';
-  var ticket = '456000789101112131415';
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNDgwOTZBQUI1QjI2MEJCMjBGMDRBM0JCQTA4MERCQjd8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IkYyM0JCMzgxNTIzQTQxQ0ZGQkQzRDNDOUIxQTk3OUMyQzgzRjAyMkE3M0JGMTE4MEExMEY4MEZENTdBQjRGREEzQzc2Q0I1QzVBNThCREVENjFCODNEOEVGOEQ1ODQ4Q0RFRkMwNTNFRDk4Qzg3NzY5RDg2MDBCRDNGNEQ2RHxHQUJSSUVMIENBVEVMTEkgR09VTEFSVCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFbG4rdjhWb3ArZnJIV1NJVEh1UFhoUFlpcElsenZWTnFvN2l2aGpsZWhXY1hxeElDNEJoVHF2aFJBPT0iLCJrZXkiOiJUM1YwSUcxaGVTQm1aWGNnYm05eWRHaDNZWEprSUdKbGJHbGxkbWx1WnlCaGRIUT0iLCJleHAiOjE3MDk1NTMxNjcsImlhdCI6MTcwOTU1Mjg2N30.KOSF52i5ywapoy0bnWi-ZUpcegOOt9bGRMs3gcS8amU';
+  var ticket = '4cc3d9ac-2fed-437a-8955-93e8a83b60ed';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
@@ -64,41 +64,56 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Liveness + Doc - Flutter'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              _liveness2DWidgetOption(
-                context,
-                'Livneness2D',
-              ),
-              _documentscopyWidgetOption(
-                context,
-                'Documentoscopia',
-              ),
-              _documentscopyWidgetOption(
-                context,
-                'Documentoscopia Custom',
-                themeBuilder: _themeCustomization(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(resultContent),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child:
-                    Text(appKey.isEmpty ? 'Ticket vazio' : 'Ticket disponivel'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child:
-                    Text(appKey.isEmpty ? 'AppKey vazia' : 'AppKey disponivel'),
-              ),
-              ticketSection(),
-              appKeySection()
-            ],
-          ),
+        body: ListView(
+          children: [
+            _liveness2DWidgetOption(
+              context,
+              'Livneness2D',
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia',
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia Custom',
+              themeBuilder: _themeCustomization(),
+              instructionWidget: instructionScreen(),
+              permissionWidget: CameraPermissionWidget(),
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Doc Intrução & Permissão Custom',
+              instructionWidget: instructionScreen(),
+              permissionWidget: CameraPermissionWidget(),
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia Intrução Custom',
+              instructionWidget: instructionScreen(),
+            ),
+            _documentscopyWidgetOption(
+              context,
+              'Documentoscopia Permissão Custom',
+              permissionWidget: CameraPermissionWidget(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(resultContent),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child:
+                  Text(ticket.isEmpty ? 'Ticket vazio' : 'Ticket disponivel'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child:
+                  Text(appKey.isEmpty ? 'AppKey vazia' : 'AppKey disponivel'),
+            ),
+            ticketSection(),
+            appKeySection()
+          ],
         ),
       ),
     );
@@ -137,6 +152,8 @@ class _MyAppState extends State<MyApp> {
     BuildContext context,
     String title, {
     ThemeBuilder? themeBuilder,
+    Widget? instructionWidget,
+    Widget? permissionWidget,
   }) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 5),
@@ -154,8 +171,8 @@ class _MyAppState extends State<MyApp> {
               themeBuilder: themeBuilder,
               onSuccess: (result) => _onDocSuccess(result),
               onError: (error) => _onDocError(error),
-              // instructionWidget: instructionScreen(),
-              // permissionWidget: CameraPermissionWidget(),
+              instructionWidget: instructionWidget,
+              permissionWidget: permissionWidget,
             ),
           ),
         ).whenComplete(
@@ -262,7 +279,127 @@ class _MyAppState extends State<MyApp> {
 
   ThemeBuilder _themeCustomization() {
     return ThemeBuilder()
-      //NewCustom Capture
-      ..setCaptureBackgroundColor = "#1E1E1E";
+      ..setCaptureBackgroundColor = "#ff1d0d"
+      ..setInstructionBackgroundColor = "#123456"
+      ..setInstructionBackButtonColorsIcon = "#789abc"
+      ..setInstructionBackButtonColorsBackground = "#def123"
+      ..setInstructionBackButtonColorsBorder = "#456789"
+      ..setInstructionLoadingColor = "#abc789"
+      ..setInstructionBottomSheetColor = "#345678"
+      ..setInstructionBottomSheetRadius = 8
+      ..setInstructionTitleText = "Your Title"
+      ..setInstructionTitleColor = "#234567"
+      ..setInstructionTitleFont = "Roboto"
+      ..setInstructionCaptionText = "Your Caption"
+      ..setInstructionCaptionColor = "#345678"
+      ..setInstructionCaptionFont = "Arial"
+      ..setInstructionDocOptionBackgroundColor = "#456789"
+      ..setInstructionDocOptionTitleText = "Document Option"
+      ..setInstructionDocOptionTitleColor = "#567890"
+      ..setInstructionDocOptionTitleFont = "Courier New"
+      ..setInstructionDocOptionBorderColor = "#678901"
+      ..setInstructionDocOptionBorderWidth = 2
+      ..setInstructionDocOptionBorderRadius = 4
+      ..setInstructionDocOptionBackgroundColor = "#456789"
+      ..setInstructionDocOptionTitleText = "Document Option"
+      ..setInstructionDocOptionTitleColor = "#567890"
+      ..setInstructionDocOptionTitleFont = "Courier New"
+      ..setInstructionDocOptionBorderColor = "#678901"
+      ..setInstructionDocOptionBorderWidth = 2
+      ..setInstructionDocOptionBorderRadius = 4
+      ..setInstructionEnvOptionBackgroundColor = "#789012"
+      ..setInstructionEnvOptionTitleText = "Environment Option"
+      ..setInstructionEnvOptionTitleColor = "#890123"
+      ..setInstructionEnvOptionTitleFont = "Helvetica"
+      ..setInstructionEnvOptionBorderColor = "#901234"
+      ..setInstructionEnvOptionBorderWidth = 3
+      ..setInstructionEnvOptionBorderRadius = 6
+      ..setInstructionContinueButtonBackgroundColor = "#234567"
+      ..setInstructionContinueButtonHighlightedBackgroundColor = "#345678"
+      ..setInstructionContinueButtonBorderColor = "#456789"
+      ..setInstructionContinueButtonHighlightedBorderColor = "#567890"
+      ..setInstructionContinueButtonContentColor = "#678901"
+      ..setInstructionContinueButtonHighlightedContentColor = "#789012"
+      ..setInstructionContinueButtonTextColor = "#890123"
+      ..setInstructionContinueButtonFont = "Arial"
+      ..setCaptureInstructionGuideReviewText = "Review"
+      ..setLoadingBackgroundColor = "#901234"
+      ..setLoadingSpinnerColor = "#012345"
+      ..setLoadingSpinnerWidth = 2
+      ..setLoadingSpinnerScale = 1
+      ..setCaptureBackgroundColor = "#123456"
+      ..setTextFront = "Front Text"
+      ..setTextBack = "Back Text"
+      ..setCaptureInstructionGuideTextFront = "Front Guide Text"
+      ..setCaptureInstructionGuideTextBack = "Back Guide Text"
+      ..setTextOk = "OK Text"
+      ..setCaptureTakeNewPictureButtonText = "Take New Picture"
+      ..setCaptureInstructionGuideTextColor = "#345678"
+      ..setTextConfirmation = "Confirmation Text"
+      ..setBackgroundOkColor = "#456789"
+      ..setCaptureBackButtonIcon = "back_icon.png"
+      ..setCaptureBackButtonColorsIcon = "#567890"
+      ..setCaptureBackButtonColorsBackground = "#678901"
+      ..setCaptureBackButtonColorsBorder = "#789012"
+      ..setCaptureCloseButtonColorsIcon = "#890123"
+      ..setCaptureCloseButtonColorsBackground = "#901234"
+      ..setCaptureCloseButtonColorsBorder = "#012345"
+      ..setCaptureFrontIndicatorColor = "#123456"
+      ..setCaptureFrontIndicatorFocusedStateColor = "#234567"
+      ..setCaptureFrontIndicatorUnfocusedStateColor = "#345678"
+      ..setCaptureBackIndicatorColor = "#456789"
+      ..setCaptureBackIndicatorFocusedStateTextColor = "#567890"
+      ..setCaptureBackIndicatorUnfocusedStateTextColor = "#678901"
+      ..setCaptureInstructionTextColor = "#789012"
+      ..setCapturePreviewBorderColorForCapture = "#234567"
+      ..setCapturePreviewBorderColorForUncapturedState = "#345678"
+      ..setCaptureCaptureButtonHighlightedStateColorsIcon = "#456789"
+      ..setCaptureCaptureButtonHighlightedStateColorsBackground = "#567890"
+      ..setCaptureCaptureButtonHighlightedStateColorsBorder = "#678901"
+      ..setCaptureCaptureButtonNormalStateColorsIcon = "#789012"
+      ..setCaptureCaptureButtonNormalStateColorsBackground = "#890123"
+      ..setCaptureCaptureButtonNormalStateColorsBorder = "#901234"
+      ..setCaptureCaptureButtonDisabledStateColorsIcon = "#012345"
+      ..setCaptureCaptureButtonDisabledStateColorsBackground = "#123456"
+      ..setCaptureCaptureButtonDisabledStateColorsBorder = "#234567"
+      ..setCaptureBottomSheetShapeColor = "#345678"
+      ..setCaptureBottomSheetShapeCornerRadius = 10
+      ..setCaptureTakeNewPictureButtonHighlightedStateColorsText = "#456789"
+      ..setCaptureTakeNewPictureButtonHighlightedStateColorsBackground =
+          "#567890"
+      ..setCaptureTakeNewPictureButtonHighlightedStateColorsBorder = "#678901"
+      ..setCaptureTakeNewPictureButtonNormalStateColorsText = "#789012"
+      ..setCaptureTakeNewPictureButtonNormalStateColorsBackground = "#890123"
+      ..setCaptureTakeNewPictureButtonNormalStateColorsBorder = "#901234"
+      ..setCaptureTakeNewPictureButtonDisabledStateColorsText = "#012345"
+      ..setCaptureTakeNewPictureButtonDisabledStateColorsBackground = "#123456"
+      ..setCaptureTakeNewPictureButtonDisabledStateColorsBorder = "#234567"
+      ..setCaptureUsePictureButtonText = "Use Picture"
+      ..setCaptureUsePictureButtonConfirmationText = "Confirm"
+      ..setCaptureUsePictureButtonHighlightedStateColorsText = "#345678"
+      ..setCaptureUsePictureButtonHighlightedStateColorsBackground = "#456789"
+      ..setCaptureUsePictureButtonHighlightedStateColorsBorder = "#567890"
+      ..setCaptureUsePictureButtonNormalStateColorsText = "#678901"
+      ..setCaptureUsePictureButtonNormalStateColorsBackground = "#789012"
+      ..setCaptureUsePictureButtonNormalStateColorsBorder = "#890123"
+      ..setCaptureUsePictureButtonDisabledStateColorsText = "#901234"
+      ..setCaptureUsePictureButtonDisabledStateColorsBackground = "#012345"
+      ..setCaptureUsePictureButtonDisabledStateColorsBorder = "#123456"
+      ..setResultBackgroundColorSuccess = "#234567"
+      ..setResultBackgroundColorError = "#345678"
+      ..setResultBackgroundColorTryAgain = "#456789"
+      ..setResultMessageSuccess = "Success Message"
+      ..setResultMessageError = "Error Message"
+      ..setResultMessageTryAgain = "Try Again Message"
+      ..setResultMessageColorSuccess = "#567890"
+      ..setResultMessageColorError = "#678901"
+      ..setResultMessageColorTryAgain = "#789012"
+      ..setResultTryAgainButtonText = "Try Again"
+      ..setResultTryAgainButtonHighlightedStateColorsText = "#890123"
+      ..setResultTryAgainButtonHighlightedStateColorsBackground = "#901234"
+      ..setResultTryAgainButtonHighlightedStateColorsBorder = "#012345"
+      ..setResultTryAgainButtonNormalStateColorsText = "#123456"
+      ..setResultTryAgainButtonNormalStateColorsBackground = "#234567"
+      ..setResultTryAgainButtonNormalStateColorsBorder = "#345678";
   }
 }
