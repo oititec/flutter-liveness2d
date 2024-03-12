@@ -1,35 +1,35 @@
-# [Flutter] oiti_liveness2d
+<IMG  src="https://github.com/oititec/liveness-android-sdk/blob/main/Documentation/Images/OitiHeader.png?raw=true"  alt="OitiHeader.png"/>
 
-![https://raw.githubusercontent.com/oititec/flutter-liveness3d-bridge/main/Documentation/imgs/OitiHeader.png](https://raw.githubusercontent.com/oititec/flutter-liveness3d-bridge/main/Documentation/imgs/OitiHeader.png)
+# Oiti - Liveness 2D para Flutter
 
-## 1. Sobre o Repositório
+Neste repositório, encontramos a **biblioteca pub.dev do Liveness 2D da Oiti**.
 
-Este repositório é responsável pelo plugin do Liveness 2D da Oiti para flutter, com ele é possível executar a verificação de documentos da [Oititec](https://www.oititec.com.br/) disponíveis para aplicativos híbridos em Flutter.
-
-## 2. O que é o Plugin?
+Pub.dev é o gerenciador de pacotes para a linguagem de programação Dart, contendo bibliotecas e pacotes reutilizáveis ​​para Flutter e programas Dart em geral.
 
 Em Flutter, um plugin é um pacote de software que fornece acesso a recursos nativos de dispositivos permitindo que aplicativos Flutter se comuniquem com sistemas operacionais iOS e Android, adicionando funcionalidades extras e melhorando a experiência do usuário. Eles são escritos em Dart e podem incluir código em linguagens nativas como Kotlin e Swift.
 
-## 3. O que é o Liveness 2D?
+**Requisitos mínimos**
+| Android | iOS|
+|--|--|
+|Gradle: 6.8 | iOS: 11 |
 
-O Liveness 2D é um conjunto de ferramentas de análise de risco que processa imagens de documentos de identificação, como RG, CNH, DNI ou CIN. Ele é composto pelas seguintes ferramentas: SmartCap, OCR, FaceMatch e Autenticação de Documentos. Essas ferramentas são utilizadas para validar a autenticidade dos documentos e realizar verificações automatizadas.
+## Summary
 
-## 4. Sumário [Devcenter](https://devcenter.certiface.io/)
+Simplificamos nossos guias de integração e de customização do Flutter:
 
-- \*[Guia de Instalação Flutter](https://devcenter.certiface.io/docs/guia-de-instalacao-flutter)
+- [Guias de Instalação](https://devcenter.certiface.io/docs/guia-de-instalacao-flutter)
+- [Guia de Uso e Integração](https://devcenter.certiface.io/docs/guia-de-uso-e-integracao-flutter)
+- [Guia de Tratamento de Retorno](https://devcenter.certiface.io/docs/guia-de-tratamento-de-retornos-flutter)
+- [Guias de Customização](https://devcenter.certiface.io/docs/customizacao-flutter)
 
-\*\*Fornece instruções passo a passo sobre como instalar nosso Plugin e utilizando diferentes produtos móveis, sendo eles: Liveness 3D, Liveness 2D e DocCore.
+## Changelog
 
-Com este guia, os desenvolvedores poderão iniciar rapidamente a integração de nossos <glossary:produtos> em seus aplicativos.
+- As novidades das versões podem ser acessadas [neste link](https://pub.dev/packages/oiti_liveness2d/versions).
 
-- \*[Guia de Uso e Integração Flutter](https://devcenter.certiface.io/docs/guia-de-uso-e-integracao-flutter)
+## Saiba mais
 
-\*\*Esse guia explora as funcionalidades e recursos oferecidos pelo nosso Plugin. Ele oferece exemplos práticos para ajudar os desenvolvedores a utilizar nosso produto de forma eficiente. Encontre as configurações, descrição de parâmetros e chamadas.
+- Conhecer as **ferramentas de prevenção à fraude** e suas funcionalidades: [consulte este link](https://devcenter.certiface.io/docs/certiface-funcionalidades).
 
-- \*[Guia de Tratamento de Retornos Flutter](https://devcenter.certiface.io/docs/guia-de-tratamento-de-retornos-flutter)
+- Acessar quadro de **compatibilidade de sistemas e drivers**: [consulte este link](https://devcenter.certiface.io/docs/compatibilidade-dos-servicos).
 
-\*\*Documentação voltada para os desenvolvedores que desejam entender e trabalhar com as respostas das nossas <glossary:ferramentas>. Ele detalha os diferentes tipos de respostas que nosso produto pode fornecer e explica como interpretar, utilizar e efetuar os tratamentos dos retornos obtidos.
-
-- \*[Guia Customização(Liveness 2D)](https://devcenter.certiface.io/docs/customizacao-doccore-flutter)
-
-\*\*A customização do Liveness 2D permite personalizar as telas e textos exibidos durante o processo de verificação do documento.
+- Entrar em contato com o **atendimento Oiti**: [consulte este link](https://devcenter.certiface.io/docs/portal-de-atendimento).
