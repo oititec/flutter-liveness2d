@@ -1,6 +1,6 @@
 name: oiti_liveness2d
 description: A pluggin from Oititec to add Livenees2d on your project.
-version: 2.0.1
+version: 2.1.0
 homepage: "https://oititec.com.br/"
 repository: "https://github.com/oititec/flutter-liveness2d"
 
