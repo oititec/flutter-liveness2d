@@ -23,7 +23,6 @@ class DocActivity(
             throw InvalidAppKey()
         }
         val env: Environment = if (environment.equals("PRD")) Environment.PRD else Environment.HML
-        //val loadingSize: Int =  themeBuilder?.get("setLoadingSpinnerScale")?.toInt()?.times(100) ?: 100
 
         return Intent(context, DocumentscopyActivity::class.java).apply {
             putExtra(DocumentscopyActivity.PARAM_APP_KEY, appKey)
@@ -49,7 +48,6 @@ class DocActivity(
     .instructionCaptionColor(themeBuilder?.get("setInstructionCaptionColor") ?: "#666666")
     .instructionCaptionText(themeBuilder?.get("setInstructionCaptionText") ?: "Isso garante que seu documento é oficial.")
     .instructionBottomSheetBackgroundColor(themeBuilder?.get("setInstructionBottomSheetColor")  ?: "#FFFFFF")
-    //.instructionBottomSheetRadius(themeBuilder?.getInt("setInstructionBottomSheetRadius") ?: 20)
     .setInstructionOptionDocumentBackgroundColor(themeBuilder?.get("setInstructionDocOptionBackgroundColor")  ?: "#F5F5F5")
     .setInstructionOptionDocumentText(themeBuilder?.get("setInstructionDocOptionTitleText")  ?: "Use RG, CNH, DNI ou CIN.")
     .setInstructionOptionDocumentTextColor(themeBuilder?.get("setInstructionDocOptionTitleColor")  ?: "#000000")
