@@ -144,7 +144,7 @@ extension SwiftOitiLiveness2dPlugin {
                 width: custom?["setLoadingSpinerWidth"] as? CGFloat ?? 1,
                 scaleFactor: custom?["setLoadingSpinnerScale"] as? Int ?? 1
             )
-            hybridBuilder
+        hybridBuilder
             .setLoadingBackgroundColor(.init(hex: custom?["setLoadingBackgroundColor"] as? String ?? "#000000"))
             .setLoadingSpinner(
                 withColor: .init(hex: custom?["setLoadingSpinnerColor"] as? String ?? "#FFFFFF"),

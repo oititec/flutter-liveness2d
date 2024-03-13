@@ -101,7 +101,16 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
         let environment = Environment(rawValue: rawEnvironment) ?? .HML
         
         let builder = DocumentscopyCustomizationBuilder.builder()
-        let hybridCustomization = HybridDocumentscopyCustomizationBuilder.builder(withNativeBuilder: builder)
+        let hybridBuilder = HybridDocumentscopyCustomizationBuilder.builder(withNativeBuilder: builder)
+        
+        var customizationTheme: HybridDocumentscopyCustomizationTheme?
+        if custom != nil {
+            customizationTheme = createCustomization(
+                builder: builder,
+                hybridBuilder: hybridBuilder,
+                custom: custom
+            ).build()
+        }
         
         DispatchQueue.main.async { [self] in
             let DocumentscopyViewController = HybridDocumentscopyViewController(
@@ -109,7 +118,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
                 appKey: appKey,
                 environment: environment,
                 delegate: self,
-                customizationTheme: (custom != nil) ? createCustomization(builder: builder,hybridBuilder: hybridCustomization, custom: custom).build() : nil
+                customizationTheme: customizationTheme
             )
             DocumentscopyViewController.delegate = self
             DocumentscopyViewController.modalPresentationStyle = .fullScreen
