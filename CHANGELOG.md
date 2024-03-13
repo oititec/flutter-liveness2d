@@ -1,6 +1,6 @@
 ## 2.1.1
 
-_data: 12/03/2024_
+_data: 13/03/2024_
 
 - **Novidades**
   - Atualizado customização na tela de loading para iOS.
