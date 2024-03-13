@@ -13,8 +13,9 @@ import Foundation
 extension SwiftOitiLiveness2dPlugin {
     func createCustomization(
         builder: DocumentscopyCustomizationBuilder,
+        hybridBuilder: HybridDocumentscopyCustomizationBuilder,
         custom: Dictionary<String,Any>?
-    ) -> DocumentscopyCustomizationBuilder {
+    ) -> HybridDocumentscopyCustomizationBuilder {
         builder
             .setCaptureFrontIndicatorText(custom?["setTextFront"] as! String)
             .setCaptureBackIndicatorText(custom?["setTextBack"] as! String)
@@ -137,8 +138,20 @@ extension SwiftOitiLiveness2dPlugin {
                 background: .init(hex: custom?["setResultTryAgainButtonNormalStateColorsBackground"] as! String),
                 border: .init(hex: custom?["setResultTryAgainButtonNormalStateColorsBorder"] as! String)
             )
+            .setLoadingBackgroundColor(.init(hex: custom?["setLoadingBackgroundColor"] as? String ?? "#000000"))
+            .setLoadingSpinner(
+                withColor: .init(hex: custom?["setLoadingSpinnerColor"] as? String ?? "#FFFFFF"),
+                width: custom?["setLoadingSpinerWidth"] as? CGFloat ?? 1,
+                scaleFactor: custom?["setLoadingSpinnerScale"] as? Int ?? 1
+            )
+        hybridBuilder
+            .setLoadingBackgroundColor(.init(hex: custom?["setLoadingBackgroundColor"] as? String ?? "#000000"))
+            .setLoadingSpinner(
+                withColor: .init(hex: custom?["setLoadingSpinnerColor"] as? String ?? "#FFFFFF"),
+                width: custom?["setLoadingSpinerWidth"] as? CGFloat ?? 1,
+                scaleFactor: custom?["setLoadingSpinnerScale"] as? Int ?? 1
+            )
         
-        
-        return builder
+        return hybridBuilder
     }
 }
