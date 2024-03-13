@@ -71,11 +71,11 @@ class _MyAppState extends State<MyApp> {
             ),
             _documentscopyWidgetOption(
               context,
-              'Documentoscopia',
+              'Doc Core',
             ),
             _documentscopyWidgetOption(
               context,
-              'Documentoscopia Custom',
+              'Doc Core Custom',
               themeBuilder: _themeCustomization(),
               instructionWidget: instructionScreen(),
               permissionWidget: CameraPermissionWidget(),
@@ -88,13 +88,18 @@ class _MyAppState extends State<MyApp> {
             ),
             _documentscopyWidgetOption(
               context,
-              'Documentoscopia Intrução Custom',
+              'Doc Core Intrução Custom',
               instructionWidget: instructionScreen(),
             ),
             _documentscopyWidgetOption(
               context,
-              'Documentoscopia Permissão Custom',
+              'Doc Core Permissão Custom',
               permissionWidget: CameraPermissionWidget(),
+            ),
+            _hideInstructionWidgetOption(
+              context,
+              'Doc Core - Pular Telas',
+              themeBuilder: _themeCustomization(),
             ),
             Padding(
               padding: const EdgeInsets.all(20),
@@ -116,6 +121,35 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  hideInstructions(
+    BuildContext context,
+    String appKey,
+    String ticket,
+    Environment environment,
+    ThemeBuilder? themeBuilder,
+  ) {
+    OitiLiveness2d().checkPermission().then((authorized) => {
+          if (authorized)
+            {
+              OitiLiveness2d()
+                  .openDocumentscopy(
+                    appKey: appKey,
+                    ticket: ticket,
+                    themeBuilder: themeBuilder,
+                    environment: environment,
+                  )
+                  .then((result) async => {_onDocSuccess(result)})
+                  .onError((error, stackTrace) async => {_onDocError(error)})
+                  .catchError((error) async => {_onDocError(error)})
+                  .whenComplete(() => _showAlertDialog(
+                        context,
+                        resultTitle,
+                        resultContent,
+                      ))
+            }
+        });
   }
 
   Widget _liveness2DWidgetOption(BuildContext context, String title) {
@@ -141,6 +175,29 @@ class _MyAppState extends State<MyApp> {
             resultTitle,
             resultContent,
           ),
+        ),
+        child: Text(title),
+      ),
+    );
+  }
+
+  Widget _hideInstructionWidgetOption(
+    BuildContext context,
+    String title, {
+    ThemeBuilder? themeBuilder,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 5),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size.fromHeight(50),
+        ),
+        onPressed: () => hideInstructions(
+          context,
+          appKey,
+          ticket,
+          environment,
+          themeBuilder,
         ),
         child: Text(title),
       ),
