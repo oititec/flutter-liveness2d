@@ -54,7 +54,7 @@ class OitiLiveness2d {
     required String appKey,
     required String ticket,
     ThemeBuilder? themeBuilder,
-    required String baseUrl,
+    String? baseUrl,
     required Environment environment,
   }) async {
     final result = await OitiLiveness2dPlatform.instance.startDocumentscopy(
@@ -106,23 +106,26 @@ class OitiLiveness2d {
     );
   }
 
-  static Widget createDocumentscopyWidget(
-      {required String appKey,
-      required String ticket,
-      required Environment environment,
-      ThemeBuilder? themeBuilder,
-      required Function(DocSuccessResult result) onSuccess,
-      required Function(Object? error) onError,
-      Widget? instructionWidget,
-      Widget? permissionWidget}) {
+  static Widget createDocumentscopyWidget({
+    required String appKey,
+    required String ticket,
+    required Environment environment,
+    ThemeBuilder? themeBuilder,
+    required Function(DocSuccessResult result) onSuccess,
+    required Function(Object? error) onError,
+    Widget? instructionWidget,
+    Widget? permissionWidget,
+    bool? hideInstructions,
+  }) {
     return DocumentscopyWidget(
-        appKey: appKey,
-        ticket: ticket,
-        environment: environment,
-        themeBuilder: themeBuilder,
-        onSuccess: onSuccess,
-        onError: onError,
-        instructionWidget: instructionWidget,
-        permissionWidget: permissionWidget);
+      appKey: appKey,
+      ticket: ticket,
+      environment: environment,
+      themeBuilder: themeBuilder,
+      onSuccess: onSuccess,
+      onError: onError,
+      instructionWidget: instructionWidget,
+      permissionWidget: permissionWidget,
+    );
   }
 }

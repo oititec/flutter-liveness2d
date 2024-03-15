@@ -91,7 +91,6 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
         let FaceCaptchaViewController = HybridFaceCaptchaViewController(appKey: appKey, environment: environment, delegate: self)
         FaceCaptchaViewController.modalPresentationStyle = .fullScreen
         UIApplication.shared.keyWindow?.rootViewController?.present(FaceCaptchaViewController, animated: true, completion: nil)
-        
     }
     
     private func startdocumentscopy(args:Dictionary<String,Any>?) {
@@ -101,8 +100,17 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
         let rawEnvironment = args?["environment"] as? String ?? ""
         let environment = Environment(rawValue: rawEnvironment) ?? .HML
         
-        
         let builder = DocumentscopyCustomizationBuilder.builder()
+        let hybridBuilder = HybridDocumentscopyCustomizationBuilder.builder(withNativeBuilder: builder)
+        
+        var customizationTheme: HybridDocumentscopyCustomizationTheme?
+        if custom != nil {
+            customizationTheme = createCustomization(
+                builder: builder,
+                hybridBuilder: hybridBuilder,
+                custom: custom
+            ).build()
+        }
         
         DispatchQueue.main.async { [self] in
             let DocumentscopyViewController = HybridDocumentscopyViewController(
@@ -110,7 +118,7 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
                 appKey: appKey,
                 environment: environment,
                 delegate: self,
-                customizationTheme: (custom != nil) ? createCustomization(builder: builder, custom: custom).build() : nil
+                customizationTheme: customizationTheme
             )
             DocumentscopyViewController.delegate = self
             DocumentscopyViewController.modalPresentationStyle = .fullScreen
@@ -119,7 +127,6 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     }
     
 }
-
 
 public extension UIColor {
     

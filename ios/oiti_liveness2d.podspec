@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'oiti_liveness2d'
-  s.version          = '0.0.1'
+  s.version          = '2.1.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
 A new Flutter plugin project.
@@ -15,7 +15,7 @@ A new Flutter plugin project.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'OILiveness2D', '~> 2.0'
+  s.dependency 'OILiveness2D', '~> 2.1'
   s.platform = :ios, '9.0'
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
