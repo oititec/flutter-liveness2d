@@ -8,7 +8,7 @@ class DocumentscopyWidget extends StatelessWidget {
   final String ticket;
   final Environment environment;
   final ThemeBuilder? themeBuilder;
-  final Function(DocSuccessResult result) onSuccess;
+  final Function(String result) onSuccess;
   final Function(Object? error) onError;
   final Widget? instructionWidget;
   final Widget? permissionWidget;
@@ -59,7 +59,7 @@ class DocumentscopyWidget extends StatelessWidget {
     ).onContinue(context);
   }
 
-  _onDocSuccess(DocSuccessResult result) {
+  _onDocSuccess(String result) {
     onSuccess(result);
   }
 

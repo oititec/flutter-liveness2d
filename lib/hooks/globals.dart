@@ -10,5 +10,5 @@ ThemeBuilder? themeBuilder;
 Environment environment = Environment.hml;
 Widget? instructionWidget;
 Widget? permissionWidget;
-DocSuccessResult? onDocSuccess;
+String? onDocSuccess;
 Object? onDocError;

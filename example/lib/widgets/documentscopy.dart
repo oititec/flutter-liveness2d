@@ -4,7 +4,7 @@ import './info_card_doc.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 
 class DocumentscopyWidget extends StatelessWidget {
-  final Function(DocSuccessResult result) onSuccess;
+  final Function(String result) onSuccess;
   final Function(Object? error) onError;
 
   DocumentscopyWidget({

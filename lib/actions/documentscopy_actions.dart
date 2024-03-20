@@ -6,7 +6,7 @@ import 'package:oiti_liveness2d/widgets/screens/camera_permission.dart';
 
 class DocumentsCopyActions {
   final OitiLiveness2d _channel = OitiLiveness2d();
-  final Function(DocSuccessResult result)? onSuccess;
+  final Function(String result)? onSuccess;
   final Function(Object? error)? onError;
 
   DocumentsCopyActions({

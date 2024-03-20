@@ -24,7 +24,6 @@ class _MyAppState extends State<MyApp> {
   late TextEditingController _controllerT;
 
   String _platformVersion = 'Unknown';
-  final _oitiLiveness2dPlugin = OitiLiveness2d();
   var appKey = '';
   var ticket = '';
   var resultTitle = '';
@@ -322,10 +321,9 @@ class _MyAppState extends State<MyApp> {
     resultContent = 'Cause: ${error.toString()}';
   }
 
-  _onDocSuccess(DocSuccessResult result) {
+  _onDocSuccess(String result) {
     resultTitle = 'Sucesso';
-    resultContent =
-        'Valid: ${result.valid}\nCodID: ${result.codId}\nCause: ${result.cause}\nProtocol: ${result.protocol}\nScan Result Blob: ${result.scanResultBlob}\n';
+    resultContent = result;
   }
 
   _onDocError(Object? error) {

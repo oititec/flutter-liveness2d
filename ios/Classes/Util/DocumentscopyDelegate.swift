@@ -12,7 +12,7 @@ extension SwiftOitiLiveness2dPlugin: DocumentscopyDelegate {
     
     public func handleDocumentscopyCompleted() {
         debugPrint("handleDocumentscopyCompleted")
-        result?(nil)
+        result?("RESULT_OK")
     }
     
     public func handleDocumentscopyError(error: DocumentscopyError) {
