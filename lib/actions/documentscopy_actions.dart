@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:oiti_liveness2d/actions/documestscopy_result.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'package:oiti_liveness2d/hooks/globals.dart' as globals;
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 import 'package:oiti_liveness2d/widgets/screens/camera_permission.dart';
 
 class DocumentsCopyActions {
   final OitiLiveness2d _channel = OitiLiveness2d();
-  final Function(DocSuccessResult result)? onSuccess;
+  final Function(DocCoreSuccessResult result)? onSuccess;
   final Function(Object? error)? onError;
 
   DocumentsCopyActions({

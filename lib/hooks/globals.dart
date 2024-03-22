@@ -1,6 +1,7 @@
 library livneness2d.globals;
 
 import 'package:flutter/material.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 
 //Documentscopy
@@ -10,5 +11,5 @@ ThemeBuilder? themeBuilder;
 Environment environment = Environment.hml;
 Widget? instructionWidget;
 Widget? permissionWidget;
-DocSuccessResult? onDocSuccess;
+DocCoreSuccessResult? onDocSuccess;
 Object? onDocError;

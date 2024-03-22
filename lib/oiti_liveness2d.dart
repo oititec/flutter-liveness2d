@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'package:oiti_liveness2d/common/enum_case_name.dart';
 import 'oiti_liveness2d_platform_interface.dart';
 
 import 'package:oiti_liveness2d/common/enumerations.dart';
 import 'package:oiti_liveness2d/common/liveness_success_result.dart';
-import 'package:oiti_liveness2d/common/doc_success_result.dart';
 import 'package:oiti_liveness2d/common/theme_builder.dart';
 
 import 'package:oiti_liveness2d/widgets/liveness2d.dart';
@@ -12,7 +12,6 @@ import 'package:oiti_liveness2d/widgets/documentscopy.dart';
 
 export 'package:oiti_liveness2d/common/enumerations.dart';
 export 'package:oiti_liveness2d/common/liveness_success_result.dart';
-export 'package:oiti_liveness2d/common/doc_success_result.dart';
 export 'package:oiti_liveness2d/common/theme_builder.dart';
 
 export 'package:oiti_liveness2d/actions/documentscopy_actions.dart';
@@ -42,15 +41,13 @@ class OitiLiveness2d {
     );
 
     return LivenessSuccessResult(
-      result['valid'] as bool? ?? false,
-      result['cause'] as String? ?? '',
-      result['codId'] as String? ?? '',
-      result['protocol'] as String? ?? '',
-      result['blob'] as String? ?? '',
-    );
+        result['valid'] as bool? ?? false,
+        result['cause'] as String? ?? '',
+        result['codId'] as String? ?? '',
+        result['protocol'] as String? ?? '');
   }
 
-  Future<DocSuccessResult> openDocumentscopy({
+  Future<DocCoreSuccessResult> openDocumentscopy({
     required String appKey,
     required String ticket,
     ThemeBuilder? themeBuilder,
@@ -64,14 +61,7 @@ class OitiLiveness2d {
       themeBuilder?.toJson(),
       environment.caseName().toUpperCase(),
     );
-
-    return DocSuccessResult(
-      result['valid'] as bool? ?? false,
-      result['cause'] as String? ?? '',
-      result['codId'] as String? ?? '',
-      result['protocol'] as String? ?? '',
-      result['blob'] as String? ?? '',
-    );
+    return DocCoreSuccessResult(result['message'] as String? ?? '');
   }
 
   static Future startDocumentscopy(String? baseUrl, String? appKey,
@@ -111,7 +101,7 @@ class OitiLiveness2d {
     required String ticket,
     required Environment environment,
     ThemeBuilder? themeBuilder,
-    required Function(DocSuccessResult result) onSuccess,
+    required Function(DocCoreSuccessResult result) onSuccess,
     required Function(Object? error) onError,
     Widget? instructionWidget,
     Widget? permissionWidget,

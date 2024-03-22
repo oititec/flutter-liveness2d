@@ -1,3 +1,11 @@
+## 2.1.2
+
+_data: 20/03/2024_
+
+- **Novidades**
+  - Ajuste no onSeccess da DocCore.
+  - Mudança de Objeto para String.
+
 ## 2.1.1
 
 _data: 13/03/2024_

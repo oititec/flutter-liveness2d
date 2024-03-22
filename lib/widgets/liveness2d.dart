@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 import 'package:oiti_liveness2d/widgets/screens/camera_permission.dart';
@@ -46,7 +47,12 @@ class Liveness2DWidget extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        onError("User cancelled the journey");
+                        onError(
+                          PlatformException(
+                            code: '0',
+                            message: 'User canceled the journey.',
+                          ),
+                        );
                         Navigator.pop(context);
                       },
                       child: titleSection,

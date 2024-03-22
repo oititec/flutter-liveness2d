@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'dart:async';
 
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
@@ -24,9 +28,9 @@ class _MyAppState extends State<MyApp> {
   late TextEditingController _controllerT;
 
   String _platformVersion = 'Unknown';
-  final _oitiLiveness2dPlugin = OitiLiveness2d();
-  var appKey = '';
-  var ticket = '';
+  var appKey =
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNTJEM0JFRTI5NTkxNThFRDY2MUI2N0IxQzREQjE2MUV8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IkE5MkM4QjJFNjcwNDY5MDM2NTZENkYwREYyMzQ3MjQ5Q0JCRTE1QTQ4REZGMEMyNTYwMTU1QTdBQTQzQ0FCRjlEMTI3RTRERUYwQzZGOTQwMkJEQkE4OUVDQURBMUFGRTNENkI0NjM0MDk4NjhCMjQ0MEIwMzI2ODZDRkExMHxHQUJSSUVMIENBVEVMTEkgR09VTEFSVCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFb1V5SkdHcjE1cDAyOHpXM2pORXJOUlUyeUhBV0dSb2ppV3gyWFRxS1dpOHJrNGZKVTYvemowa1V3PT0iLCJrZXkiOiJRMjl1YzJsa1pYSWdjM0JsWVd0cGJtY2diV1VnY0hKdmMzQmxZM1FnZDJoaGRHVT0iLCJleHAiOjE3MTEwNzk0NDMsImlhdCI6MTcxMTA3OTE0M30.5XgG_g4ZTBL84gxGmudcwrdV8zbATP2gFxVDmqowuSw';
+  var ticket = '3e6fe6b8-9d98-48f3-8ca9-10a273c04adc';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
@@ -141,8 +145,10 @@ class _MyAppState extends State<MyApp> {
                     environment: environment,
                   )
                   .then((result) async => {_onDocSuccess(result)})
-                  .onError((error, stackTrace) async => {_onDocError(error)})
-                  .catchError((error) async => {_onDocError(error)})
+                  .onError((error, stackTrace) async =>
+                      {_onDocError(error as PlatformException)})
+                  .catchError((error) async =>
+                      {_onDocError(error as PlatformException)})
                   .whenComplete(() => _showAlertDialog(
                         context,
                         resultTitle,
@@ -166,7 +172,8 @@ class _MyAppState extends State<MyApp> {
               appKey: appKey,
               environment: environment,
               onSuccess: (result) => _onLiveness2DSuccess(result),
-              onError: (error) => _onLiveness2DError(error),
+              onError: (error) =>
+                  _onLiveness2DError(error as PlatformException),
             ),
           ),
         ).whenComplete(
@@ -226,7 +233,7 @@ class _MyAppState extends State<MyApp> {
               environment: environment,
               themeBuilder: themeBuilder,
               onSuccess: (result) => _onDocSuccess(result),
-              onError: (error) => _onDocError(error),
+              onError: (error) => _onDocError(error as PlatformException),
               instructionWidget: instructionWidget,
               permissionWidget: permissionWidget,
             ),
@@ -265,7 +272,7 @@ class _MyAppState extends State<MyApp> {
 
   Widget instructionScreen() {
     return DocumentscopyWidget(
-      onError: (error) => _onDocError(error),
+      onError: (error) => _onDocError(error as PlatformException),
       onSuccess: (result) => _onDocSuccess(result),
     );
   }
@@ -314,23 +321,22 @@ class _MyAppState extends State<MyApp> {
   _onLiveness2DSuccess(LivenessSuccessResult result) {
     resultTitle = 'Sucesso';
     resultContent =
-        'Valid: ${result.valid}\nCodID: ${result.codId}\nCause: ${result.cause}\nProtocol: ${result.protocol}\nScan Result Blob: ${result.scanResultBlob}\n';
+        'Valid: ${result.valid}\nCodID: ${result.codId}\nCause: ${result.cause}\nProtocol: ${result.protocol}\n';
   }
 
-  _onLiveness2DError(Object? error) {
+  _onLiveness2DError(PlatformException? error) {
     resultTitle = 'Error';
-    resultContent = 'Cause: ${error.toString()}';
+    resultContent = 'Cause: ${error?.message}';
   }
 
-  _onDocSuccess(DocSuccessResult result) {
+  _onDocSuccess(DocCoreSuccessResult result) {
     resultTitle = 'Sucesso';
-    resultContent =
-        'Valid: ${result.valid}\nCodID: ${result.codId}\nCause: ${result.cause}\nProtocol: ${result.protocol}\nScan Result Blob: ${result.scanResultBlob}\n';
+    resultContent = result.message;
   }
 
-  _onDocError(Object? error) {
+  _onDocError(PlatformException? error) {
     resultTitle = 'Error';
-    resultContent = 'Cause: ${error.toString()}';
+    resultContent = 'Cause: ${error?.message}';
   }
 
   ThemeBuilder _themeCustomization() {
