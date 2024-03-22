@@ -1,7 +1,8 @@
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'package:oiti_liveness2d/hooks/globals.dart' as globals;
 
 class DocumentsCopyResult {
-  final String? result;
+  final DocCoreSuccessResult? result;
   final Object? error;
 
   DocumentsCopyResult({

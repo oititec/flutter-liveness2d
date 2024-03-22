@@ -12,7 +12,10 @@ extension SwiftOitiLiveness2dPlugin: DocumentscopyDelegate {
     
     public func handleDocumentscopyCompleted() {
         debugPrint("handleDocumentscopyCompleted")
-        result?("RESULT_OK")
+        let response: Dictionary<String, Any> = [
+            "message": "RESULT_OK",
+        ]
+        result?(response)
     }
     
     public func handleDocumentscopyError(error: DocumentscopyError) {
@@ -28,7 +31,7 @@ extension SwiftOitiLiveness2dPlugin: DocumentscopyDelegate {
     
     public func handleDocumentscopyCanceled() {
         debugPrint("handleDocumentscopyCanceled")
-        finishWithError(code: "DOCUMENTSCOPY_CANCELED", message: nil)
+        finishWithError(code: "USER_CANCELED", message: "USER_CANCELED")
     }
     
     private func finishWithError(code: String, message: String?) {
@@ -37,6 +40,7 @@ extension SwiftOitiLiveness2dPlugin: DocumentscopyDelegate {
             message: message,
             details: nil
         )
+        print(flutterError)
         result?(flutterError)
     }
     

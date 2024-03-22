@@ -89,7 +89,9 @@ class DocActivity(
     }
 
     fun onDocumentscopyResultSuccess(data: Intent?) {
-        val response = "RESULT_OK"
+        val response = mapOf<String, Any?>(
+            "message" to "RESULT_OK",
+        )
 
         result?.success(response)
     }

@@ -11,7 +11,15 @@ public class SwiftOitiLiveness2dPlugin: NSObject, FlutterPlugin, FaceCaptchaDele
     public func handleSuccess(model: FaceCaptchaSuccessModel){
         debugPrint("handleCaptureValidation: \(model)")
         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true)
-        self.result?("FaceCaptcha Concluído")
+        
+        let response: Dictionary<String, Any> = [
+            "cause": model.cause ?? "",
+            "codId": String(model.codID ?? 0.0),
+            "protocol": model.uidProtocol ?? "",
+            "valid": model.valid ?? false
+        ]
+        
+        self.result?(response)
     }
     
     public func handleError(error: FaceCaptchaError){

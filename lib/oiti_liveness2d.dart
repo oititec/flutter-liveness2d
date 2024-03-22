@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'package:oiti_liveness2d/common/enum_case_name.dart';
 import 'oiti_liveness2d_platform_interface.dart';
 
@@ -40,15 +41,13 @@ class OitiLiveness2d {
     );
 
     return LivenessSuccessResult(
-      result['valid'] as bool? ?? false,
-      result['cause'] as String? ?? '',
-      result['codId'] as String? ?? '',
-      result['protocol'] as String? ?? '',
-      result['blob'] as String? ?? '',
-    );
+        result['valid'] as bool? ?? false,
+        result['cause'] as String? ?? '',
+        result['codId'] as String? ?? '',
+        result['protocol'] as String? ?? '');
   }
 
-  Future<String> openDocumentscopy({
+  Future<DocCoreSuccessResult> openDocumentscopy({
     required String appKey,
     required String ticket,
     ThemeBuilder? themeBuilder,
@@ -62,8 +61,7 @@ class OitiLiveness2d {
       themeBuilder?.toJson(),
       environment.caseName().toUpperCase(),
     );
-
-    return result;
+    return DocCoreSuccessResult(result['message'] as String? ?? '');
   }
 
   static Future startDocumentscopy(String? baseUrl, String? appKey,
@@ -103,7 +101,7 @@ class OitiLiveness2d {
     required String ticket,
     required Environment environment,
     ThemeBuilder? themeBuilder,
-    required Function(String result) onSuccess,
+    required Function(DocCoreSuccessResult result) onSuccess,
     required Function(Object? error) onError,
     Widget? instructionWidget,
     Widget? permissionWidget,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import 'package:oiti_liveness2d/hooks/globals.dart' as globals;
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 import 'package:oiti_liveness2d/widgets/screens/documentscopy_screen.dart';
@@ -8,7 +9,7 @@ class DocumentscopyWidget extends StatelessWidget {
   final String ticket;
   final Environment environment;
   final ThemeBuilder? themeBuilder;
-  final Function(String result) onSuccess;
+  final Function(DocCoreSuccessResult result) onSuccess;
   final Function(Object? error) onError;
   final Widget? instructionWidget;
   final Widget? permissionWidget;
@@ -59,7 +60,7 @@ class DocumentscopyWidget extends StatelessWidget {
     ).onContinue(context);
   }
 
-  _onDocSuccess(String result) {
+  _onDocSuccess(DocCoreSuccessResult result) {
     onSuccess(result);
   }
 

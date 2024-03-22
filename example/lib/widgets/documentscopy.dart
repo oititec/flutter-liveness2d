@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oiti_liveness2d/common/doccore_success_result.dart';
 import './info_card_doc.dart';
 import 'package:oiti_liveness2d/oiti_liveness2d.dart';
 
 class DocumentscopyWidget extends StatelessWidget {
-  final Function(String result) onSuccess;
+  final Function(DocCoreSuccessResult result) onSuccess;
   final Function(Object? error) onError;
 
   DocumentscopyWidget({
@@ -40,7 +42,12 @@ class DocumentscopyWidget extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        onError("User cancelled the journey");
+                        onError(
+                          PlatformException(
+                            code: '0',
+                            message: 'User canceled the journey.',
+                          ),
+                        );
                         Navigator.pop(context);
                       },
                       child: titleSection,
