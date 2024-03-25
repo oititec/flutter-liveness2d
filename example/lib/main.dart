@@ -28,9 +28,8 @@ class _MyAppState extends State<MyApp> {
   late TextEditingController _controllerT;
 
   String _platformVersion = 'Unknown';
-  var appKey =
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNTJEM0JFRTI5NTkxNThFRDY2MUI2N0IxQzREQjE2MUV8aW50LmV2b2x1dGlvbi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNjczIiwiZmlsQ29kIjoiMDAwMDAwMjczOSIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IkE5MkM4QjJFNjcwNDY5MDM2NTZENkYwREYyMzQ3MjQ5Q0JCRTE1QTQ4REZGMEMyNTYwMTU1QTdBQTQzQ0FCRjlEMTI3RTRERUYwQzZGOTQwMkJEQkE4OUVDQURBMUFGRTNENkI0NjM0MDk4NjhCMjQ0MEIwMzI2ODZDRkExMHxHQUJSSUVMIENBVEVMTEkgR09VTEFSVCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFb1V5SkdHcjE1cDAyOHpXM2pORXJOUlUyeUhBV0dSb2ppV3gyWFRxS1dpOHJrNGZKVTYvemowa1V3PT0iLCJrZXkiOiJRMjl1YzJsa1pYSWdjM0JsWVd0cGJtY2diV1VnY0hKdmMzQmxZM1FnZDJoaGRHVT0iLCJleHAiOjE3MTEwNzk0NDMsImlhdCI6MTcxMTA3OTE0M30.5XgG_g4ZTBL84gxGmudcwrdV8zbATP2gFxVDmqowuSw';
-  var ticket = '3e6fe6b8-9d98-48f3-8ca9-10a273c04adc';
+  var appKey = '';
+  var ticket = '';
   var resultTitle = '';
   var resultContent = '';
   final environment = Environment.hml;
